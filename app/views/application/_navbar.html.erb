@@ -18,6 +18,11 @@
           <li class="<%= yield(:active) == 'sign_in' ? 'active' : '' %>"><%= link_to t('sign_in'), new_user_session_path %></li>
         <% end %>
       </ul>
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to current_user.name, '#' %></li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </div>
