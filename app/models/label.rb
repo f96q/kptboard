@@ -7,4 +7,6 @@ class Label < ActiveRecord::Base
 
   validates :typ, inclusion: {in: TYPE.values}
   belongs_to :retrospective
+
+  acts_as_list scope: 'labels.typ = \'#{typ}\''
 end
