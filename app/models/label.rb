@@ -6,4 +6,5 @@ class Label < ActiveRecord::Base
   }
 
   validates :typ, inclusion: {in: TYPE.values}
+  belongs_to :retrospective
 end
