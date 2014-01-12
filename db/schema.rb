@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112124407) do
+ActiveRecord::Schema.define(version: 20140112124943) do
+
+  create_table "labels", force: true do |t|
+    t.string   "typ",              null: false
+    t.text     "description"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "retrospective_id", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "labels", ["retrospective_id"], name: "index_labels_on_retrospective_id", using: :btree
+  add_index "labels", ["user_id"], name: "index_labels_on_user_id", using: :btree
 
   create_table "retrospective_users", force: true do |t|
     t.datetime "created_at"
