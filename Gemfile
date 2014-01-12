@@ -35,6 +35,7 @@ group :doc do
 end
 
 gem 'devise'
+gem 'acts_as_list'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
