@@ -3,4 +3,16 @@ class Retrospective < ActiveRecord::Base
   has_many :labels, ->{ order('position ASC') }, dependent: :destroy
   has_many :retrospective_users, dependent: :destroy
   has_many :users, through: :retrospective_users
+
+  def add_user!(user_id)
+    self.retrospective_users.create! user_id: user_id
+  end
+
+  def remove_user(user_id)
+    self.retrospective_users.where(user_id: user_id).first.try(:destroy)
+  end
+
+  def has_user?(user_id)
+    self.users.pluck(:id).include? user_id
+  end
 end
