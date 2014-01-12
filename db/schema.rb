@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103172540) do
+ActiveRecord::Schema.define(version: 20140112123833) do
+
+  create_table "retrospectives", force: true do |t|
+    t.string   "title",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "retrospectives", ["title"], name: "index_retrospectives_on_title", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
