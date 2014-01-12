@@ -28,5 +28,9 @@ module Kptboard
     config.generators do |g|
       g.fixture_replacement :fabrication
     end
+
+    config.i18n.enforce_available_locales = true
+    config.i18n.default_locale = :en
+    config.i18n.available_locales = [:en]
   end
 end
