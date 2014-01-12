@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112123833) do
+ActiveRecord::Schema.define(version: 20140112124407) do
+
+  create_table "retrospective_users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "retrospective_id", null: false
+    t.integer  "user_id",          null: false
+  end
+
+  add_index "retrospective_users", ["retrospective_id", "user_id"], name: "index_retrospective_users_on_retrospective_id_and_user_id", unique: true, using: :btree
+  add_index "retrospective_users", ["retrospective_id"], name: "index_retrospective_users_on_retrospective_id", using: :btree
+  add_index "retrospective_users", ["user_id"], name: "index_retrospective_users_on_user_id", using: :btree
 
   create_table "retrospectives", force: true do |t|
     t.string   "title",      null: false
