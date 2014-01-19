@@ -1,0 +1,2 @@
+module Ws::LabelsHelper
+end

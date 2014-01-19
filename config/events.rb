@@ -17,4 +17,11 @@ WebsocketRails::EventMap.describe do
     subscribe :add_user, to: Ws::RetrospectivesController, with_method: :add_user
     subscribe :remove_user, to: Ws::RetrospectivesController, with_method: :remove_user
   end
+
+  namespace :labels do
+    subscribe :create,  to: Ws::LabelsController, with_method: :create
+    subscribe :destroy, to: Ws::LabelsController, with_method: :destroy
+    subscribe :update,  to: Ws::LabelsController, with_method: :update
+    subscribe :update_position, to: Ws::LabelsController, with_method: :update_position
+  end
 end
