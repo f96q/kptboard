@@ -11,4 +11,10 @@ WebsocketRails::EventMap.describe do
   #     subscribe :new, :to => ProductController, :with_method => :new_product
   #   end
   # The above will handle an event triggered on the client like `product.new`.
+
+  namespace :retrospectives do
+    subscribe :open, to: Ws::RetrospectivesController, with_method: :open
+    subscribe :add_user, to: Ws::RetrospectivesController, with_method: :add_user
+    subscribe :remove_user, to: Ws::RetrospectivesController, with_method: :remove_user
+  end
 end
