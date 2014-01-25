@@ -1,0 +1,19 @@
+.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
+  .container
+    .navbar-header
+      %button.navbar-toggle{'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse', type: 'button'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'KPTBoard', root_path, class: 'navbar-brand'
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        - if user_signed_in?
+          %li= link_to t('sign_out'), destroy_user_session_path, method: :delete
+        - else
+          %li{class: yield(:active) == 'sign_up' ? 'active' : ''}= link_to t('sign_up'), new_registration_path(:user)
+          %li{class: yield(:active) == 'sign_in' ? 'active' : ''}= link_to t('sign_in'), new_user_session_path
+      - if user_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to current_user.name, '#'
