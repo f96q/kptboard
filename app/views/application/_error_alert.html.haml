@@ -1,0 +1,6 @@
+- if object.errors.any?
+  .alert.alert-danger.alert-dismissabl
+    %button{type: 'button', class: 'close', :'data-dismiss' => 'alert', :'aria-hidden' => 'true'} &times;
+    %ul
+      - object.errors.full_messages.each do |message|
+        %li= message
