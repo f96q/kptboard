@@ -28,4 +28,7 @@ Kptboard::Application.configure do
   config.assets.debug = true
 
   config.middleware.delete Rack::Lock
+
+  config.sass.preferred_syntax = :sass
+  config.sass.syntax = :sass
 end
