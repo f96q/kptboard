@@ -1,0 +1,9 @@
+.page-header
+  %h1= title
+
+%ol.breadcrumb
+  - breadcrumbs.each do |breadcrumb|
+    %li= link_to breadcrumb[:title], breadcrumb[:url]
+  %li.active= title
+
+= render 'flash_alert'
