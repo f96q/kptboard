@@ -1,0 +1,17 @@
+= content_for :active, 'retrospectives'
+= render 'header', title: 'retrospective', breadcrumbs: [{title: 'home', url: root_path}]
+
+=link_to 'new', new_retrospective_path, class: 'btn btn-default'
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th title
+      %th
+  %tbody
+    - @retrospectives.each do |retrospective|
+      %tr
+        %td= link_to retrospective.title, retrospective_path(retrospective)
+        %td
+          = link_to 'edit', edit_retrospective_path(retrospective)
+          = link_to 'destroy', retrospective_path(retrospective), method: :delete, data: {confirm: 'are you sure?'}

@@ -1,0 +1,9 @@
+=form_for @retrospective, html: {class: 'form-horizontal'}, role: 'form' do |f|
+  =render 'error_alert', object: @retrospective
+  .form-group
+    %label.control-label.col-sm-2{for: 'retrospective_title'}Title
+    .col-sm-10= f.text_field :title, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      %label
+        %button.btn.btn-default{type: 'submit'}save

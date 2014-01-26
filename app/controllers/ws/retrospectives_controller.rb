@@ -1,6 +1,10 @@
 class Ws::RetrospectivesController < Ws::BaseController
   def open
-    trigger_success labels: @retrospective.labels.empty? ? [] : @retrospective.labels.map(&:as_json)
+    params = {
+      labels: @retrospective.labels.empty? ? [] : @retrospective.labels.map(&:as_json),
+      users: @retrospective.users.empty? ? [] : @retrospective.users.map(&:as_json),
+    }
+    trigger_success params
   end
 
   def add_user
@@ -10,7 +14,7 @@ class Ws::RetrospectivesController < Ws::BaseController
       return
     end
     @retrospective.add_user! @user.id
-    trigger_channel 'users.create', @user.as_json
+    trigger_channel 'retrospectives.add_user', @user.as_json
   end
 
   def remove_user
@@ -20,6 +24,6 @@ class Ws::RetrospectivesController < Ws::BaseController
     end
     @user = User.where(id: event.data[:id]).first
     @retrospective.remove_user @user.id
-    trigger_channel 'users.destroy', {id: @user.id}
+    trigger_channel 'retrospectives.remove_user', {id: @user.id}
   end
 end
