@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require angular
+//= require app/modules/kptboard
 //= require_tree .
 //= require websocket_rails/main
 
