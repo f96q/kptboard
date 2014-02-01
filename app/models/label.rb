@@ -7,6 +7,7 @@ class Label < ActiveRecord::Base
 
   validates :typ, inclusion: {in: TYPE.values}
   belongs_to :retrospective
+  belongs_to :user
 
   acts_as_list scope: 'labels.typ = \'#{typ}\''
 
@@ -15,7 +16,10 @@ class Label < ActiveRecord::Base
       id: id,
       typ: typ,
       position: position,
-      description: description
+      description: description,
+      created_at: created_at.strftime('%m-%d'),
+    }.tap {|r|
+      r[:user_name] = user.name if user
     }
   end
 end
