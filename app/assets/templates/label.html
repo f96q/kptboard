@@ -1,0 +1,10 @@
+<div class="col-md-4 kpt-label" data-id="{{label.id}}" data-ng-click="edit($event, label)" data-ng-cloak>
+  <div class="thumbnail kpt-thumbnail" data-ng-class="label.typ">
+    <span class="glyphicon glyphicon-remove" data-ng-click="destroy($event)"></span>
+    <div class="label-description">{{label.description}}</div>
+    <div class="clearfix">
+      <div class="label-created-at">{{label.created_at}}</div>
+      <div class="label-user-name">{{label.user_name}}</div>
+    </div>
+  </div>
+</div>

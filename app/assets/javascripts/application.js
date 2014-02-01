@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap
+//= require jquery_ujs
+//= require jquery.ui.sortable
+//= require jquery.ui.dialog
 //= require angular
 //= require app/modules/kptboard
-//= require_tree .
 //= require websocket_rails/main
+//= require_self
+//= require_tree .
 
 this.app = {};
