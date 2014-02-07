@@ -64,7 +64,7 @@ class @RetrospectiveCtrl
           $scope.$apply()
 
       $scope.dispatcher.channel.bind 'labels.create', (label) ->
-        $scope.addLabel(label)
+        $scope["#{label.typ}Labels"].unshift label
         $scope.$apply()
 
       $scope.dispatcher.channel.bind 'labels.update', (data) ->

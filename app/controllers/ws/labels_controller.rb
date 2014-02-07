@@ -1,11 +1,13 @@
 class Ws::LabelsController < Ws::BaseController
   def create
-    @label = @retrospective.labels.build event.data[:label].tap {|params| params.merge!(user_id: current_user.id) }
-    if @retrospective.save
+    @label = Label.new event.data[:label].tap {|params| params.merge!(user_id: current_user.id, retrospective_id: @retrospective.id) }
+    Label.transaction do
+      @label.save!
+      @label.insert_at 1
       trigger_channel 'labels.create', @label.as_json
-    else
-      trigger_failure 'labe save failed'
     end
+  rescue
+    trigger_failure 'labels.create failed'
   end
 
   def destroy
