@@ -18,7 +18,7 @@ describe 'Ws::RetrospectivesController' do
       end
 
       it 'should return labels' do
-        expect(event).to trigger_success_message labels: retrospective.labels.map(&:as_json)
+        expect(event).to trigger_success_message labels: retrospective.labels.map(&:as_json), users: [user.as_json]
       end
     end
 
