@@ -16,6 +16,7 @@
 //= require jquery.ui.sortable
 //= require jquery.ui.dialog
 //= require angular
+//= require angular-animate
 //= require app/modules/kptboard
 //= require websocket_rails/main
 //= require_self

@@ -1,1 +1,1 @@
-angular.module 'KPTBoard', []
+angular.module 'KPTBoard', ['ngAnimate']
