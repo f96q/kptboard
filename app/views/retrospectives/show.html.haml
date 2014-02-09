@@ -8,18 +8,18 @@
       .labels-board{:'data-typ' => 'keep'}
         .kpt-title
           %h4 Keep
-        %div{:'data-ng-repeat' => 'label in keepLabels'}
-          %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
+        .label-animate{:'data-ng-repeat' => 'label in keepLabels'}
+          %div{:'data-ng-include' => %Q('#{asset_path('label.html')}')}
       .labels-board{:'data-typ' => 'problem'}
         .kpt-title
           %h4 Problem
-        %div{:'data-ng-repeat' => 'label in problemLabels'}
+        .label-animate{:'data-ng-repeat' => 'label in problemLabels'}
           %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
     .right-board
       .labels-board{:'data-typ' => 'try'}
         .kpt-title
           %h4 Try
-        %div{:'data-ng-repeat' => 'label in tryLabels'}
+        .label-animate{:'data-ng-repeat' => 'label in tryLabels'}
           %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
   .user-list
     %form.form-inline
