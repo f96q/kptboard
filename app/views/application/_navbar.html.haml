@@ -17,4 +17,7 @@
           %li{class: yield(:active) == 'sign_in' ? 'active' : ''}= link_to 'Sign In', new_user_session_path
       - if user_signed_in?
         %ul.nav.navbar-nav.navbar-right
-          %li= link_to current_user.name, '#'
+          %li.dropdown
+            = link_to current_user.name, '#', 'data-toggle' => 'dropdown'
+            %ul.dropdown-menu
+              %li= link_to 'Edit Account', edit_user_registration_path
