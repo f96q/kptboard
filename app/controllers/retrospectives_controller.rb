@@ -1,6 +1,6 @@
 class RetrospectivesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_retrospective, only: [:edit, :update, :destroy, :show]
+  before_action :set_retrospective, only: [:edit, :update, :destroy, :show, :export]
   respond_to :html
 
   def index
@@ -33,7 +33,18 @@ class RetrospectivesController < ApplicationController
   def show
   end
 
+  def export
+    respond_to do |format|
+      format.any  { render_send_data 'text/plain', @retrospective.title + '.txt' }
+    end
+  end
+
   private
+
+  def render_send_data(type, filename)
+    data = render_to_string template: 'retrospectives/export'
+    send_data data, type: type, filename: filename
+  end
 
   def set_retrospective
     @retrospective = Retrospective.has_user(current_user.id).find params[:id]
