@@ -11,6 +11,8 @@ class Label < ActiveRecord::Base
 
   acts_as_list scope: 'labels.typ = \'#{typ}\''
 
+  scope :label_typ, ->(typ) { where typ: typ }
+
   def as_json(options = nil)
     {
       id: id,

@@ -54,6 +54,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.include Devise::TestHelpers, :type => :controller
   config.include FeatureHelper, :type => :feature
 
   config.treat_symbols_as_metadata_keys_with_true_values = true
