@@ -33,6 +33,7 @@ GEM
     bcrypt-ruby (3.1.2)
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
+    bootstrap_flash_messages (1.0.0)
     builder (3.1.4)
     capybara (2.2.1)
       mime-types (>= 1.16)
@@ -200,6 +201,7 @@ DEPENDENCIES
   acts_as_list
   angularjs-rails
   bootstrap-sass (~> 3.0.3.0)
+  bootstrap_flash_messages
   capybara
   coffee-rails (~> 4.0.0)
   compass-rails

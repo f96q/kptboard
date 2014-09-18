@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'haml-rails'
 gem 'compass-rails'
+gem 'bootstrap_flash_messages'
 
 gem 'bootstrap-sass', '~> 3.0.3.0'
 
