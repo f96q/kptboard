@@ -53,6 +53,6 @@ group :development, :test do
   gem 'spring'
   gem 'fabrication'
   gem 'rspec-rails'
-  gem 'database_cleaner'
+  gem 'database_rewinder'
   gem 'capybara'
 end
