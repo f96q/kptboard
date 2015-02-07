@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Ws::LabelsController' do
   include WsHelper
@@ -19,7 +19,7 @@ describe 'Ws::LabelsController' do
     end
 
     it 'should be routed correctly' do
-      create_event('labels.create', nil).should be_routed_only_to 'ws/labels#create'
+      expect(create_event('labels.create', nil)).to be_routed_only_to 'ws/labels#create'
     end
   end
 
@@ -36,7 +36,7 @@ describe 'Ws::LabelsController' do
     end
 
     it 'should be routed correctly' do
-      create_event('labels.destroy', nil).should be_routed_only_to 'ws/labels#destroy'
+      expect(create_event('labels.destroy', nil)).to be_routed_only_to 'ws/labels#destroy'
     end
   end
 
@@ -46,7 +46,7 @@ describe 'Ws::LabelsController' do
     it_behaves_like 'authorize user'
 
     it 'should be routed correctly' do
-      create_event('labels.update', nil).should be_routed_only_to 'ws/labels#update'
+      expect(create_event('labels.update', nil)).to be_routed_only_to 'ws/labels#update'
     end
   end
 
@@ -56,7 +56,7 @@ describe 'Ws::LabelsController' do
     it_behaves_like 'authorize user'
 
     it 'should be routed correctly' do
-      create_event('labels.update_position', nil).should be_routed_only_to 'ws/labels#update_position'
+      expect(create_event('labels.update_position', nil)).to be_routed_only_to 'ws/labels#update_position'
     end
   end
 end

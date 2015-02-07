@@ -39,7 +39,7 @@ class app.LabelForm
 
   open: (e, label) ->
     @setLabel label
-    @form.dialog(position: [e.clientX, e.clientY]).dialog('open')
+    @form.dialog(position: {my: 'left top', at: "left+#{e.clientX} top+#{e.clientY}", of: window}).dialog('open')
 
   close: =>
     @clear()

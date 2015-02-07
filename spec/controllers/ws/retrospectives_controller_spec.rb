@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Ws::RetrospectivesController' do
   include WsHelper
@@ -23,7 +23,7 @@ describe 'Ws::RetrospectivesController' do
     end
 
     it 'should be routed correctly' do
-      create_event('retrospectives.open', nil).should be_routed_only_to 'ws/retrospectives#open'
+      expect(create_event('retrospectives.open', nil)).to be_routed_only_to 'ws/retrospectives#open'
     end
   end
 
@@ -53,7 +53,7 @@ describe 'Ws::RetrospectivesController' do
     end
 
     it 'should be routed correctly' do
-      create_event('retrospectives.add_user', nil).should be_routed_only_to 'ws/retrospectives#add_user'
+      expect(create_event('retrospectives.add_user', nil)).to be_routed_only_to 'ws/retrospectives#add_user'
     end
   end
 
@@ -82,7 +82,7 @@ describe 'Ws::RetrospectivesController' do
     end
 
     it 'should be routed correctly' do
-      create_event('retrospectives.remove_user', nil).should be_routed_only_to 'ws/retrospectives#remove_user'
+      expect(create_event('retrospectives.remove_user', nil)).to be_routed_only_to 'ws/retrospectives#remove_user'
     end
   end
 end

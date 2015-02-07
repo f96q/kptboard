@@ -1,6 +1,6 @@
 app = @app
 
-class @RetrospectiveCtrl
+class RetrospectiveCtrl
   @$inject = ['$scope']
 
   constructor: ($scope) ->
@@ -122,3 +122,5 @@ class @RetrospectiveCtrl
     $scope.addUser = (email) ->
       $scope.dispatcher.trigger 'retrospectives.add_user', retrospective_id: $scope.id, email: email
       $scope.email = ''
+
+angular.module('KPTBoard', ['ngAnimate']).controller 'RetrospectiveCtrl', RetrospectiveCtrl
