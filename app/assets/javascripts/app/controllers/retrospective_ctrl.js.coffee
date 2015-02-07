@@ -11,20 +11,10 @@ class RetrospectiveCtrl
       $scope.users = []
       $scope.url = jQuery('.retrospective-ctrl').data('url')
       $scope.id = jQuery('.retrospective-ctrl').data('id')
-      $scope.initNavBar()
       $scope.initLabelForm()
       $scope.initSortable()
       $scope.initWebSocket()
       $scope.labelForm = new app.LabelForm('#label-form', save: $scope.save)
-
-    $scope.initNavBar =->
-      showNavBar = true
-      jQuery('.page-header').click ->
-        showNavBar^= true
-        jQuery('.navbar').toggle()
-        jQuery('body').css('padding-top': if showNavBar then 60 else 0)
-        jQuery('.page-header').css('margin-top' : if showNavBar then 40 else 0)
-        jQuery('.page-header h1').css('margin-top' : if showNavBar then 20 else 0)
 
     $scope.start = (e, ui) ->
       start =
