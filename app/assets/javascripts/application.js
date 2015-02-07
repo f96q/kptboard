@@ -2,7 +2,7 @@
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
 //
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // compiled file.
@@ -14,8 +14,8 @@
 //= require bootstrap
 //= require bootstrap/dropdown
 //= require jquery_ujs
-//= require jquery.ui.sortable
-//= require jquery.ui.dialog
+//= require jquery-ui/sortable
+//= require jquery-ui/dialog
 //= require angular
 //= require angular-animate
 //= require app/modules/kptboard
