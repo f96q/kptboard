@@ -1,26 +1,28 @@
 = content_for :active, 'retrospectives'
 
-.retrospective-ctrl{:'data-ng-controller' => 'RetrospectiveCtrl', :'data-url' => "#{request.host}:#{request.port}/websocket", :'data-id' => @retrospective.id, :'data-ng-init' => 'init()'}
+.js-retrospective-ctrl{:'data-ng-controller' => 'RetrospectiveCtrl', :'data-url' => "#{request.host}:#{request.port}/websocket", :'data-id' => @retrospective.id, :'data-ng-init' => 'init()'}
   .page-header
     %h1= @retrospective.title
+
   .board.clearfix
     .left-board
-      .labels-board{:'data-typ' => 'keep'}
+      .labels-board.js-labels-board{:'data-typ' => 'keep'}
         .kpt-title
           %h4 Keep
         .label-animate{:'data-ng-repeat' => 'label in keepLabels'}
           %div{:'data-ng-include' => %Q('#{asset_path('label.html')}')}
-      .labels-board{:'data-typ' => 'problem'}
+      .labels-board.js-labels-board{:'data-typ' => 'problem'}
         .kpt-title
           %h4 Problem
         .label-animate{:'data-ng-repeat' => 'label in problemLabels'}
           %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
     .right-board
-      .labels-board{:'data-typ' => 'try'}
+      .labels-board.js-labels-board{:'data-typ' => 'try'}
         .kpt-title
           %h4 Try
         .label-animate{:'data-ng-repeat' => 'label in tryLabels'}
           %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
+
   .user-list
     %form.form-inline
       .form-group
@@ -30,5 +32,5 @@
       %div{:'data-ng-repeat' => 'user in users'}
         %div {{user.name}}
 
-%div{id: 'label-form'}
+.label-form.js-label-form
   %textarea{class: 'description', rows: 10, required: true}

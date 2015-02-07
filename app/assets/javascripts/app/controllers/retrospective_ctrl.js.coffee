@@ -9,39 +9,39 @@ class RetrospectiveCtrl
       $scope.problemLabels = []
       $scope.tryLabels = []
       $scope.users = []
-      $scope.url = jQuery('.retrospective-ctrl').data('url')
-      $scope.id = jQuery('.retrospective-ctrl').data('id')
+      $scope.url = jQuery('.js-retrospective-ctrl').data('url')
+      $scope.id = jQuery('.js-retrospective-ctrl').data('id')
       $scope.initLabelForm()
       $scope.initSortable()
       $scope.initWebSocket()
-      $scope.labelForm = new app.LabelForm('#label-form', save: $scope.save)
+      $scope.labelForm = new app.LabelForm('.js-label-form', save: $scope.save)
 
     $scope.start = (e, ui) ->
       start =
-        position: ui.item.closest('.labels-board').find('.kpt-label').index(ui.item)
-        typ: ui.item.closest('.labels-board').data('typ')
+        position: ui.item.closest('.js-labels-board').find('.js-kpt-label').index(ui.item)
+        typ: ui.item.closest('.js-labels-board').data('typ')
       ui.item.data 'start', start
 
     $scope.stop = (e, ui) ->
       start = ui.item.data('start')
       ui.item.removeData 'start'
       end =
-        position: ui.item.closest('.labels-board').find('.kpt-label').index(ui.item)
-        typ: ui.item.closest('.labels-board').data('typ')
+        position: ui.item.closest('.js-labels-board').find('.js-kpt-label').index(ui.item)
+        typ: ui.item.closest('.js-labels-board').data('typ')
       id = ui.item.data('id')
       return if start.typ == end.typ and start.position == end.position
       ui.item.remove()
       $scope.dispatcher.trigger 'labels.update_position', retrospective_id: $scope.id, id: id, typ: end.typ, position: end.position + 1
 
     $scope.initSortable = ->
-      jQuery('.labels-board').sortable
-        items: '.kpt-label'
-        connectWith: '.labels-board'
+      jQuery('.js-labels-board').sortable
+        items: '.js-kpt-label'
+        connectWith: '.js-labels-board'
         start: $scope.start
         stop: $scope.stop
 
     $scope.initLabelForm = ->
-      jQuery('.labels-board').click (e) ->
+      jQuery('.js-labels-board').click (e) ->
         $scope.labelForm.open e, {typ: jQuery(@).data('typ')}
 
     $scope.initWebSocket = ->
@@ -100,7 +100,7 @@ class RetrospectiveCtrl
       $scope.dispatcher.trigger 'labels.update', retrospective_id: $scope.id, id: label.id, label: {description: label.description}
 
     $scope.destroy = (e) ->
-      item = jQuery(e.target).closest('.kpt-label')
+      item = jQuery(e.target).closest('.js-kpt-label')
       id = item.data('id')
       $scope.dispatcher.trigger 'labels.destroy', retrospective_id: $scope.id, id: id
       e.stopPropagation()
