@@ -1,23 +1,11 @@
-.navbar.navbar-inverse.navbar-fixed-top{role: 'navigation'}
-  .container
-    .navbar-header
-      %button.navbar-toggle{'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse', type: 'button'}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to 'KPTBoard', root_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        - if user_signed_in?
-          %li{class: yield(:active) == 'retrospectives' ? 'active' : ''}= link_to 'Retrospective', retrospectives_path
-          %li= link_to t('sign_out'), destroy_user_session_path, method: :delete
-        - else
-          %li{class: yield(:active) == 'sign_up' ? 'active' : ''}= link_to 'Sign Up', new_registration_path(:user)
-          %li{class: yield(:active) == 'sign_in' ? 'active' : ''}= link_to 'Sign In', new_user_session_path
-      - if user_signed_in?
-        %ul.nav.navbar-nav.navbar-right
-          %li.dropdown
-            = link_to current_user.name, '#', 'data-toggle' => 'dropdown'
-            %ul.dropdown-menu
-              %li= link_to 'Edit Account', edit_user_registration_path
+%ul
+- if user_signed_in?
+  %li{class: yield(:active) == 'retrospectives' ? 'active' : ''}= link_to 'Retrospective', retrospectives_path
+  %li= link_to t('sign_out'), destroy_user_session_path, method: :delete
+- else
+  %li{class: yield(:active) == 'sign_up' ? 'active' : ''}= link_to 'Sign Up', new_registration_path(:user)
+  %li{class: yield(:active) == 'sign_in' ? 'active' : ''}= link_to 'Sign In', new_user_session_path
+- if user_signed_in?
+  %li= current_user.name
+  %li= link_to 'Edit Account', edit_user_registration_path
+

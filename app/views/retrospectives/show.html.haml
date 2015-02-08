@@ -1,36 +1,32 @@
 = content_for :active, 'retrospectives'
+= content_for :navigation_title, @retrospective.title
 
-.js-retrospective-ctrl{:'data-ng-controller' => 'RetrospectiveCtrl', :'data-url' => "#{request.host}:#{request.port}/websocket", :'data-id' => @retrospective.id, :'data-ng-init' => 'init()'}
-  .page-header
-    %h1= @retrospective.title
+.retrospective.js-retrospective-ctrl{:'data-ng-controller' => 'RetrospectiveCtrl', :'data-url' => "#{request.host}:#{request.port}/websocket", :'data-id' => @retrospective.id, :'data-ng-init' => 'init()'}
+  .retrospective__content
+    .retrospective__boards
+      .retrospective__board.js-labels-board{:'data-typ' => 'keep'}
+        %h4.retrospective__board-title Keep
+        .retrospective__labels
+          = render 'label', typ: 'keep'
 
-  .board.clearfix
-    .left-board
-      .labels-board.js-labels-board{:'data-typ' => 'keep'}
-        .kpt-title
-          %h4 Keep
-        .label-animate{:'data-ng-repeat' => 'label in keepLabels'}
-          %div{:'data-ng-include' => %Q('#{asset_path('label.html')}')}
-      .labels-board.js-labels-board{:'data-typ' => 'problem'}
-        .kpt-title
-          %h4 Problem
-        .label-animate{:'data-ng-repeat' => 'label in problemLabels'}
-          %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
-    .right-board
-      .labels-board.js-labels-board{:'data-typ' => 'try'}
-        .kpt-title
-          %h4 Try
-        .label-animate{:'data-ng-repeat' => 'label in tryLabels'}
-          %div{:'data-ng-include' => %Q('#{asset_path('label.html')}') }
+      .retrospective__board.js-labels-board{:'data-typ' => 'problem'}
+        %h4.retrospective__board-title Problem
+        .retrospective__labels
+          = render 'label', typ: 'problem'
 
-  .user-list
-    %form.form-inline
-      .form-group
-        %input.form-control{type: 'email', :'data-ng-model' => 'email', placeholder: 'email'}
-      %button.btn.btn-default{type: 'button', :'data-ng-click' => 'addUser(email)'}
-        %span.glyphicon.glyphicon-user
-      %div{:'data-ng-repeat' => 'user in users'}
-        %div {{user.name}}
+    .retrospective__boards
+      .retrospective__board.js-labels-board{:'data-typ' => 'try'}
+        %h4.retrospective__board-title Try
+        .retrospective__labels
+          = render 'label', typ: 'try'
 
-.label-form.js-label-form
-  %textarea{class: 'description', rows: 10, required: true}
+    .retrospective__menu
+      %input.retrospective__menu-email-form{type: 'email', :'data-ng-model' => 'email', placeholder: 'email'}
+      %button.retrospective__menu-email-form-button.fa.fa-user-plus{type: 'button', :'data-ng-click' => 'addUser(email)'}
+      .retrospective__users{:'data-ng-repeat' => 'user in users'}
+        .retrospective__user
+          .fa.fa-user
+            .retrospective__user-name {{user.name}}
+
+  .retrospective__label-form.js-label-form
+    %textarea{class: 'description', rows: 10, required: true}

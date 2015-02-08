@@ -1,0 +1,7 @@
+.retrospective__label.js-kpt-label{:'data-ng-repeat' => "label in #{typ}Labels", :'data-ng-class' => "{'retrospective__label--keep': label.typ == 'keep', 'retrospective__label--problem': label.typ == 'problem', 'retrospective__label--try': label.typ == 'try'}", :'data-id' => "{{label.id}}", :'data-ng-click' => "edit($event, label)", 'data-ng-cloak' => true}
+  .retrospective__label-content
+    .retrospective__label-header
+      %i.retrospective__label-remove.fa.fa-remove{:'data-ng-click' => 'destroy($event)'}
+      .retrospective__label-created-at {{label.created_at}}
+      .retrospective__label-user-name {{label.user_name}}
+    .retrospective__label-description {{label.description}}

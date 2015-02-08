@@ -1,65 +1,90 @@
-.board
-  max-width: $board-width
-  float: left
+.retrospective
+  margin-top: 5px
 
-.left-board
-  width: $board-content-width
-  float: left
+  &__content
+    display: table-cell
 
-.right-board
-  width: $board-content-width
-  float: right
+  &__menu-email-form
+    border-radius: 4px
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.75)
 
-.labels-board
-  width: $board-content-width
-  float: left
+  &__menu-email-form-button
+    background: #f39c12
+    border: 1px solid #ddd
+    border-radius: 5px
+    color: #ffffff
+    width: 40px
+    padding: 10px 0
 
-.label-description
-  height: 90px
-  overflow: hidden
+  &__boards
+    display: table-cell
 
-.label-created-at
-  float: left
+  &__menu
+    display: table-cell
+    padding-left: 10px
 
-.label-user-name
-  float: left
-  margin-left: 5px
-  // Fix username width (#1)
-  width: 80px
-  white-space: nowrap
-  overflow: hidden
-  text-overflow: ellipsis
+  &__board
 
-.kpt-label
-  padding-left: 3px !important
-  padding-right: 3px !important
+  &__board-title
+    margin-top: 5px
+    margin-bottom: 5px
+    font-size: $font-size-xx-small
 
-.kpt-thumbnail
-  margin-bottom: 6px !important
+  &__labels
+    max-width: 470px
+    display : flex
+    flex-wrap: wrap
 
-.keep
-  background-color: $label-yellow-color
+  &__label
+    box-shadow: 0 10px 6px -6px $color-shadow
+    border-radius: 10px
+    border: 1px solid #000000
+    width: 150px
+    height: 150px
 
-.problem
-  background-color: $label-green-color
+    &--keep
+      background: linear-gradient(to bottom, $color-keep-from 0%, $color-keep-to 100%)
 
-.try
-  background-color: $label-blue-color
+    &--problem
+      background: linear-gradient(to bottom, $color-problem-from 0%, $color-problem-to 100%)
 
-.user-list
-  width: $user-list-width
-  float: right
+    &--try
+      background: linear-gradient(to bottom, $color-try-from 0%, $color-try-to 100%)
 
-.label-form textarea
-  width: 255px
+  &__label-content
+    margin: 8px
 
-.label-animate
-  &.ng-enter
-    transition: all 1s linear
-    opacity: 0
-  &.ng-enter-active
-    opacity: 1
-  &.ng-leave
-    transition: all 0.5s ease-out
-  &.ng-leave-active
-    opacity: 0
+  &__label-remove
+
+  &__label-description
+    font-size: $font-size-xx-small
+    font-weight: bold
+    word-break: break-all
+
+  &__label-header
+    color: #6b6b6b
+    font-size: 0.6rem
+    font-weight: bold
+    display: flex
+
+  &__label-created-at
+    margin-left: 5px
+
+  &__label-user-name
+    margin-left: 5px
+
+  &__users
+
+  &__user
+    color: #f39c12
+    font-size: $font-size-xx-small
+    font-weight: bold
+
+  &__user-name
+    display: inline-block
+    margin-left: 2px
+
+  &__label-form
+    textarea
+      width: 255px
+
