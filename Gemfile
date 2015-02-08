@@ -22,6 +22,7 @@ gem 'bootstrap_flash_messages'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'normalize-rails'
+gem 'autoprefixer-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
