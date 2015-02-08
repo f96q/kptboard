@@ -18,8 +18,6 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'haml-rails'
-gem 'bootstrap_flash_messages'
-gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem 'autoprefixer-rails'

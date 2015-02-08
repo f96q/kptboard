@@ -46,10 +46,6 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.3)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
-    bootstrap_flash_messages (1.0.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -260,8 +256,6 @@ DEPENDENCIES
   acts_as_list
   angularjs-rails
   autoprefixer-rails
-  bootstrap-sass
-  bootstrap_flash_messages
   byebug
   capybara
   coffee-rails (~> 4.1.0)

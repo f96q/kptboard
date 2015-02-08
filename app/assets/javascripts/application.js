@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap
-//= require bootstrap/dropdown
 //= require jquery_ujs
 //= require jquery-ui/sortable
 //= require jquery-ui/dialog
