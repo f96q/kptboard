@@ -5,14 +5,10 @@
     display: table-cell
 
   &__menu-email-form
-    border-radius: 4px
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.75)
+    @extend %form__input
 
   &__menu-email-form-button
-    background: #f39c12
-    border: 1px solid #ddd
-    border-radius: 5px
-    color: #ffffff
+    @extend %form__button
     width: 40px
     padding: 10px 0
 
