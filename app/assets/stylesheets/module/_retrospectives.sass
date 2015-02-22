@@ -49,6 +49,19 @@
     &--try
       background: linear-gradient(to bottom, $color-try-from 0%, $color-try-to 100%)
 
+    &.ng-enter
+      transition: all 0.3s linear
+      opacity: 0
+
+    &.ng-enter-active
+      opacity: 1
+
+    &.ng-leave
+      transition: all 0.2s ease-out
+
+    &.ng-leave-active
+      opacity: 0
+
   &__label-content
     margin: 8px
 
