@@ -12,8 +12,6 @@
         - if user_signed_in?
           = link_to retrospectives_path, class: 'navigation__item' do
             .fa.fa-folder
-          = link_to edit_user_registration_path, class: 'navigation__item' do
-            .fa.fa-user
           = link_to destroy_user_session_path, class: 'navigation__item navigation__item--sign-out', method: :delete do
             .fa.fa-sign-out
 
