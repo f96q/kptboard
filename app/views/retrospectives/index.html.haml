@@ -1,8 +1,9 @@
 = content_for :active, 'retrospectives'
 
-=link_to 'new', new_retrospective_path, class: 'btn btn-default'
+=link_to new_retrospective_path do
+  .fa.fa-plus
 
-%table.table.table-striped
+%table
   %thead
     %tr
       %th title
@@ -12,6 +13,11 @@
       %tr
         %td= link_to retrospective.title, retrospective_path(retrospective)
         %td
-          = link_to 'edit', edit_retrospective_path(retrospective)
-          = link_to 'destroy', retrospective_path(retrospective), method: :delete, data: {confirm: 'are you sure?'}
-          = link_to 'export', export_retrospective_path(retrospective, format: 'txt')
+          = link_to edit_retrospective_path(retrospective) do
+            .fa.fa-edit
+
+          = link_to retrospective_path(retrospective), method: :delete, data: {confirm: 'are you sure?'} do
+            .fa.fa-trash
+
+          = link_to export_retrospective_path(retrospective, format: 'txt') do
+            .fa.fa-download
