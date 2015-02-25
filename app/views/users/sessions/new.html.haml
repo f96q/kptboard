@@ -1,23 +1,21 @@
 - content_for :active, 'sign_in'
-.page-header
-  %h1 Sign in
+
+%h2 Sign in
+
 = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'form-horizontal', role: 'form'}) do |f|
-  .form-group
-    %label.col-sm-2.control-label{:for => "user_email"} Email
-    .col-sm-10
-      = f.email_field :email, class: 'form-control', autofocus: true, placeholder: 'Email'
-  .form-group
-    %label.col-sm-2.control-label{:for => "user_password"} Password
-    .col-sm-10
-      = f.password_field :password, class: 'form-control', placeholder: 'Password'
+  .retrospective-form__form-inline
+    %label.retrospective-form__label Email
+    = f.email_field :email, class: 'retrospective-form__input', autofocus: true, placeholder: 'Email'
+
+  .retrospective-form__form-inline
+    %label.retrospective-form__label Password
+    = f.password_field :password, class: 'retrospective-form__input', placeholder: 'Password'
+
   - if devise_mapping.rememberable?
-    .form-group
-      .col-sm-offset-2.col-sm-10
-        .checkbox
-          %label
-            = f.check_box :remember_me
-            Remember me
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit 'Sign in', class: 'btn btn-default'
+    = f.check_box :remember_me
+    Remember me
+
+  .retrospective-form__form-inline
+    = f.submit 'Sign in', class: 'retrospective-form__button'
+
 = render "users/shared/links"
