@@ -8,7 +8,7 @@
   %body
     %nav.navigation
       .navigation__content
-        .navigation__item= yield(:navigation_title).present? ? yield(:navigation_title) : 'KPTBoard'
+        .navigation__item= yield(:navigation_title).present? ? yield(:navigation_title) : link_to('KPTBoard', root_path)
         - if user_signed_in?
           = link_to retrospectives_path, class: 'navigation__item' do
             .fa.fa-folder
