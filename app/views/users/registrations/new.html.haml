@@ -1,25 +1,27 @@
 - content_for :active, 'sign_up'
-.page-header
-  %h1 Sign up
+
+%h2 Sign up
+
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: 'form-horizontal', role: 'form'}) do |f|
   = devise_error_messages!
-  .form-group
-    %label.col-sm-2.control-label{:for => "user_email"} Email
-    .col-sm-10
-      = f.email_field :email, class: 'form-control', autofocus: true, placeholder: 'Email'
-  .form-group
-    %label.col-sm-2.control-label{:for => "user_name"} Name
-    .col-sm-10
-      = f.text_field :name, class: 'form-control', placeholder: 'Name'
-  .form-group
-    %label.col-sm-2.control-label{:for => "user_password"} Password
-    .col-sm-10
-      = f.password_field :password, class: 'form-control', placeholder: 'Password'
-  .form-group
-    %label.col-sm-2.control-label{:for => "user_password_confirmation"} Password Confirmation
-    .col-sm-10
-      = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation'
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit 'Sign up', class: 'btn btn-default'
+
+  .retrospective-form__form-inline
+    %label.retrospective-form__label Email
+    = f.email_field :email, class: 'retrospective-form__input', autofocus: true, placeholder: 'Email'
+
+  .retrospective-form__form-inline
+    %label.retrospective-form__label Name
+    = f.text_field :name, class: 'retrospective-form__input', placeholder: 'Name'
+
+  .retrospective-form__form-inline
+    %label.retrospective-form__label Password
+    = f.password_field :password, class: 'retrospective-form__input', placeholder: 'Password'
+
+  .retrospective-form__form-inline
+    %label.retrospective-form__label Password Confirmation
+    = f.password_field :password_confirmation, class: 'retrospective-form__input', placeholder: 'Password Confirmation'
+
+  .retrospective-form__form-inline
+    = f.submit 'Sign up', class: 'retrospective-form__button'
+
 = render "users/shared/links"
