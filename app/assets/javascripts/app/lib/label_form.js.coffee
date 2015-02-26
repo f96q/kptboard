@@ -39,7 +39,11 @@ class app.LabelForm
 
   open: (e, label) ->
     @setLabel label
-    @form.dialog(dialogClass: "label-form__titlebar--#{label.typ}", position: {my: 'left top', at: "left+#{e.clientX} top+#{e.clientY}", of: window}).dialog('open')
+    title = switch label.typ
+              when 'keep' then 'Keep'
+              when 'problem' then 'Problem'
+              when 'try' then 'Try'
+    @form.dialog(title: title, dialogClass: "label-form__titlebar--#{label.typ}", position: {my: 'left top', at: "left+#{e.clientX} top+#{e.clientY}", of: window}).dialog('open')
 
   close: =>
     @clear()
