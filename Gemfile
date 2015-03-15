@@ -57,3 +57,8 @@ group :development, :test do
   gem 'database_rewinder'
   gem 'capybara'
 end
+
+group :heroku do
+  gem 'pg'
+  gem 'rails_12factor'
+end
