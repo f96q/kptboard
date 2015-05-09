@@ -113,4 +113,4 @@ class RetrospectiveCtrl
       $scope.dispatcher.trigger 'retrospectives.add_user', retrospective_id: $scope.id, email: email
       $scope.email = ''
 
-angular.module('KPTBoard', ['ngAnimate']).controller 'RetrospectiveCtrl', RetrospectiveCtrl
+@app.module.controller 'RetrospectiveCtrl', RetrospectiveCtrl

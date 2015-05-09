@@ -1,1 +1,1 @@
-angular.module 'KPTBoard', ['ngAnimate']
+@app.module = angular.module 'KPTBoard', ['ngAnimate']
