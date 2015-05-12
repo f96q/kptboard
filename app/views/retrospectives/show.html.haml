@@ -21,6 +21,9 @@
           = render 'label', typ: 'try'
 
     .retrospective__menu
+      %select{:'data-ng-model' => 'retrospectiveTime', :'data-ng-options' => 'key for (key, value) in retrospectiveTimes', :'data-ng-show' => '!timerId'}
+      .retrospective__menu-timer-text{:'data-ng-show' => 'timerId'} {{timerTime|time}}
+      %button.retrospective__menu-timer-button.fa.fa-clock-o{:'data-ng-click' => 'startTimer()'}
       %input.retrospective__menu-email-form{type: 'email', :'data-ng-model' => 'email', placeholder: 'email'}
       %button.retrospective__menu-email-form-button.fa.fa-user-plus{type: 'button', :'data-ng-click' => 'addUser(email)'}
       .retrospective__users{:'data-ng-repeat' => 'user in users'}
