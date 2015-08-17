@@ -1,2 +1,0 @@
-module Ws::TimerHelper
-end

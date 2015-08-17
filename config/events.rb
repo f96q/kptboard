@@ -24,10 +24,4 @@ WebsocketRails::EventMap.describe do
     subscribe :update,  to: Ws::LabelsController, with_method: :update
     subscribe :update_position, to: Ws::LabelsController, with_method: :update_position
   end
-
-  namespace :timer do
-    subscribe :start,  to: Ws::TimerController, with_method: :start
-    subscribe :clear,  to: Ws::TimerController, with_method: :clear
-    subscribe :update,  to: Ws::TimerController, with_method: :update
-  end
 end

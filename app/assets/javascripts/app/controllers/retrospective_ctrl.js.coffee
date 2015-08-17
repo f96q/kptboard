@@ -2,10 +2,9 @@ app = @app
 
 class RetrospectiveCtrl
   @$inject = ['$scope']
-  @DEFAULT_RETROSPECTIVE_TIME = 5 * 60
 
   constructor: ($scope) ->
-    $scope.init = =>
+    $scope.init = ->
       $scope.keepLabels = []
       $scope.problemLabels = []
       $scope.tryLabels = []
@@ -14,11 +13,8 @@ class RetrospectiveCtrl
       $scope.id = jQuery('.js-retrospective-ctrl').data('id')
       $scope.initLabelForm()
       $scope.initSortable()
-      $scope.initRetrospectiveTimes()
       $scope.initWebSocket()
       $scope.labelForm = new app.LabelForm('.js-label-form', save: $scope.save)
-      $scope.timerId = null
-      $scope.retrospectiveTime = RetrospectiveCtrl.DEFAULT_RETROSPECTIVE_TIME
 
     $scope.start = (e, ui) ->
       start =
@@ -47,12 +43,6 @@ class RetrospectiveCtrl
     $scope.initLabelForm = ->
       jQuery('.js-labels-board').click (e) ->
         $scope.labelForm.open e, {typ: jQuery(@).data('typ')}
-
-    $scope.initRetrospectiveTimes = ->
-      $scope.retrospectiveTimes = []
-      for i in [1..15]
-        label = if i > 9 then "#{i}:00" else "0#{i}:00"
-        $scope.retrospectiveTimes[label] = i * 60
 
     $scope.initWebSocket = ->
       $scope.dispatcher = new WebSocketRails $scope.url
@@ -86,37 +76,6 @@ class RetrospectiveCtrl
       $scope.dispatcher.channel.bind 'retrospectives.add_user', (data) ->
         $scope.users.push data
         $scope.$apply()
-
-      $scope.dispatcher.channel.bind 'timer.start', (data) ->
-        clearInterval $scope.timerId
-        $scope.timerId = null
-        $scope.timerTime = data.time
-        $scope.$apply()
-        $scope.timerId = setInterval $scope.runTimer, 1000
-
-      $scope.dispatcher.channel.bind 'timer.update', (data) ->
-        return if $scope.timerId
-        $scope.timerTime = data.time
-        $scope.$apply()
-        $scope.timerId = setInterval $scope.runTimer, 1000
-
-      $scope.dispatcher.channel.bind 'timer.clear', (data) ->
-        $scope.clearTimer()
-
-    $scope.runTimer = ->
-      $scope.timerTime--
-      $scope.$apply()
-      if $scope.timerTime is 0
-        $scope.dispatcher.trigger 'timer.clear', retrospective_id: $scope.id
-        alert 'time over'
-      else
-        $scope.dispatcher.trigger 'timer.update', retrospective_id: $scope.id, time: $scope.timerTime
-
-    $scope.clearTimer = ->
-      clearInterval $scope.timerId
-      $scope.timerId = null
-      $scope.retrospectiveTime = RetrospectiveCtrl.DEFAULT_RETROSPECTIVE_TIME
-      $scope.$apply()
 
     $scope.addLabel = (label) ->
       $scope["#{label.typ}Labels"].push label
@@ -153,11 +112,5 @@ class RetrospectiveCtrl
     $scope.addUser = (email) ->
       $scope.dispatcher.trigger 'retrospectives.add_user', retrospective_id: $scope.id, email: email
       $scope.email = ''
-
-    $scope.startTimer = ->
-      if $scope.timerId?
-        $scope.dispatcher.trigger 'timer.clear', retrospective_id: $scope.id
-      else
-        $scope.dispatcher.trigger 'timer.start', retrospective_id: $scope.id, time: $scope.retrospectiveTime
 
 @app.module.controller 'RetrospectiveCtrl', RetrospectiveCtrl
