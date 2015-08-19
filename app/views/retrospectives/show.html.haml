@@ -1,32 +1,5 @@
 = content_for :active, 'retrospectives'
 = content_for :navigation_title, @retrospective.title
 
-.retrospective.js-retrospective-ctrl{:'data-ng-controller' => 'RetrospectiveCtrl', :'data-url' => "#{request.host}:#{request.port}/websocket", :'data-id' => @retrospective.id, :'data-ng-init' => 'init()'}
-  .retrospective__content
-    .retrospective__boards
-      .retrospective__board.js-labels-board{:'data-typ' => 'keep'}
-        %h4.retrospective__board-title Keep
-        .retrospective__labels
-          = render 'label', typ: 'keep'
-
-      .retrospective__board.js-labels-board{:'data-typ' => 'problem'}
-        %h4.retrospective__board-title Problem
-        .retrospective__labels
-          = render 'label', typ: 'problem'
-
-    .retrospective__boards
-      .retrospective__board.js-labels-board{:'data-typ' => 'try'}
-        %h4.retrospective__board-title Try
-        .retrospective__labels
-          = render 'label', typ: 'try'
-
-    .retrospective__menu
-      %input.retrospective__menu-email-form{type: 'email', :'data-ng-model' => 'email', placeholder: 'email'}
-      %button.retrospective__menu-email-form-button.fa.fa-user-plus{type: 'button', :'data-ng-click' => 'addUser(email)'}
-      .retrospective__users{:'data-ng-repeat' => 'user in users'}
-        .retrospective__user
-          .fa.fa-user
-            .retrospective__user-name {{user.name}}
-
-  .retrospective__label-form.js-label-form
-    %textarea{class: 'description', rows: 10, required: true}
+.retrospective
+  = react_component('RetrospectiveBoards', url: "#{request.host}:#{request.port}/websocket", id: @retrospective.id)
