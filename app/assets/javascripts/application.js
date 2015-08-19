@@ -19,6 +19,9 @@
 //= require websocket_rails/main
 //= require_self
 //= require app/modules/kptboard
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 
 this.app = {};

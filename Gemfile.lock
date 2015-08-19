@@ -43,6 +43,10 @@ GEM
     autoprefixer-rails (5.2.1.2)
       execjs
       json
+    babel-source (5.8.19)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -63,6 +67,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    connection_pool (2.2.0)
     daemons (1.2.3)
     database_rewinder (0.5.3)
     debug_inspector (0.0.2)
@@ -166,6 +171,13 @@ GEM
     raindrops (0.15.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    react-rails (1.1.0)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      rails (>= 3.2)
+      tilt
     redis (3.2.1)
     redis-objects (1.2.0)
       redis (>= 3.0.2)
@@ -274,6 +286,7 @@ DEPENDENCIES
   rails-assets-angular!
   rails-assets-angular-animate!
   rails_12factor
+  react-rails
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
