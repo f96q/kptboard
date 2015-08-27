@@ -9,7 +9,7 @@ class Label < ActiveRecord::Base
   belongs_to :retrospective
   belongs_to :user
 
-  acts_as_list scope: 'labels.typ = \'#{typ}\''
+  acts_as_list scope: [:retrospective_id, :typ]
 
   scope :label_typ, ->(typ) { where typ: typ }
 
