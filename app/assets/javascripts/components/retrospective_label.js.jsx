@@ -1,3 +1,5 @@
+'use strict';
+
 class RetrospectiveLabel extends React.Component {
   destroy(event) {
     let id = this.refs.label.getDOMNode().dataset.id;

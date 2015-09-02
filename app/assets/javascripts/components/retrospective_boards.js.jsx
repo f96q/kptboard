@@ -1,3 +1,5 @@
+'use strict';
+
 class RetrospectiveBoards extends React.Component {
   constructor() {
     super();

@@ -1,3 +1,5 @@
+'use strict';
+
 class RetrospectiveMenu extends React.Component {
   addUser() {
     let email = this.refs.email.getDOMNode().value;
