@@ -45,8 +45,10 @@ class RetrospectiveBoards extends React.Component {
       label.description = description
       if (label.id) {
         self.update(label);
+        close({target: self.dialog[0]});
       } else {
         self.create(label);
+        self.dialog.find('.js-description').val('');
       }
     }
 
