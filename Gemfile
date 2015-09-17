@@ -45,6 +45,7 @@ gem 'react-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-flux'
+  gem 'rails-assets-eventemitter3'
 end
 
 group :development, :test do

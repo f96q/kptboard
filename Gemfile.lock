@@ -145,6 +145,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.4)
       sprockets-rails
+    rails-assets-eventemitter3 (1.1.1)
     rails-assets-flux (2.1.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -279,6 +280,7 @@ DEPENDENCIES
   normalize-rails
   pg
   rails (= 4.2.4)
+  rails-assets-eventemitter3!
   rails-assets-flux!
   rails_12factor
   react-rails
