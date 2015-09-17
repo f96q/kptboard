@@ -17,5 +17,6 @@
 //= require websocket_rails/main
 //= require react
 //= require react_ujs
+//= require flux
 //= require components
 //= require_tree .
