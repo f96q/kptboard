@@ -15,6 +15,7 @@
 //= require jquery-ui/sortable
 //= require jquery-ui/dialog
 //= require websocket_rails/main
+//= require react
 //= require flux
 //= require eventemitter3
 //= require components

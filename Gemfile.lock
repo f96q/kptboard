@@ -146,6 +146,7 @@ GEM
       sprockets-rails
     rails-assets-eventemitter3 (1.1.1)
     rails-assets-flux (2.1.1)
+    rails-assets-react (0.13.3)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -278,6 +279,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails-assets-eventemitter3!
   rails-assets-flux!
+  rails-assets-react!
   rails_12factor
   rspec-rails
   sass-rails (~> 5.0)

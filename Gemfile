@@ -44,6 +44,7 @@ gem 'websocket-rails'
 gem 'sprockets-es6'
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-react'
   gem 'rails-assets-flux'
   gem 'rails-assets-eventemitter3'
 end
