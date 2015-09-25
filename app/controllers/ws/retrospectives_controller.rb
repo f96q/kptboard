@@ -1,10 +1,13 @@
 class Ws::RetrospectivesController < Ws::BaseController
   def open
-    params = {
-      labels: @retrospective.labels.empty? ? [] : @retrospective.labels.map(&:as_json),
-      users: @retrospective.users.empty? ? [] : @retrospective.users.map(&:as_json),
-    }
-    trigger_success params
+    trigger_success({
+      labels: {
+        keep: @retrospective.labels.where(typ: 'keep').map(&:as_json),
+        problem: @retrospective.labels.where(typ: 'problem').map(&:as_json),
+        try: @retrospective.labels.where(typ: 'try').map(&:as_json)
+      },
+      users: @retrospective.users.map(&:as_json)
+    })
   end
 
   def add_user

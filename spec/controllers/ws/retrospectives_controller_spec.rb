@@ -17,8 +17,19 @@ describe 'Ws::RetrospectivesController' do
         sign_in user
       end
 
+      let(:result) {
+        {
+          labels: {
+            keep: retrospective.labels.where(typ: 'keep').map(&:as_json),
+            problem: retrospective.labels.where(typ: 'problem').map(&:as_json),
+            try: retrospective.labels.where(typ: 'try').map(&:as_json)
+          },
+          users: [user.as_json]
+        }
+      }
+
       it 'should return labels' do
-        expect(event).to trigger_success_message labels: retrospective.labels.map(&:as_json), users: [user.as_json]
+        expect(event).to trigger_success_message(result)
       end
     end
 
