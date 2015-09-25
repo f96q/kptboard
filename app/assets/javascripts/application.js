@@ -18,5 +18,11 @@
 //= require react
 //= require flux
 //= require eventemitter3
-//= require components
+//= require_tree ./lib
+//= require_tree ./constants
+//= require_tree ./actions
+//= require_tree ./stores
+//= require_tree ./dispatcher
+//= require_tree ./components
+//= require_tree ./utils
 //= require_tree .

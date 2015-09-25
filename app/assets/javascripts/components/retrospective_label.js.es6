@@ -2,29 +2,26 @@
 
 class RetrospectiveLabel extends React.Component {
   destroy(event) {
-    let id = this.refs.label.getDOMNode().dataset.id;
-    this.props.destroy(id);
+    labelActions.destroy(this.props.retrospectiveId, this.props.label.id);
     event.stopPropagation();
   }
 
   edit(event) {
-    let id = this.refs.label.getDOMNode().dataset.id;
-    this.props.edit(event, id);
+    labelActions.openDialog(this.props.retrospectiveId, {id: this.props.label.id}, event.clientX, event.clientY);
     event.stopPropagation();
   }
 
   onDragStart(event) {
-    let id = this.refs.label.getDOMNode().dataset.id;
-    this.props.onDragStart(event, id);
+    labelActions.dragStart(this.props.label.id);
   }
 
   onDragEnd(event) {
-    this.props.onDragEnd(event);
+    labelActions.dragEnd();
   }
 
   render() {
     return (
-      <div className={'js-label retrospective__label retrospective__label--' + this.props.label.typ} onClick={this.edit.bind(this)} data-id={this.props.label.id} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)} ref="label">
+      <div className={`js-label retrospective__label retrospective__label--${this.props.label.typ}`} onClick={this.edit.bind(this)} data-id={this.props.label.id} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
         <div className="retrospective__label-content">
           <div className="retrospective__label-header">
             <i className="retrospective__label-remove fa fa-remove" onClick={this.destroy.bind(this)}></i>

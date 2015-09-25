@@ -4,7 +4,7 @@ class RetrospectiveMenu extends React.Component {
   addUser() {
     let email = this.refs.email.getDOMNode().value;
     if (email) {
-      this.props.addUser(email);
+      retrospectivesUserActions.create(this.props.retrospectiveId, email);
       this.refs.email.getDOMNode().value = null;
     }
   }
