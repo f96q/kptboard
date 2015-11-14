@@ -1,0 +1,22 @@
+.label-form {
+  &__titlebar--keep {
+    .ui-dialog-titlebar {
+      color: $color-gray;
+      background: linear-gradient(to bottom, $color-keep-from 0%, $color-keep-to 100%);
+    }
+  }
+
+  &__titlebar--problem {
+    .ui-dialog-titlebar {
+      color: $color-gray;
+      background: linear-gradient(to bottom, $color-problem-from 0%, $color-problem-to 100%);
+    }
+  }
+
+  &__titlebar--try {
+    .ui-dialog-titlebar {
+      color: $color-gray;
+      background: linear-gradient(to bottom, $color-try-from 0%, $color-try-to 100%);
+    }
+  }
+}
