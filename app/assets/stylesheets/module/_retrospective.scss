@@ -11,8 +11,8 @@
 
   &__menu-email-form-button {
     @extend %form__button;
-    width: 40px;
     padding: 10px 0;
+    width: 40px;
   }
 
   &__boards {
@@ -25,24 +25,24 @@
   }
 
   &__board-title {
-    margin-top: 5px;
-    margin-bottom: 5px;
     font-size: $font-size-xx-small;
+    margin-bottom: 5px;
+    margin-top: 5px;
   }
 
   &__labels {
-    width: 470px;
-    min-height: 150px;
     display: flex;
     flex-wrap: wrap;
+    min-height: 150px;
+    width: 470px;
   }
 
   &__label {
-    box-shadow: 0 10px 6px -6px $color-shadow;
+    border: 1px solid $color-black;
     border-radius: 10px;
-    border: 1px solid #000000;
-    width: 150px;
+    box-shadow: 0 10px 6px -6px $color-shadow;
     height: 150px;
+    width: 150px;
 
     &--keep {
       background: linear-gradient(to bottom, $color-keep-from 0%, $color-keep-to 100%);
@@ -57,8 +57,8 @@
     }
 
     &.ng-enter {
-      transition: all 0.3s linear;
       opacity: 0;
+      transition: all .3s linear;
     }
 
     &.ng-enter-active {
@@ -66,7 +66,7 @@
     }
 
     &.ng-leave {
-      transition: all 0.2s ease-out;
+      transition: all .2s ease-out;
     }
 
     &.ng-leave-active {
@@ -79,7 +79,7 @@
   }
 
   &__label-description {
-    font-size: 0.8rem;
+    font-size: .8rem;
     font-weight: bold;
     height: 110px;
     overflow: hidden;
@@ -87,9 +87,9 @@
 
   &__label-header {
     color: $color-gray;
-    font-size: 0.6rem;
-    font-weight: bold;
     display: flex;
+    font-size: .6rem;
+    font-weight: bold;
   }
 
   &__label-remove {
@@ -97,17 +97,17 @@
   }
 
   &__label-created-at {
-    margin-top: 2px;
     margin-left: 5px;
+    margin-top: 2px;
   }
 
   &__label-user-name {
-    margin-top: 2px;
     margin-left: 5px;
-    width: 70px;
-    white-space: nowrap;
+    margin-top: 2px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70px;
   }
 
   &__user {

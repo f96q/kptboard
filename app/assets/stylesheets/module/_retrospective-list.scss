@@ -3,17 +3,18 @@
     list-style-type: none;
   }
 
-  &__item-button, &__button {
+  &__item-button,
+  &__button {
     @extend %form__button;
-    width: 40px;
-    margin-top: 10px;
     margin-right: 5px;
+    margin-top: 10px;
+    width: 40px;
   }
 
   &__item-title {
     color: $color-gray;
-    margin-right: 5px;
     font-size: $font-size-x-small;
+    margin-right: 5px;
   }
 }
 

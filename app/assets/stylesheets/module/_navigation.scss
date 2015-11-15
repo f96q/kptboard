@@ -1,24 +1,24 @@
 .navigation {
+  background-color: $color-navi;
+  color: $color-white;
+  font-size: $font-size-x-small;
   height: 30px;
   padding-top: 5px;
-  color: white;
-  background-color: $color-navi;
-  font-size: $font-size-x-small;
 
   &__content {
-    max-width: $max-width-container;
     margin-left: auto;
     margin-right: auto;
+    max-width: $max-width-container;
   }
 
   &__item {
-    padding: 0px 4px 0px 4px;
+    color: $color-white;
     float: left;
-    color: white;
+    padding: 0 4px;
     text-decoration: none;
 
     a {
-      color: white;
+      color: $color-white;
       text-decoration: none;
     }
 
