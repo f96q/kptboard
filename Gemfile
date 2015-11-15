@@ -42,6 +42,7 @@ gem 'devise'
 gem 'acts_as_list'
 gem 'websocket-rails'
 gem 'sprockets-es6'
+gem 'scss-lint'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-react'
