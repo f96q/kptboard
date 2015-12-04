@@ -16,6 +16,9 @@
 //= require jquery-ui/dialog
 //= require websocket_rails/main
 //= require react
+//= require react-dom
+//= require react-redux
+//= require redux
 //= require flux
 //= require eventemitter3
 //= require_tree ./lib
