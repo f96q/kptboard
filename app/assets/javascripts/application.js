@@ -19,13 +19,7 @@
 //= require react-dom
 //= require react-redux
 //= require redux
-//= require flux
-//= require eventemitter3
-//= require_tree ./lib
-//= require_tree ./constants
-//= require_tree ./actions
-//= require_tree ./stores
-//= require_tree ./dispatcher
-//= require_tree ./components
-//= require_tree ./utils
+//= require_self
 //= require_tree .
+
+var app = {};

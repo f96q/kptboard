@@ -44,12 +44,6 @@ gem 'websocket-rails'
 gem 'sprockets-es6'
 gem 'scss-lint'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-react'
-  gem 'rails-assets-flux'
-  gem 'rails-assets-eventemitter3'
-end
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

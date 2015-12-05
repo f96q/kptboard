@@ -1,22 +1,22 @@
-'use strict';
+app.RetrospectiveLabel =
 
 class RetrospectiveLabel extends React.Component {
   destroy(event) {
-    labelActions.destroy(this.props.retrospectiveId, this.props.label.id);
+    this.props.actions.destroyLabel(this.props.label.id);
     event.stopPropagation();
   }
 
   edit(event) {
-    labelActions.openDialog(this.props.retrospectiveId, {id: this.props.label.id}, event.clientX, event.clientY);
+    this.props.actions.openDialogLabel({id: this.props.label.id}, event.clientX, event.clientY, this.props.actions);
     event.stopPropagation();
   }
 
   onDragStart(event) {
-    labelActions.dragStart(this.props.label.id);
+    this.props.actions.dragStartLabel(this.props.label.id);
   }
 
   onDragEnd(event) {
-    labelActions.dragEnd();
+    this.props.actions.dragEndLabel();
   }
 
   render() {

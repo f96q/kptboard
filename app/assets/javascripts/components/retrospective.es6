@@ -1,36 +1,9 @@
-'use strict';
+app.Retrospective =
 
 class Retrospective extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.getState();
-  }
-
-  componentDidMount() {
-    labelStore.addListener(this.onChange.bind(this));
-    retrospectivesUserStore.addListener(this.onChange.bind(this));
-  }
-
-  componentWillUnmount() {
-    labelStore.removeListener(this.onChange.bind(this));
-    retrospectivesUserStore.removeListener(this.onChange.bind(this));
-  }
-
-  onChange() {
-    this.setState(this.getState());
-  }
-
-  getState() {
-    return {
-      dragStartId: labelStore.getDragStatId(),
-      labels: labelStore.getLabels(),
-      users: retrospectivesUserStore.getUsers()
-    };
-  }
-
   openLabelForm(event) {
     let typ = $(event.target).closest('.js-board').data('typ');
-    labelActions.openDialog(this.props.id, {typ: typ}, event.clientX, event.clientY);
+    this.props.actions.openDialogLabel({typ: typ}, event.clientX, event.clientY, this.props.actions);
   }
 
   onDrop(event) {
@@ -39,19 +12,19 @@ class Retrospective extends React.Component {
     let index = null;
     if ($(event.target).hasClass('js-labels')) {
       typ = $(event.target).closest('.js-board').data('typ');
-      index = this.state.labels[typ].length;
+      index = this.props.labels[typ].length;
     } else {
       let id = $(event.target).closest('.js-label').data('id');
       typ = $(event.target).closest('.js-board').data('typ');
-      for (let i in this.state.labels[typ]) {
-        let label = this.state.labels[typ][i];
+      for (let i in this.props.labels[typ]) {
+        let label = this.props.labels[typ][i];
         if (label.id == id) {
           index = parseInt(i);
           break;
         }
       }
     }
-    labelActions.drop(this.props.id, this.state.dragStartId, typ, index);
+    this.props.actions.dropLabel(this.props.dragStartId, typ, index);
   }
 
   onDragOver(event) {
@@ -59,21 +32,21 @@ class Retrospective extends React.Component {
   }
 
   render() {
-    let keepLabels = this.state.labels.keep.map((label) => {
+    let keepLabels = this.props.labels.keep.map((label) => {
       return (
-        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} />
+        <app.RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
       );
     });
 
-    let problemLabels = this.state.labels.problem.map((label) => {
+    let problemLabels = this.props.labels.problem.map((label) => {
       return (
-        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} />
+        <app.RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
       );
     });
 
-    let tryLabels = this.state.labels.try.map((label) => {
+    let tryLabels = this.props.labels.try.map((label) => {
       return (
-        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} />
+        <app.RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
       );
     });
 
@@ -99,7 +72,7 @@ class Retrospective extends React.Component {
             </div>
           </div>
 
-          <RetrospectiveMenu retrospectiveId={this.props.id} users={this.state.users} />
+          <app.RetrospectiveMenu users={this.props.users} actions={this.props.actions} />
         </div>
       </div>
     );

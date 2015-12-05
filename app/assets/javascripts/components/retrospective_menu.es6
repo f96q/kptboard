@@ -1,12 +1,20 @@
-'use strict';
+app.RetrospectiveMenu =
 
 class RetrospectiveMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {email: null};
+  }
+
   addUser() {
-    let email = this.refs.email.getDOMNode().value;
-    if (email) {
-      retrospectivesUserActions.create(this.props.retrospectiveId, email);
-      this.refs.email.getDOMNode().value = null;
+    if (this.state.email) {
+      this.props.actions.addUser(this.state.email);
+      this.setState({email: null});
     }
+  }
+
+  updateEmail(event) {
+    this.setState({email: event.target.value});
   }
 
   render() {
@@ -21,7 +29,7 @@ class RetrospectiveMenu extends React.Component {
     });
     return (
       <div className="retrospective__menu">
-        <input className="retrospective__menu-email-form" type="email" placeholder="email" ref="email"></input>
+        <input className="retrospective__menu-email-form" type="email" placeholder="email" value={this.state.email} onChange={this.updateEmail.bind(this)}></input>
         <button className="retrospective__menu-email-form-button fa fa-user-plus" type="button" onClick={this.addUser.bind(this)}></button>
         <div className="retrospective__users">{users}</div>
       </div>

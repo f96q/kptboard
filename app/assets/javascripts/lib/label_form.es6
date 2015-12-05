@@ -1,9 +1,8 @@
-'use strict';
+app.LabelForm =
 
 class LabelForm {
   constructor() {
     this.dialog = null;
-    this.retrospectiveId = null;
     this.label = null;
   }
 
@@ -25,7 +24,7 @@ class LabelForm {
   }
 
   close() {
-    React.unmountComponentAtNode(this.dialog[0]);
+    ReactDOM.unmountComponentAtNode(this.dialog[0]);
     this.dialog.remove();
     this.label = null;
   }
@@ -36,20 +35,20 @@ class LabelForm {
       return;
     }
     if (this.label.id) {
-      labelActions.update(this.retrospectiveId, this.label.id, {typ: this.label.typ, description: description});
+      this.actions.updateLabel(this.label.id, {typ: this.label.typ, description: description});
       this.close();
     } else {
-      labelActions.create(this.retrospectiveId, {typ: this.label.typ, description: description});
+      this.actions.createLabel({typ: this.label.typ, description: description});
       this.dialog.find('.js-description').val('');
     }
   }
 
-  open(retrospectiveId, label, clientX, clientY) {
+  open(label, clientX, clientY, actions) {
     if (this.dialog) {
       this.close();
     }
-    this.retrospectiveId = retrospectiveId;
     this.label = label;
+    this.actions = actions;
     this.dialog = $('<div></div>').dialog({
       title: this.labelFormTitle(label.typ),
       dialogClass: 'label-form__titlebar--' + label.typ,
@@ -58,6 +57,6 @@ class LabelForm {
       closeText: null,
       buttons: {save: this.save.bind(this)}
     });
-    React.render(<LabelFormContent label={label} save={this.save.bind(this)} />, this.dialog[0]);
+    ReactDOM.render(<app.LabelFormContent label={label} save={this.save.bind(this)} />, this.dialog[0]);
   }
 }

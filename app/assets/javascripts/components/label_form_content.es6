@@ -1,4 +1,4 @@
-'use strict';
+app.LabelFormContent =
 
 class LabelFormContent extends React.Component {
   onKeyDown(event) {
