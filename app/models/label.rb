@@ -7,7 +7,7 @@ class Label < ActiveRecord::Base
 
   validates :typ, inclusion: {in: TYPE.values}
   belongs_to :retrospective
-  belongs_to :user
+  belongs_to :user, optional: true
 
   acts_as_list scope: [:retrospective_id, :typ]
 

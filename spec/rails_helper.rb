@@ -4,6 +4,8 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'websocket_rails/spec_helpers'
+require 'database_cleaner'
+require 'fabrication'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -50,11 +52,14 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.before(:suite) do
-    DatabaseRewinder.clean_all
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.after(:each) do
-    DatabaseRewinder.clean
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 
   config.include Devise::TestHelpers, type: :controller
