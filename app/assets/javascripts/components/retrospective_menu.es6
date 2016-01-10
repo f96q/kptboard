@@ -13,8 +13,20 @@ class RetrospectiveMenu extends React.Component {
     }
   }
 
+  removeUser(user) {
+    if (confirm(`remove user ${user.name}`)) {
+      this.props.actions.removeUser(user.id);
+    }
+  }
+
   updateEmail(event) {
     this.setState({email: event.target.value});
+  }
+
+  removeButton(user) {
+    return (
+      <i className="fa fa-remove pull-right" onClick={this.removeUser.bind(this, user)}></i>
+    );
   }
 
   render() {
@@ -24,6 +36,7 @@ class RetrospectiveMenu extends React.Component {
           <div className="fa fa-user">
             <div className="retrospective__user-name">{user.name}</div>
          </div>
+         {this.props.users.length == 1 ? null : this.removeButton(user)}
         </div>
       )
     });

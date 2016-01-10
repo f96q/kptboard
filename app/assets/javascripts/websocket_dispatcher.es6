@@ -25,6 +25,9 @@ class WebSocketDispatcher {
     this.dispatcher.channel.bind('retrospectives.add_user', (data) => {
       store.dispatch({type: app.ActionTypes.ADD_USER, user: data});
     });
+    this.dispatcher.channel.bind('retrospectives.remove_user', (data) => {
+      store.dispatch({type: app.ActionTypes.REMOVE_USER, id: data.id});
+    });
   }
 
   trigger(type, data) {

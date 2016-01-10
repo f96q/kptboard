@@ -17,6 +17,11 @@ function usersReducer(state = initialState.users, action) {
       return state.concat([action.user]);
     }
     break;
+
+    case app.ActionTypes.REMOVE_USER: {
+      return state.filter(user => user.id != action.id);
+    }
+    break;
   }
   return state;
 }

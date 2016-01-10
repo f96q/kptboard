@@ -45,5 +45,9 @@ app.RetrospectiveActions = {
   addUser: function(email) {
     app.WebSocketDispatcher.trigger('retrospectives.add_user', {email: email});
     return dispatch => {};
+  },
+  removeUser: function(id) {
+    app.WebSocketDispatcher.trigger('retrospectives.remove_user', {id: id});
+    return dispatch => {};
   }
 };
