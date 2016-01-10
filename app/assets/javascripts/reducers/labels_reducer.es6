@@ -43,7 +43,7 @@ function labelsReducer(state = initialState, action) {
 
     case app.ActionTypes.CREATE_LABEL: {
       let labels = Object.assign({}, state.labels);
-      labels[action.label.typ] = [action.label].concat(state.labels[action.label.typ]);
+      labels[action.label.typ] = [action.label, ...state.labels[action.label.typ]];
       return Object.assign({}, state, {labels: labels});
     }
     break;
