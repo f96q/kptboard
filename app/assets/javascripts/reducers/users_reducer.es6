@@ -9,12 +9,11 @@ app.usersReducer =
 function usersReducer(state = initialState.users, action) {
   switch (action.type) {
     case app.ActionTypes.SET_RETROSPECTIVE:
-      Object.assign(state, action.retrospective.users);
-      return state;
+      return action.retrospective.users;
     break;
 
     case app.ActionTypes.ADD_USER: {
-      return state.concat([action.user]);
+      return [...state, action.user];
     }
     break;
 
