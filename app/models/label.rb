@@ -12,16 +12,4 @@ class Label < ActiveRecord::Base
   acts_as_list scope: [:retrospective_id, :typ]
 
   scope :label_typ, ->(typ) { where typ: typ }
-
-  def as_json(options = nil)
-    {
-      id: id,
-      typ: typ,
-      position: position,
-      description: description,
-      created_at: created_at.strftime('%m-%d'),
-    }.tap {|r|
-      r[:user_name] = user.name if user
-    }
-  end
 end

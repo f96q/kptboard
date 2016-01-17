@@ -4,7 +4,7 @@ class Ws::LabelsController < Ws::BaseController
     Label.transaction do
       @label.save!
       @label.insert_at 1
-      trigger_channel 'labels.create', @label.as_json
+      trigger_channel 'labels.create', ActiveModel::SerializableResource.new(@label).as_json
     end
   rescue
     trigger_failure 'labels.create failed'

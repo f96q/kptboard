@@ -7,11 +7,4 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   has_many :retrospective_users, dependent: :destroy
   has_many :labels
-
-  def as_json(options = nil)
-    {
-      id: id,
-      name: name
-    }
-  end
 end
