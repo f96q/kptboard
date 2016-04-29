@@ -1,4 +1,6 @@
 class Ws::LabelsController < Ws::BaseController
+  before_action :set_label, except: [:create]
+
   def create
     @label = Label.new event.data[:label].tap {|params| params.merge!(user_id: current_user.id, retrospective_id: @retrospective.id) }
     Label.transaction do
@@ -11,19 +13,16 @@ class Ws::LabelsController < Ws::BaseController
   end
 
   def destroy
-    set_label
     @label.destroy
     trigger_channel 'labels.destroy', {id: @label.id}
   end
 
   def update
-    set_label
     @label.update event.data[:label]
     trigger_channel 'labels.update', {id: @label.id, label: event.data[:label]}
   end
 
   def update_position
-    set_label
     Label.transaction do
       if @label.typ != event.data[:typ]
         @label.remove_from_list
@@ -33,6 +32,8 @@ class Ws::LabelsController < Ws::BaseController
     end
     trigger_channel 'labels.update_position', {id: @label.id, typ: @label.typ, position: @label.position, label: @label.as_json}
   end
+
+  private
 
   def set_label
     @label = @retrospective.labels.where(id: event.data[:id]).first
