@@ -21,6 +21,7 @@ gem 'sass-rails'
 gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem 'autoprefixer-rails'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
