@@ -4,8 +4,8 @@ class RetrospectiveSerializer < ActiveModel::Serializer
 
   def labels
     {}.tap { |r|
-      Label::TYPE.keys.each { |typ|
-        r[typ] = object.labels.label_typ(typ).map { |label| LabelSerializer.new(label).attributes }
+      Label.typs.keys.each { |typ|
+        r[typ] = object.labels.where(typ: typ).map { |label| LabelSerializer.new(label).attributes }
       }
     }
   end
