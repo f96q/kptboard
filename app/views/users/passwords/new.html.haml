@@ -1,13 +1,16 @@
-%h2 Forgot your password?
+.page-header
+  %h2 Forgot your password?
 
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, class: 'form-horizontal', role: 'form'}) do |f|
+= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
   = devise_error_messages!
 
-  .retrospective-form__form-inline
-    %label.retrospective-form__label Email
-    = f.email_field :email, class: 'retrospective-form__input', autofocus: true, placeholder: 'Email'
+  .form-group.row
+    %label.col-sm-2.form-control-label Email
+    .col-sm-10
+      = f.email_field :email, class: 'form-control form-control-sm', autofocus: true, placeholder: 'Email'
 
-  .retrospective-form__form-inline
-    = f.submit 'Send', class: 'retrospective-form__button'
+  .form-group.row
+    .col-sm-offset-2.col-sm-10
+      = f.submit 'Send', class: 'btn btn-primary'
 
 = render "users/shared/links"

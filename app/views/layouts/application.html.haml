@@ -7,13 +7,18 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
-    %nav.navigation
-      .navigation__content
-        .navigation__item= yield(:navigation_title).present? ? yield(:navigation_title) : link_to('KPTBoard', root_path)
-        - if user_signed_in?
-          = link_to retrospectives_path, class: 'navigation__item' do
-            .fa.fa-folder
-          = link_to destroy_user_session_path, class: 'navigation__item navigation__item--sign-out', method: :delete do
-            .fa.fa-sign-out
 
-    .container= yield
+  %nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+    .container
+      %span.navbar-brand= yield(:navigation_title).present? ? yield(:navigation_title) : 'KPTBoard'
+      %ul.nav.navbar-nav
+        %li.nav-item.active
+        - if user_signed_in?
+          %li.nav-item
+            = link_to retrospectives_path, class: 'nav-link' do
+              .fa.fa-folder
+          %li.nav-item
+            = link_to destroy_user_session_path, class: 'nav-link js-sign-out', method: :delete do
+              .fa.fa-sign-out
+
+  .container= yield

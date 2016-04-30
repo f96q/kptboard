@@ -9,7 +9,7 @@ feature 'session' do
     fill_in 'Name', with: 'test'
     fill_in 'Password', with: 'password'
     fill_in 'Password Confirmation', with: 'password'
-    find('.retrospective-form__button').click
+    find('.js-sign-up').click
     expect(page).to_not have_selector('a', text: 'Sign Up')
   end
 
@@ -17,14 +17,14 @@ feature 'session' do
     visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'password'
-    find('.retrospective-form__button').click
+    find('.js-sign-in').click
     expect(page).to_not have_selector('a', text: 'Sign In')
   end
 
   scenario 'success sign out' do
     sign_in user
     visit root_path
-    find('.navigation__item--sign-out').click
+    find('.js-sign-out').click
     expect(page).to have_selector('a', text: 'Sign up')
   end
 end

@@ -1,31 +1,33 @@
 - content_for :active, 'users_edit'
+
 .page-header
   %h1 Edit Account
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal', role: 'form' }) do |f|
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
-  .form-group
+  .form-group.row
     %label.col-sm-2.control-label{:for => "user_email"} Email
     .col-sm-10
       = f.email_field :email, class: 'form-control', :autofocus => true
-  .form-group
+  .form-group.row
     %label.col-sm-2.control-label{:for => "user_name"} Name
     .col-sm-10
       = f.text_field :name, class: 'form-control'
-  .form-group
+  .form-group.row
     %label.col-sm-2.control-label{:for => "password"} Password
     .col-sm-10
       %i (leave blank if you don't want to change it)
       = f.password_field :password, :autocomplete => "off", class: 'form-control'
-  .form-group
+  .form-group.row
     %label.col-sm-2.control-label{:for => "password_confirmation"} Password Confirmation
     .col-sm-10
       = f.password_field :password_confirmation, class: 'form-control'
-  .form-group
+  .form-group.row
     %label.col-sm-2.control-label{:for => "current_password"} Current Password
     .col-sm-10
       %i (we need your current password to confirm your changes)
       = f.password_field :current_password, class: 'form-control'
-  .form-group
+  .form-group.row
     .col-sm-offset-2.col-sm-10
       = f.submit "Update", class: 'btn btn-primary'
 

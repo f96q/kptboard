@@ -1,15 +1,19 @@
 = content_for :active, 'retrospectives'
 
-=link_to new_retrospective_path, class: 'retrospective-list__button' do
-  .fa.fa-plus
+.retrospective-list
+  =link_to '+', new_retrospective_path, class: 'btn btn-primary'
 
-%ul.retrospective-list__items<
-  - @retrospectives.each do |retrospective|
-    %li.retrospective-list__item<
-      = link_to retrospective.title, retrospective_path(retrospective), class: 'retrospective-list__item-title'
-      = link_to edit_retrospective_path(retrospective), class: 'retrospective-list__item-button' do
-        .fa.fa-edit
-      = link_to export_retrospective_path(retrospective, format: 'txt'), class: 'retrospective-list__item-button' do
-        .fa.fa-download
-      = link_to retrospective_path(retrospective), method: :delete, data: {confirm: 'are you sure?'}, class: 'retrospective-list__item-button' do
-        .fa.fa-trash
+  %table.table.table-sm
+    %thead
+      %tr
+        %th Title
+        %th
+    %tbody
+      - @retrospectives.each do |retrospective|
+        %tr
+          %td
+            = link_to retrospective.title, retrospective_path(retrospective)
+          %td
+            = link_to 'edit', edit_retrospective_path(retrospective)
+            = link_to 'destroy', retrospective_path(retrospective), method: :delete, data: {confirm: 'are you sure?'}
+            = link_to 'export', export_retrospective_path(retrospective, format: 'txt')
