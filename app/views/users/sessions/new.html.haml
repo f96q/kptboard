@@ -1,25 +1,25 @@
 - content_for :active, 'sign_in'
 
 .page-header
-  %h2 Sign in
+  %h2= t('devise.sessions.new.sign_in')
 
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   .form-group.row
-    %label.col-sm-2.form-control-label Email
+    %label.col-sm-2.form-control-label= User.human_attribute_name(:email)
     .col-sm-10
       = f.email_field :email, class: 'form-control form-control-sm', autofocus: true, placeholder: 'Email'
 
   .form-group.row
-    %label.col-sm-2.form-control-label Password
+    %label.col-sm-2.form-control-label= User.human_attribute_name(:password)
     .col-sm-10
       = f.password_field :password, class: 'form-control form-control-sm', placeholder: 'Password'
 
   - if devise_mapping.rememberable?
     = f.check_box :remember_me
-    Remember me
+    = User.human_attribute_name(:remember_me)
 
   .form-group.row
     .col-sm-offset-2.col-sm-10
-      = f.submit 'Sign in', class: 'btn btn-primary js-sign-in'
+      = f.submit t('devise.sessions.new.sign_in'), class: 'btn btn-primary js-sign-in'
 
 = render "users/shared/links"

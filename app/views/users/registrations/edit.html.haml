@@ -1,40 +1,35 @@
 - content_for :active, 'users_edit'
 
-.page-header
-  %h1 Edit Account
-
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
   = devise_error_messages!
   .form-group.row
-    %label.col-sm-2.control-label{:for => "user_email"} Email
+    %label.col-sm-2.control-label{:for => "user_email"}= User.human_attribute_name(:email)
     .col-sm-10
       = f.email_field :email, class: 'form-control', :autofocus => true
   .form-group.row
-    %label.col-sm-2.control-label{:for => "user_name"} Name
+    %label.col-sm-2.control-label{:for => "user_name"}= User.human_attribute_name(:name)
     .col-sm-10
       = f.text_field :name, class: 'form-control'
   .form-group.row
-    %label.col-sm-2.control-label{:for => "password"} Password
+    %label.col-sm-2.control-label{:for => "password"}= User.human_attribute_name(:password)
     .col-sm-10
-      %i (leave blank if you don't want to change it)
       = f.password_field :password, :autocomplete => "off", class: 'form-control'
   .form-group.row
-    %label.col-sm-2.control-label{:for => "password_confirmation"} Password Confirmation
+    %label.col-sm-2.control-label{:for => "password_confirmation"}= User.human_attribute_name(:password_confirmation)
     .col-sm-10
       = f.password_field :password_confirmation, class: 'form-control'
   .form-group.row
-    %label.col-sm-2.control-label{:for => "current_password"} Current Password
+    %label.col-sm-2.control-label{:for => "current_password"}= User.human_attribute_name(:current_password)
     .col-sm-10
-      %i (we need your current password to confirm your changes)
       = f.password_field :current_password, class: 'form-control'
   .form-group.row
     .col-sm-offset-2.col-sm-10
-      = f.submit "Update", class: 'btn btn-primary'
+      = f.submit t('devise.registrations.edit.update'), class: 'btn btn-primary'
 
 %hr
 
-%h2 Cancel my account
-#{button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-danger'}
+%h2= t('devise.registrations.edit.cancel_my_account')
+#{button_to t('devise.registrations.edit.cancel_my_account'), registration_path(resource_name), :data => { :confirm => t('devise.registrations.edit.are_you_sure') }, :method => :delete, :class => 'btn btn-danger'}
 
 %hr
 

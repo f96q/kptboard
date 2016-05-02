@@ -1,33 +1,33 @@
 - content_for :active, 'sign_up'
 
 .page-header
-  %h2 Sign up
+  %h2= t('devise.registrations.new.sign_up')
 
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
   = devise_error_messages!
 
   .form-group.row
-    %label.col-sm-2.form-control-label Email
+    %label.col-sm-2.form-control-label= User.human_attribute_name(:email)
     .col-sm-10
-      = f.email_field :email, class: 'form-control form-control-sm', autofocus: true, placeholder: 'Email'
+      = f.email_field :email, class: 'form-control form-control-sm', autofocus: true, placeholder: User.human_attribute_name(:email)
 
   .form-group.row
-    %label.col-sm-2.form-control-label Name
+    %label.col-sm-2.form-control-label= User.human_attribute_name(:name)
     .col-sm-10
-      = f.text_field :name, class: 'form-control form-control-sm', placeholder: 'Name'
+      = f.text_field :name, class: 'form-control form-control-sm', placeholder: User.human_attribute_name(:name)
 
   .form-group.row
-    %label.col-sm-2.form-control-label Password
+    %label.col-sm-2.form-control-label= User.human_attribute_name(:password)
     .col-sm-10
-      = f.password_field :password, class: 'form-control form-control-sm', placeholder: 'Password'
+      = f.password_field :password, class: 'form-control form-control-sm', placeholder: User.human_attribute_name(:password)
 
   .form-group.row
-    %label.col-sm-2.form-control-label Password Confirmation
+    %label.col-sm-2.form-control-label= User.human_attribute_name(:password_confirmation)
     .col-sm-10
-      = f.password_field :password_confirmation, class: 'form-control form-control-sm', placeholder: 'Password Confirmation'
+      = f.password_field :password_confirmation, class: 'form-control form-control-sm', placeholder: User.human_attribute_name(:password_confirmation)
 
   .form-group.row
     .col-sm-offset-2.col-sm-10
-      = f.submit 'Sign up', class: 'btn btn-primary js-sign-up'
+      = f.submit t('devise.registrations.new.sign_up'), class: 'btn btn-primary js-sign-up'
 
 = render "users/shared/links"
