@@ -43,6 +43,7 @@ gem 'sprockets-es6'
 gem 'scss-lint'
 gem 'faye-websocket', '0.10.0'
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'rails-i18n', '~> 5.0.0.beta3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
