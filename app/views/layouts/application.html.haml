@@ -10,15 +10,20 @@
 
   %nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
     .container
-      %span.navbar-brand= yield(:navigation_title).present? ? yield(:navigation_title) : 'KPTBoard'
+      - if yield(:navigation_title).present?
+        = link_to yield(:navigation_title), retrospective_path(@retrospective), class: 'navbar-brand'
+      - else
+        = link_to 'KPTBoard', root_path, class: 'navbar-brand'
       %ul.nav.navbar-nav
         %li.nav-item.active
         - if user_signed_in?
-          %li.nav-item
-            = link_to retrospectives_path, class: 'nav-link' do
-              .fa.fa-folder
-          %li.nav-item
-            = link_to destroy_user_session_path, class: 'nav-link js-sign-out', method: :delete do
-              .fa.fa-sign-out
+          %li.nav-item{class: yield(:active) == 'retrospectives' ? 'active' : ''}
+            = link_to 'Retrospectives', retrospectives_path, class: 'nav-link'
+          %li.nav-item.dropdown.pull-xs-right
+            %a.dropdown-toggle.nav-link{href: '#', data: {'toggle' => 'dropdown'}, 'aria-haspopup' => 'true', 'aria-expanded' => 'false'}
+              = current_user.name
+            .dropdown-menu
+              = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
+              = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item js-sign-out'
 
   .container= yield

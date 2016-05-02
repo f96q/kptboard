@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery-ui/sortable
 //= require jquery-ui/dialog
+//= require bootstrap/util
+//= require bootstrap/dropdown
 //= require websocket_rails/main
 //= require react
 //= require react-dom
