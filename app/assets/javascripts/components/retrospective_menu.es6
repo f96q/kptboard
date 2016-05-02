@@ -25,7 +25,7 @@ class RetrospectiveMenu extends React.Component {
 
   removeButton(user) {
     return (
-      <i className="fa fa-remove pull-right" onClick={this.removeUser.bind(this, user)}></i>
+      <i className="retrospective__user-remove-button fa fa-remove pull-right" onClick={this.removeUser.bind(this, user)}></i>
     );
   }
 
