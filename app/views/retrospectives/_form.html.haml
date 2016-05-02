@@ -2,10 +2,10 @@
   =render 'error_alert', object: @retrospective
 
   .form-group.row
-    %label.col-sm-2.form-control-label title
+    %label.col-sm-2.form-control-label= Retrospective.human_attribute_name(:title)
     .col-sm-10
       = f.text_field :title, class: 'form-control form-control-sm'
 
   .form-group.row
     .col-sm-offset-2.col-sm-10
-      %button.btn.btn-primary{type: 'submit'} save
+      %button.btn.btn-primary{type: 'submit'}= t('views.retrospectives.save')

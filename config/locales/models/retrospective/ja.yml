@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    attributes:
+      retrospective:
+        title: タイトル

@@ -18,12 +18,12 @@
         %li.nav-item.active
         - if user_signed_in?
           %li.nav-item{class: yield(:active) == 'retrospectives' ? 'active' : ''}
-            = link_to 'Retrospectives', retrospectives_path, class: 'nav-link'
+            = link_to t('views.navigation.retrospectives'), retrospectives_path, class: 'nav-link'
           %li.nav-item.dropdown.pull-xs-right
             %a.dropdown-toggle.nav-link{href: '#', data: {'toggle' => 'dropdown'}, 'aria-haspopup' => 'true', 'aria-expanded' => 'false'}
               = current_user.name
             .dropdown-menu
-              = link_to 'Edit Account', edit_user_registration_path, class: 'dropdown-item'
-              = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'dropdown-item js-sign-out'
+              = link_to t('views.navigation.edit_account'), edit_user_registration_path, class: 'dropdown-item'
+              = link_to t('views.navigation.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item js-sign-out'
 
   .container= yield

@@ -1,0 +1,8 @@
+ja:
+  views:
+    retrospectives:
+      edit: 編集
+      destory: 削除
+      save: 保存
+      export: Markdown
+      are_you_sure: 削除してよろしいですか？

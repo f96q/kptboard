@@ -6,7 +6,7 @@
   %table.table.table-sm
     %thead
       %tr
-        %th Title
+        %th= Retrospective.human_attribute_name(:title)
         %th
     %tbody
       - @retrospectives.each do |retrospective|
@@ -14,6 +14,6 @@
           %td
             = link_to retrospective.title, retrospective_path(retrospective)
           %td
-            = link_to 'edit', edit_retrospective_path(retrospective)
-            = link_to 'destroy', retrospective_path(retrospective), method: :delete, data: {confirm: 'are you sure?'}
-            = link_to 'export', export_retrospective_path(retrospective, format: 'txt')
+            = link_to t('views.retrospectives.edit'), edit_retrospective_path(retrospective)
+            = link_to t('views.retrospectives.destory'), retrospective_path(retrospective), method: :delete, data: {confirm: t('views.retrospectives.are_you_sure') }
+            = link_to t('views.retrospectives.export'), export_retrospective_path(retrospective, format: 'txt')
