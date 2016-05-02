@@ -97,6 +97,7 @@ GEM
     daemons (1.2.3)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
+    devise-i18n (1.0.1)
     diff-lcs (1.2.5)
     em-synchrony (1.0.5)
       eventmachine (>= 1.0.0.beta.1)
@@ -291,6 +292,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise!
+  devise-i18n
   fabrication
   faye-websocket (= 0.10.0)
   font-awesome-rails

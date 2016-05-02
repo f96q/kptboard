@@ -37,6 +37,7 @@ gem 'puma'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise', github: 'plataformatec/devise'
+gem 'devise-i18n'
 gem 'acts_as_list'
 gem 'websocket-rails'
 gem 'sprockets-es6'
