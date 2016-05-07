@@ -35,7 +35,7 @@ class RetrospectivesController < ApplicationController
 
   def export
     respond_to do |format|
-      format.any  { render_send_data 'text/plain', @retrospective.title + '.txt' }
+      format.any  { render_send_data 'text/plain', @retrospective.title + '.md' }
     end
   end
 
