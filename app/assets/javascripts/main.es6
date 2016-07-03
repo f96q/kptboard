@@ -1,10 +1,12 @@
 window.onload = () => {
   let retrospective = $('.js-retrospective');
   if (retrospective) {
-    let id = retrospective.data('id');
-    let url = retrospective.data('url');
+    let retrospectiveId = retrospective.data('id');
     let store = app.configureStore();
-    app.WebSocketDispatcher = app.createWebSocketDispatcher(id, url, store);
+    let cable = ActionCable.createConsumer();
+
+    app.retrospectivesChannel = app.createRetrospectivesChannel(cable, retrospectiveId, store)
+    app.labelsChannel = app.createLabelsChannel(cable, retrospectiveId, store)
 
     ReactDOM.render((
       <ReactRedux.Provider store={store}>

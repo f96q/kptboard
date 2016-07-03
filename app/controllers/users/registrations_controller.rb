@@ -1,12 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:email, :name, :password, :password_confirmation)
-    end
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:email, :name, :password, :password_confirmation, :current_password)
-    end
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :name, :password, :password_confirmation])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :name, :password, :password_confirmation, :current_password])
   end
 end

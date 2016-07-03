@@ -16,11 +16,11 @@
 //= require jquery-ui/dialog
 //= require bootstrap/util
 //= require bootstrap/dropdown
-//= require websocket_rails/main
 //= require react
 //= require react-dom
 //= require react-redux
 //= require redux
+//= require action_cable
 //= require_self
 //= require_tree .
 

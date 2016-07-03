@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   has_many :retrospective_users, dependent: :destroy
+  has_many :retrospectives, :through => :retrospective_users
   has_many :labels
 end

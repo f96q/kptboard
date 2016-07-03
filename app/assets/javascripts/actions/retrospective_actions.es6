@@ -15,15 +15,15 @@ app.RetrospectiveActions = {
     };
   },
   createLabel: function(label) {
-    app.WebSocketDispatcher.trigger('labels.create', {label: label});
+    app.labelsChannel.perform('create', {label: label});
     return dispatch => {};
   },
   updateLabel: function(id, label) {
-    app.WebSocketDispatcher.trigger('labels.update', {id: id, label: label});
+    app.labelsChannel.perform('update', {id: id, label: label});
     return dispatch => {};
   },
   destroyLabel: function(id) {
-    app.WebSocketDispatcher.trigger('labels.destroy', {id: id});
+    app.labelsChannel.perform('destroy', {id: id});
     return dispatch => {};
   },
   dragStartLabel: function(id) {
@@ -33,7 +33,7 @@ app.RetrospectiveActions = {
     return {type: app.ActionTypes.DRAG_END_LABEL};
   },
   dropLabel: function(id, typ, index) {
-    app.WebSocketDispatcher.trigger('labels.update_position', {id: id, typ: typ, position: index + 1});
+    app.labelsChannel.perform('position', {id: id, typ: typ, position: index + 1});
     return dispatch => {};
   },
   setUsers: function(users) {
@@ -43,11 +43,11 @@ app.RetrospectiveActions = {
     };
   },
   addUser: function(email) {
-    app.WebSocketDispatcher.trigger('retrospectives.add_user', {email: email});
+    app.retrospectivesChannel.perform('add_user', {email: email})
     return dispatch => {};
   },
   removeUser: function(id) {
-    app.WebSocketDispatcher.trigger('retrospectives.remove_user', {id: id});
+    app.retrospectivesChannel.perform('remove_user', {id: id})
     return dispatch => {};
   }
 };

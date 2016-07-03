@@ -3,7 +3,6 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
-require 'websocket_rails/spec_helpers'
 require 'database_cleaner'
 require 'fabrication'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -62,6 +61,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FeatureHelper, type: :feature
 end

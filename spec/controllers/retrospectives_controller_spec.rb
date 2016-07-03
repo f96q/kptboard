@@ -17,7 +17,7 @@ describe RetrospectivesController do
 
     context 'text' do
       it 'should generate text' do
-        get :export, id: retrospective.id, format: 'text'
+        get :export, params: { id: retrospective.id, format: 'text' }
         expect(response.body).to eq File.read(Rails.root.join('spec/support/files/export.txt'))
       end
     end

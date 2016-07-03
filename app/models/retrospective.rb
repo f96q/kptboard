@@ -13,7 +13,7 @@ class Retrospective < ActiveRecord::Base
   end
 
   def has_user?(user_id)
-    self.users.pluck(:id).include? user_id
+    self.class.has_user(user_id).present?
   end
 
   scope :has_user, -> (user_id) { includes(:retrospective_users).where(RetrospectiveUser.arel_table[:user_id].eq(user_id)).references(:retrospective_users) }
