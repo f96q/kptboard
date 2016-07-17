@@ -1,22 +1,22 @@
-app.RetrospectiveLabel =
+import React, { Component } from 'react'
 
 class RetrospectiveLabel extends React.Component {
   destroy(event) {
-    this.props.actions.destroyLabel(this.props.label.id);
-    event.stopPropagation();
+    this.props.actions.destroyLabel(this.props.label.id)
+    event.stopPropagation()
   }
 
   edit(event) {
-    this.props.actions.openDialogLabel({id: this.props.label.id}, event.clientX, event.clientY, this.props.actions);
-    event.stopPropagation();
+    this.props.actions.openDialogLabel({ id: this.props.label.id }, event.clientX, event.clientY, this.props.actions)
+    event.stopPropagation()
   }
 
   onDragStart(event) {
-    this.props.actions.dragStartLabel(this.props.label.id);
+    this.props.actions.dragStartLabel(this.props.label.id)
   }
 
   onDragEnd(event) {
-    this.props.actions.dragEndLabel();
+    this.props.actions.dragEndLabel()
   }
 
   render() {
@@ -31,6 +31,8 @@ class RetrospectiveLabel extends React.Component {
           <div className="retrospective__label-description">{this.props.label.description}</div>
         </div>
       </div>
-    );
+    )
   }
 }
+
+export default RetrospectiveLabel

@@ -51,7 +51,6 @@ end
 gem 'devise'
 gem 'devise-i18n'
 gem 'acts_as_list'
-gem 'sprockets-es6'
 gem 'scss-lint'
 gem 'active_model_serializers'
 gem 'rails-i18n'

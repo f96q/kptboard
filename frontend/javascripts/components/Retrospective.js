@@ -1,54 +1,57 @@
-app.Retrospective =
+import React, { Component } from 'react'
+import $ from 'jquery'
+import RetrospectiveLabel from './RetrospectiveLabel'
+import RetrospectiveMenu from './RetrospectiveMenu'
 
 class Retrospective extends React.Component {
   openLabelForm(event) {
-    let typ = $(event.target).closest('.js-board').data('typ');
-    this.props.actions.openDialogLabel({typ: typ}, event.clientX, event.clientY, this.props.actions);
+    let typ = $(event.target).closest('.js-board').data('typ')
+    this.props.actions.openDialogLabel({ typ: typ }, event.clientX, event.clientY, this.props.actions)
   }
 
   onDrop(event) {
-    event.preventDefault();
-    let typ = null;
-    let index = null;
+    event.preventDefault()
+    let typ = null
+    let index = null
     if ($(event.target).hasClass('js-labels')) {
-      typ = $(event.target).closest('.js-board').data('typ');
-      index = this.props.labels[typ].length;
+      typ = $(event.target).closest('.js-board').data('typ')
+      index = this.props.labels[typ].length
     } else {
-      let id = $(event.target).closest('.js-label').data('id');
-      typ = $(event.target).closest('.js-board').data('typ');
+      let id = $(event.target).closest('.js-label').data('id')
+      typ = $(event.target).closest('.js-board').data('typ')
       for (let i in this.props.labels[typ]) {
-        let label = this.props.labels[typ][i];
+        let label = this.props.labels[typ][i]
         if (label.id == id) {
-          index = parseInt(i);
-          break;
+          index = parseInt(i)
+          break
         }
       }
     }
-    this.props.actions.dropLabel(this.props.dragStartId, typ, index);
+    this.props.actions.dropLabel(this.props.dragStartId, typ, index)
   }
 
   onDragOver(event) {
-    event.preventDefault();
+    event.preventDefault()
   }
 
   render() {
     let keepLabels = this.props.labels.keep.map((label) => {
       return (
-        <app.RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
-      );
-    });
+        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+      )
+    })
 
     let problemLabels = this.props.labels.problem.map((label) => {
       return (
-        <app.RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
-      );
-    });
+        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+      )
+    })
 
     let tryLabels = this.props.labels.try.map((label) => {
       return (
-        <app.RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
-      );
-    });
+        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+      )
+    })
 
     return (
       <div className="retrospective">
@@ -72,9 +75,11 @@ class Retrospective extends React.Component {
             </div>
           </div>
 
-          <app.RetrospectiveMenu users={this.props.users} actions={this.props.actions} />
+          <RetrospectiveMenu users={this.props.users} actions={this.props.actions} />
         </div>
       </div>
-    );
+    )
   }
 }
+
+export default Retrospective
