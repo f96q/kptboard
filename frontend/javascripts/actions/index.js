@@ -8,13 +8,32 @@ export function setLabels(labels) {
   }
 }
 
-export function openDialogLabel(label, clientX, clientY, actions) {
+export function openNewLabelModal(typ, clientX, clientY) {
   return {
-    type: types.OPEN_DIALOG_LABEL,
+    type: types.OPEN_NEW_LABEL_MODAL,
     clientX: clientX,
     clientY: clientY,
-    label: label,
-    actions: actions
+    typ: typ
+  }
+}
+
+export function openEditLabelModal(id, clientX, clientY) {
+  return {
+    type: types.OPEN_EDIT_LABEL_MODAL,
+    clientX: clientX,
+    clientY: clientY,
+    id: id
+  }
+}
+
+export function closeLabelModal() {
+  return { type: types.CLOSE_LABEL_MODAL }
+}
+
+export function updateLabelModal(description) {
+  return {
+    type: types.UPDATE_LABEL_MODAL,
+    description: description
   }
 }
 

@@ -6,7 +6,7 @@ import RetrospectiveMenu from './RetrospectiveMenu'
 class Retrospective extends React.Component {
   openLabelForm(event) {
     let typ = $(event.target).closest('.js-board').data('typ')
-    this.props.actions.openDialogLabel({ typ: typ }, event.clientX, event.clientY, this.props.actions)
+    this.props.actions.openNewLabelModal(typ, event.clientX, event.clientY)
   }
 
   onDrop(event) {

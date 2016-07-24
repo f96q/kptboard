@@ -7,7 +7,7 @@ class RetrospectiveLabel extends React.Component {
   }
 
   edit(event) {
-    this.props.actions.openDialogLabel({ id: this.props.label.id }, event.clientX, event.clientY, this.props.actions)
+    this.props.actions.openEditLabelModal(this.props.label.id, event.clientX, event.clientY)
     event.stopPropagation()
   }
 

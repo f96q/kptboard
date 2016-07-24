@@ -19,7 +19,6 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'normalize-rails'

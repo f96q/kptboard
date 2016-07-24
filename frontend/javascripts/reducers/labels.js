@@ -1,7 +1,4 @@
 import * as types from '../constants/ActionTypes'
-import LabelForm from '../lib/LabelForm'
-
-let labelForm = new LabelForm()
 
 function findLabelPosition(labels, id) {
   for (let typ of ['keep', 'problem', 'try']) {
@@ -17,7 +14,15 @@ function findLabelPosition(labels, id) {
 
 const initialState = {
   dragStartId: null,
-  labels: { keep: [], problem: [], try: [] }
+  labels: { keep: [], problem: [], try: [] },
+  labelModal: {
+    isOpen: false,
+    clientX: 0,
+    clientY: 0,
+    id: null,
+    typ: null,
+    description: ''
+  }
 }
 
 function labelsReducer(state = initialState, action) {
@@ -26,16 +31,39 @@ function labelsReducer(state = initialState, action) {
       return Object.assign({}, state, { labels: action.retrospective.labels })
     }
 
-    case types.OPEN_DIALOG_LABEL: {
-      let label = null;
-      if (action.label.id) {
-        let position = findLabelPosition(state.labels, action.label.id)
-        label = state.labels[position.typ][position.index]
-      } else {
-        label = { typ: action.label.typ, description: null }
+    case types.OPEN_NEW_LABEL_MODAL: {
+      let labelModal = {
+        isOpen: true,
+        clientX: action.clientX,
+        clientY: action.clientY,
+        id: null,
+        typ: action.typ,
+        description: ''
       }
-      labelForm.open(label, action.clientX, action.clientY, action.actions)
-      return state
+      return Object.assign({}, state, { labelModal: labelModal })
+    }
+
+    case types.OPEN_EDIT_LABEL_MODAL: {
+      let position = findLabelPosition(state.labels, action.id)
+      let label = state.labels[position.typ][position.index]
+      let labelModal = {
+        isOpen: true,
+        clientX: action.clientX,
+        clientY: action.clientY,
+        id: label.id,
+        typ: label.typ,
+        description: label.description
+      }
+      return Object.assign({}, state, { labelModal: labelModal })
+    }
+
+    case types.CLOSE_LABEL_MODAL: {
+      return Object.assign({}, state, { labelModal: initialState.labelModal })
+    }
+
+    case types.UPDATE_LABEL_MODAL: {
+      let labelModal = Object.assign({}, state.labelModal, {description: action.description})
+      return Object.assign({}, state, { labelModal: labelModal })
     }
 
     case types.CREATE_LABEL: {

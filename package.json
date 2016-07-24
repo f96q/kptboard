@@ -25,11 +25,11 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-redux": "^4.4.5",
+    "react-modal": "^1.4.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "actioncable": "^5.0.0",
     "jquery": "^2.2.4",
-    "jquery-ui": "1.10.4",
     "bootstrap-sass": "3.3.7"
   }
 }

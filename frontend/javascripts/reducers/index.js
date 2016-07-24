@@ -11,6 +11,10 @@ export function getDragStartId(state) {
   return state.labels.dragStartId
 }
 
+export function getLabelModal(state) {
+  return state.labels.labelModal
+}
+
 export function getLabels(state) {
   return state.labels.labels
 }
