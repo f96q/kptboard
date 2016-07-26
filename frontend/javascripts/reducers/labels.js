@@ -19,9 +19,11 @@ const initialState = {
     isOpen: false,
     clientX: 0,
     clientY: 0,
-    id: null,
-    typ: null,
-    description: ''
+    label: {
+      id: null,
+      typ: null,
+      description: ''
+    }
   }
 }
 
@@ -36,9 +38,11 @@ export default function labelsReducer(state = initialState, action) {
         isOpen: true,
         clientX: action.clientX,
         clientY: action.clientY,
-        id: null,
-        typ: action.typ,
-        description: ''
+        label: {
+          id: null,
+          typ: action.typ,
+          description: ''
+        }
       }
       return Object.assign({}, state, { labelModal: labelModal })
     }
@@ -50,9 +54,11 @@ export default function labelsReducer(state = initialState, action) {
         isOpen: true,
         clientX: action.clientX,
         clientY: action.clientY,
-        id: label.id,
-        typ: label.typ,
-        description: label.description
+        label: {
+          id: label.id,
+          typ: label.typ,
+          description: label.description
+        }
       }
       return Object.assign({}, state, { labelModal: labelModal })
     }
@@ -62,7 +68,8 @@ export default function labelsReducer(state = initialState, action) {
     }
 
     case types.UPDATE_LABEL_MODAL: {
-      let labelModal = Object.assign({}, state.labelModal, {description: action.description})
+      let labelModal = Object.assign({}, state.labelModal)
+      labelModal.label.description = action.description
       return Object.assign({}, state, { labelModal: labelModal })
     }
 

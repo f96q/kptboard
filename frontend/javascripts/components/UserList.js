@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 export default class UserList extends Component {
   constructor(props) {
@@ -8,14 +8,14 @@ export default class UserList extends Component {
 
   addUser() {
     if (this.state.email) {
-      this.props.actions.addUser(this.state.email)
+      this.props.addUser(this.state.email)
       this.setState({ email: '' })
     }
   }
 
   removeUser(user) {
     if (confirm(`remove user ${user.name}`)) {
-      this.props.actions.removeUser(user.id)
+      this.props.removeUser(user.id)
     }
   }
 
@@ -48,4 +48,10 @@ export default class UserList extends Component {
       </div>
     )
   }
+}
+
+UserList.propTypes = {
+  users: PropTypes.array.isRequired,
+  addUser: PropTypes.func.isRequired,
+  removeUser: PropTypes.func.isRequired
 }

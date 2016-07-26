@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Retrospective from '../components/Retrospective'
@@ -12,17 +12,25 @@ class App extends Component {
     return (
       <div>
         <Retrospective dragStartId={dragStartId} labels={labels} users={users} actions={actions} />
-        <LabelModal
-          isOpen={labelModal.isOpen}
-          id={labelModal.id}
-          typ={labelModal.typ}
-          description={labelModal.description}
-          clientX={labelModal.clientX}
-          clientY={labelModal.clientY}
-          actions={actions} />
+        <LabelModal isOpen={labelModal.isOpen}
+                    clientX={labelModal.clientX}
+                    clientY={labelModal.clientY}
+                    label={labelModal.label}
+                    updateLabelModal={actions.updateLabelModal}
+                    createLabel={actions.createLabel}
+                    updateLabel={actions.updateLabel}
+                    closeLabelModal={actions.closeLabelModal} />
      </div>
     )
   }
+}
+
+App.propTypes = {
+  dragStartId: PropTypes.number,
+  labelModal: PropTypes.object.isRequired,
+  labels: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {

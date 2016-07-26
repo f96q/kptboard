@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 export default class Label extends Component {
   destroy(event) {
-    this.props.actions.destroyLabel(this.props.label.id)
+    this.props.destroyLabel(this.props.label.id)
     event.stopPropagation()
   }
 
   edit(event) {
-    this.props.actions.openEditLabelModal(this.props.label.id, event.clientX, event.clientY)
+    this.props.openEditLabelModal(this.props.label.id, event.clientX, event.clientY)
     event.stopPropagation()
   }
 
   onDragStart(event) {
-    this.props.actions.dragStartLabel(this.props.label.id)
+    this.props.dragStartLabel(this.props.label.id)
   }
 
   onDragEnd(event) {
-    this.props.actions.dragEndLabel()
+    this.props.dragEndLabel()
   }
 
   render() {
@@ -33,4 +33,18 @@ export default class Label extends Component {
       </div>
     )
   }
+}
+
+Label.propTypes = {
+  label: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    typ: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    user_name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  }).isRequired,
+  destroyLabel: PropTypes.func.isRequired,
+  openEditLabelModal: PropTypes.func.isRequired,
+  dragStartLabel: PropTypes.func.isRequired,
+  dragEndLabel: PropTypes.func.isRequired
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes} from 'react'
 import $ from 'jquery'
 import Label from './Label'
 import UserList from './UserList'
@@ -35,23 +35,22 @@ export default class Retrospective extends Component {
   }
 
   render() {
-    let keepLabels = this.props.labels.keep.map((label) => {
-      return (
-        <Label key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
-      )
-    })
+    const { actions } = this.props
 
-    let problemLabels = this.props.labels.problem.map((label) => {
+    let label = (label) => {
       return (
-        <Label key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+        <Label key={label.id}
+               label={label}
+               destroyLabel={actions.destroyLabel}
+               openEditLabelModal={actions.openEditLabelModal}
+               dragStartLabel={actions.dragStartLabel}
+               dragEndLabel={actions.dragEndLabel} />
       )
-    })
+    }
 
-    let tryLabels = this.props.labels.try.map((label) => {
-      return (
-        <Label key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
-      )
-    })
+    let keepLabels = this.props.labels.keep.map(label)
+    let problemLabels = this.props.labels.problem.map(label)
+    let tryLabels = this.props.labels.try.map(label)
 
     return (
       <div className="retrospective">
@@ -75,9 +74,18 @@ export default class Retrospective extends Component {
             </div>
           </div>
 
-          <UserList users={this.props.users} actions={this.props.actions} />
+          <UserList users={this.props.users}
+                    addUser={actions.addUser}
+                    removeUser={actions.removeUser} />
         </div>
       </div>
     )
   }
+}
+
+Retrospective.propTypes = {
+  dragStartId: PropTypes.number,
+  labels: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 }
