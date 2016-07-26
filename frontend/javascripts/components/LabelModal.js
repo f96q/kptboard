@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal'
 
-class LabelModal extends Component {
+export default class LabelModal extends Component {
   onChange(event) {
     this.props.actions.updateLabelModal(event.target.value)
   }
@@ -66,5 +66,3 @@ class LabelModal extends Component {
     )
   }
 }
-
-export default LabelModal

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class RetrospectiveMenu extends Component {
+export default class RetrospectiveMenu extends Component {
   constructor(props) {
     super(props)
     this.state = { email: '' }
@@ -49,5 +49,3 @@ class RetrospectiveMenu extends Component {
     )
   }
 }
-
-export default RetrospectiveMenu

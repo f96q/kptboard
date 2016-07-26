@@ -4,7 +4,7 @@ const initialState = {
   users: []
 }
 
-function usersReducer(state = initialState.users, action) {
+export default function usersReducer(state = initialState.users, action) {
   switch (action.type) {
     case types.SET_RETROSPECTIVE:
       return action.retrospective.users
@@ -19,5 +19,3 @@ function usersReducer(state = initialState.users, action) {
   }
   return state
 }
-
-export default usersReducer

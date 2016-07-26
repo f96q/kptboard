@@ -6,7 +6,7 @@ import LabelModal from '../components/LabelModal'
 import { getDragStartId, getLabelModal, getLabels, getUsers } from '../reducers'
 import * as RetrospectiveActions from '../actions'
 
-class App extends React.Component {
+class App extends Component {
   render() {
     const { dragStartId, labelModal, labels, users, actions } = this.props
     return (

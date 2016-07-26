@@ -25,7 +25,7 @@ const initialState = {
   }
 }
 
-function labelsReducer(state = initialState, action) {
+export default function labelsReducer(state = initialState, action) {
   switch (action.type) {
     case types.SET_RETROSPECTIVE: {
       return Object.assign({}, state, { labels: action.retrospective.labels })
@@ -106,5 +106,3 @@ function labelsReducer(state = initialState, action) {
   }
   return state
 }
-
-export default labelsReducer
