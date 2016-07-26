@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class RetrospectiveMenu extends Component {
+export default class UserList extends Component {
   constructor(props) {
     super(props)
     this.state = { email: '' }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
-import RetrospectiveLabel from './RetrospectiveLabel'
-import RetrospectiveMenu from './RetrospectiveMenu'
+import Label from './Label'
+import UserList from './UserList'
 
 export default class Retrospective extends Component {
   openLabelForm(event) {
@@ -37,19 +37,19 @@ export default class Retrospective extends Component {
   render() {
     let keepLabels = this.props.labels.keep.map((label) => {
       return (
-        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+        <Label key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
       )
     })
 
     let problemLabels = this.props.labels.problem.map((label) => {
       return (
-        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+        <Label key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
       )
     })
 
     let tryLabels = this.props.labels.try.map((label) => {
       return (
-        <RetrospectiveLabel key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
+        <Label key={label.id} retrospectiveId={this.props.id} label={label} actions={this.props.actions} />
       )
     })
 
@@ -75,7 +75,7 @@ export default class Retrospective extends Component {
             </div>
           </div>
 
-          <RetrospectiveMenu users={this.props.users} actions={this.props.actions} />
+          <UserList users={this.props.users} actions={this.props.actions} />
         </div>
       </div>
     )
