@@ -3,7 +3,7 @@ import $ from 'jquery'
 import RetrospectiveLabel from './RetrospectiveLabel'
 import RetrospectiveMenu from './RetrospectiveMenu'
 
-class Retrospective extends React.Component {
+class Retrospective extends Component {
   openLabelForm(event) {
     let typ = $(event.target).closest('.js-board').data('typ')
     this.props.actions.openNewLabelModal(typ, event.clientX, event.clientY)

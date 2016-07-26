@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class RetrospectiveMenu extends React.Component {
+class RetrospectiveMenu extends Component {
   constructor(props) {
     super(props)
     this.state = { email: '' }

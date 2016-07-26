@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class RetrospectiveLabel extends React.Component {
+class RetrospectiveLabel extends Component {
   destroy(event) {
     this.props.actions.destroyLabel(this.props.label.id)
     event.stopPropagation()
