@@ -21,7 +21,7 @@ export default class Label extends Component {
 
   render() {
     return (
-      <div className={`js-label retrospective__label retrospective__label--${this.props.label.typ}`} onClick={this.edit.bind(this)} data-id={this.props.label.id} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
+      <div className={`retrospective__label retrospective__label--${this.props.label.typ}`} onClick={this.edit.bind(this)} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
         <div className="retrospective__label-content">
           <div className="retrospective__label-header">
             <i className="retrospective__label-remove fa fa-remove" onClick={this.destroy.bind(this)}></i>
