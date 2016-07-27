@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react'
 import Modal from 'react-modal'
 
 export default class LabelModal extends Component {
-  onChange(event) {
-    this.props.updateLabelModal(event.target.value)
+  onChange(e) {
+    this.props.updateLabelModal(e.target.value)
   }
 
-  onKeyDown(event) {
-    if (event.keyCode == 13) {
+  onKeyDown(e) {
+    if (e.keyCode == 13) {
       this.save()
     }
   }

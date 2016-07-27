@@ -19,8 +19,8 @@ export default class UserList extends Component {
     }
   }
 
-  updateEmail(event) {
-    this.setState({ email: event.target.value })
+  updateEmail(e) {
+    this.setState({ email: e.target.value })
   }
 
   removeButton(user) {

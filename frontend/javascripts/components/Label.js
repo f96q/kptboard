@@ -1,21 +1,21 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class Label extends Component {
-  destroy(event) {
+  destroy(e) {
     this.props.destroyLabel(this.props.label.id)
-    event.stopPropagation()
+    e.stopPropagation()
   }
 
-  edit(event) {
-    this.props.openEditLabelModal(this.props.label.id, event.clientX, event.clientY)
-    event.stopPropagation()
+  edit(e) {
+    this.props.openEditLabelModal(this.props.label.id, e.clientX, e.clientY)
+    e.stopPropagation()
   }
 
-  onDragStart(event) {
+  onDragStart() {
     this.props.dragStartLabel(this.props.label.id)
   }
 
-  onDragEnd(event) {
+  onDragEnd() {
     this.props.dragEndLabel()
   }
 

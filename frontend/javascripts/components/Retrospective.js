@@ -4,9 +4,9 @@ import Label from './Label'
 import UserList from './UserList'
 
 export default class Retrospective extends Component {
-  openLabelForm(event) {
-    let typ = this.closestType(event.target)
-    this.props.actions.openNewLabelModal(typ, event.clientX, event.clientY)
+  openLabelForm(e) {
+    let typ = this.closestType(e.target)
+    this.props.actions.openNewLabelModal(typ, e.clientX, e.clientY)
   }
 
   closestType(target) {
@@ -28,17 +28,17 @@ export default class Retrospective extends Component {
     return this.props.labels[typ].length
   }
 
-  onDrop(event) {
-    event.preventDefault()
+  onDrop(e) {
+    e.preventDefault()
 
-    let typ = this.closestType(event.target)
-    let index = this.closestLabelIndex(typ, event.target)
+    let typ = this.closestType(e.target)
+    let index = this.closestLabelIndex(typ, e.target)
 
     this.props.actions.dropLabel(this.props.dragStartId, typ, index)
   }
 
-  onDragOver(event) {
-    event.preventDefault()
+  onDragOver(e) {
+    e.preventDefault()
   }
 
   render() {
