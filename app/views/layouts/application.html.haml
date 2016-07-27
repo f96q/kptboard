@@ -20,7 +20,7 @@
           %li.nav-item{class: yield(:active) == 'retrospectives' ? 'active' : ''}
             = link_to t('views.navigation.retrospectives'), retrospectives_path, class: 'nav-link'
           %li.nav-item.dropdown.pull-xs-right
-            %a.dropdown-toggle.nav-link{href: '#', data: {'toggle' => 'dropdown'}, 'aria-haspopup' => 'true', 'aria-expanded' => 'false'}
+            %a.dropdown-toggle.nav-link
               = current_user.name
             .dropdown-menu
               = link_to t('views.navigation.edit_account'), edit_user_registration_path, class: 'dropdown-item'
