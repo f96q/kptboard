@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import UserItem from './UserItem'
 
 export default class UserList extends Component {
   constructor(props) {
@@ -13,31 +14,17 @@ export default class UserList extends Component {
     }
   }
 
-  removeUser(user) {
-    if (confirm(`remove user ${user.name}`)) {
-      this.props.removeUser(user.id)
-    }
-  }
-
   updateEmail(e) {
     this.setState({ email: e.target.value })
-  }
-
-  removeButton(user) {
-    return (
-      <i className="UserItem-removeButton fa fa-remove pull-right" onClick={this.removeUser.bind(this, user)}></i>
-    )
   }
 
   render() {
     let users = this.props.users.map((user) => {
       return (
-        <div className="UserItem" key={user.id}>
-          <div className="fa fa-user">
-            <div className="UserItem-name">{user.name}</div>
-         </div>
-         {this.props.users.length == 1 ? null : this.removeButton(user)}
-        </div>
+        <UserItem key={user.id}
+                  user={user}
+                  isDestroy={this.props.users.length == 1}
+                  removeUser={this.props.removeUser} />
       )
     })
     return (
