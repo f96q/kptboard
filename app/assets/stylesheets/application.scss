@@ -1,9 +1,8 @@
-@import 'bootstrap';
-@import 'normalize-rails';
-@import 'font-awesome';
+@import "bootstrap";
+@import "normalize-rails";
+@import "font-awesome";
 
-@import 'base/variables';
-@import 'base/elements';
-@import 'base/placeholders';
+@import "base/variables";
+@import "base/elements";
 
-@import 'module/*';
+@import "components/*";

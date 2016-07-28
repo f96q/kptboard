@@ -61,24 +61,24 @@ export default class Retrospective extends Component {
     let tryLabels = this.props.labels.try.map(label)
 
     return (
-      <div className="retrospective">
-        <div className="retrospective__content">
-          <div className="retrospective__boards">
-            <div className="retrospective__board" ref="keep" onClick={this.openLabelForm.bind(this)}>
-              <h4 className="retrospective__board-title">Keep</h4>
-              <div className="retrospective__labels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{keepLabels}</div>
+      <div className="Retrospective">
+        <div className="Retrospective-content">
+          <div className="Retrospective-boards">
+            <div className="Retrospective-board" ref="keep" onClick={this.openLabelForm.bind(this)}>
+              <h4 className="Retrospective-boardTitle">Keep</h4>
+              <div className="Retrospective-labels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{keepLabels}</div>
             </div>
 
-            <div className="retrospective__board" ref="problem" onClick={this.openLabelForm.bind(this)}>
-              <h4 className="retrospective__board-title">Problem</h4>
-              <div className="retrospective__labels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{problemLabels}</div>
+            <div className="Retrospective-boards" ref="problem" onClick={this.openLabelForm.bind(this)}>
+              <h4 className="Retrospective-boardTitle">Problem</h4>
+              <div className="Retrospective-labels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{problemLabels}</div>
             </div>
           </div>
 
-          <div className="retrospective__boards">
-            <div className="retrospective__board" ref="try" onClick={this.openLabelForm.bind(this)}>
-              <h4 className="retrospective__board-title">Try</h4>
-              <div className="retrospective__labels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{tryLabels}</div>
+          <div className="Retrospective-boards">
+            <div className="Retrospective-board" ref="try" onClick={this.openLabelForm.bind(this)}>
+              <h4 className="Retrospective-boardTitle">Try</h4>
+              <div className="Retrospective-labels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{tryLabels}</div>
             </div>
           </div>
 

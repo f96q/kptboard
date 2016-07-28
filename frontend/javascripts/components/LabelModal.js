@@ -41,9 +41,9 @@ export default class LabelModal extends Component {
       }
     }
     return (
-      <Modal className="label-modal modal-dialog" isOpen={this.props.isOpen} style={style}>
+      <Modal className="LabelModal label-modal modal-dialog" isOpen={this.props.isOpen} style={style}>
         <div className="modal-content">
-          <div className={`modal-header modal-header--${this.props.label.typ}`}>
+          <div className={`modal-header LabelModal-header is-${this.props.label.typ}`}>
             <button type="button" className="close" onClick={this.close.bind(this)}>
                <span aria-hidden="true">&times;</span>
             </button>

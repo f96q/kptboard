@@ -1,0 +1,24 @@
+.Retrospective {
+  margin-top: 5px;
+
+  &-content {
+    display: table-cell;
+  }
+
+  &-boards {
+    display: table-cell;
+  }
+
+  &-boardTitle {
+    font-size: $font-size-xx-small;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  &-labels {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 150px;
+    width: 470px;
+  }
+}

@@ -1,22 +1,15 @@
-.label-form {
-  &__titlebar--keep {
-    .ui-dialog-titlebar {
+.LabelModal {
+  &-header {
+    &.is-keep {
       background: linear-gradient(to bottom, $color-keep-from 0%, $color-keep-to 100%);
-      color: $color-gray;
     }
-  }
 
-  &__titlebar--problem {
-    .ui-dialog-titlebar {
+    &.is-problem {
       background: linear-gradient(to bottom, $color-problem-from 0%, $color-problem-to 100%);
-      color: $color-gray;
     }
-  }
 
-  &__titlebar--try {
-    .ui-dialog-titlebar {
+    &.is-try {
       background: linear-gradient(to bottom, $color-try-from 0%, $color-try-to 100%);
-      color: $color-gray;
     }
   }
 }

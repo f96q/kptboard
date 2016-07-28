@@ -1,0 +1,14 @@
+.UserItem {
+  color: $color-orange;
+  font-size: $font-size-xx-small;
+  font-weight: bold;
+
+  &-name {
+    display: inline-block;
+    margin-left: 2px;
+  }
+
+  &-removeButton {
+    margin-top: 6px;
+  }
+}
