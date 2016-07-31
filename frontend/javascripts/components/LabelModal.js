@@ -44,17 +44,14 @@ export default class LabelModal extends Component {
       <Modal className="LabelModal label-modal modal-dialog" isOpen={this.props.isOpen} style={style}>
         <div className="modal-content">
           <div className={`modal-header LabelModal-header is-${this.props.label.typ}`}>
-            <button type="button" className="close" onClick={this.close.bind(this)}>
-               <span aria-hidden="true">&times;</span>
-            </button>
-            <h4 className="modal-title">{this.props.label.typ}</h4>
+            <h4 className="LabelModal-title modal-title">{this.props.label.typ}</h4>
           </div>
           <div className="modal-body">
-            <textarea className="form-control" rows="10" onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)} value={this.props.label.description}></textarea>
+            <textarea className="LabelModal-textarea form-control" rows="10" onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)}>{this.props.label.description}</textarea>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={this.close.bind(this)}>Close</button>
-            <button type="button" className="btn btn-primary" onClick={this.save.bind(this)}>Save</button>
+            <button type="button" className="LabelModal-close btn btn-secondary" onClick={this.close.bind(this)}>Close</button>
+            <button type="button" className="LabelModal-save btn btn-primary" onClick={this.save.bind(this)}>Save</button>
           </div>
         </div>
       </Modal>
@@ -72,7 +69,7 @@ LabelModal.propTypes = {
     description: PropTypes.string.isRequired
   }).isRequired,
   updateLabelModal: PropTypes.func.isRequired,
+  closeLabelModal: PropTypes.func.isRequired,
   createLabel: PropTypes.func.isRequired,
-  updateLabel: PropTypes.func.isRequired,
-  closeLabelModal: PropTypes.func.isRequired
+  updateLabel: PropTypes.func.isRequired
 }

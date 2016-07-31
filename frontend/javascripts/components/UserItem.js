@@ -2,14 +2,14 @@ import React, { Component, PropTypes } from 'react'
 
 export default class UserItem extends Component {
   removeUser() {
-    if (confirm(`remove user ${this.props.user.name}`)) {
+    if (window.confirm(`remove user ${this.props.user.name}`)) {
       this.props.removeUser(this.props.user.id)
     }
   }
 
   removeButton() {
     return (
-      <i className="UserItem-removeButton fa fa-remove pull-right" onClick={this.removeUser.bind(this)}></i>
+      <i className="UserItem-remove fa fa-remove pull-right" onClick={this.removeUser.bind(this)}></i>
     )
   }
 
