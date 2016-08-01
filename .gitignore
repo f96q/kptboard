@@ -15,5 +15,6 @@
 /log/*.log
 /tmp
 
+Procfile
 node_modules
 /app/assets/javascripts/application.js
