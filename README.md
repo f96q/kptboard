@@ -11,5 +11,6 @@
 ```
 bundle install --without=heroku
 bundle exec rake db:create db:migrate
+npm install && npm run build
 bundle exec rails s
 ```
