@@ -14,7 +14,11 @@ function findLabelPosition(labels, id) {
 
 const initialState = {
   dragStartId: null,
-  labels: { keep: [], problem: [], try: [] },
+  labels: {
+    keep: [],
+    problem: [],
+    try: []
+  },
   labelModal: {
     isOpen: false,
     clientX: 0,
@@ -27,7 +31,7 @@ const initialState = {
   }
 }
 
-export default function labelsReducer(state = initialState, action) {
+export default function labels(state = initialState, action) {
   switch (action.type) {
     case types.SET_RETROSPECTIVE: {
       return Object.assign({}, state, { labels: action.retrospective.labels })
