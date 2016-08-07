@@ -25,8 +25,8 @@ export default class Label extends Component {
         <div className="Label-content">
           <div className="Label-header">
             <i className="Label-remove fa fa-remove" onClick={this.destroy.bind(this)}></i>
-            <div className="Label-createdAt">{this.props.label.created_at}</div>
-            <div className="Label-userName">{this.props.label.user_name}</div>
+            <div className="Label-createdAt">{this.props.label.createdAt}</div>
+            <div className="Label-userName">{this.props.label.userName}</div>
           </div>
           <div className="Label-description">{this.props.label.description}</div>
         </div>
@@ -39,8 +39,8 @@ Label.propTypes = {
   label: PropTypes.shape({
     id: PropTypes.number.isRequired,
     typ: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
-    user_name: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
   }).isRequired,
   destroyLabel: PropTypes.func.isRequired,

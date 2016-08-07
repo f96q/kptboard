@@ -31,8 +31,8 @@ describe('labels', () => {
             {
               id: 1,
               typ: 'keep',
-              created_at: '08-01',
-              user_name: 'name',
+              createdAt: '08-01',
+              userName: 'name',
               description: 'description'
             }
           ],
@@ -53,8 +53,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -100,8 +100,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -115,8 +115,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -182,8 +182,8 @@ describe('labels', () => {
       label: {
         id: 1,
         typ: 'keep',
-        created_at: '08-01',
-        user_name: 'name',
+        createdAt: '08-01',
+        userName: 'name',
         description: 'description'
       }
     }
@@ -193,8 +193,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -219,8 +219,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -234,8 +234,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'update description'
           }
         ],
@@ -257,8 +257,8 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -299,15 +299,15 @@ describe('labels', () => {
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           },
           {
             id: 2,
             typ: 'keep',
-            created_at: '08-02',
-            user_name: 'name',
+            createdAt: '08-02',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -321,15 +321,15 @@ describe('labels', () => {
           {
             id: 2,
             typ: 'keep',
-            created_at: '08-02',
-            user_name: 'name',
+            createdAt: '08-02',
+            userName: 'name',
             description: 'description'
           },
           {
             id: 1,
             typ: 'keep',
-            created_at: '08-01',
-            user_name: 'name',
+            createdAt: '08-01',
+            userName: 'name',
             description: 'description'
           }
         ],
@@ -354,8 +354,8 @@ describe('labels', () => {
             {
               id: 1,
               typ: 'keep',
-              created_at: '08-01',
-              user_name: 'name',
+              createdAt: '08-01',
+              userName: 'name',
               description: 'description'
             }
           ],
@@ -363,8 +363,8 @@ describe('labels', () => {
             {
               id: 2,
               typ: 'problem',
-              created_at: '08-02',
-              user_name: 'name',
+              createdAt: '08-02',
+              userName: 'name',
               description: 'description'
             }
           ],
@@ -378,15 +378,15 @@ describe('labels', () => {
             {
               id: 2,
               typ: 'problem',
-              created_at: '08-02',
-              user_name: 'name',
+              createdAt: '08-02',
+              userName: 'name',
               description: 'description'
             },
             {
               id: 1,
               typ: 'problem',
-              created_at: '08-01',
-              user_name: 'name',
+              createdAt: '08-01',
+              userName: 'name',
               description: 'description'
             }
           ],

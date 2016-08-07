@@ -14,8 +14,8 @@ describe('users', () => {
             {
               id: 1,
               typ: 'keep',
-              created_at: '08-01',
-              user_name: 'name',
+              createdAt: '08-01',
+              userName: 'name',
               description: 'description'
             }
           ],

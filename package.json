@@ -29,7 +29,8 @@
     "react-modal": "^1.4.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "actioncable": "^5.0.0"
+    "actioncable": "^5.0.0",
+    "humps": "^1.1.0"
   },
   "devDependencies": {
     "mocha": "^2.5.3",
