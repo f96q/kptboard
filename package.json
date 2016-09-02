@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --config frontend/config/webpack.config.js",
     "watch": "webpack --watch --config frontend/config/webpack.config.js",
-    "test": "mocha --recursive --compilers js:babel-core/register frontend/javascripts/test"
+    "test": "mocha --recursive --compilers js:babel-core/register frontend/javascripts/test",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
