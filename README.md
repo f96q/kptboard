@@ -11,7 +11,7 @@
 ```
 cp Procfile.development Procfile
 bundle install --without=heroku
-bundle exec rake db:create db:migrate
+bin/rails db:create db:migrate
 npm install
 bundle exec foreman start
 ```
