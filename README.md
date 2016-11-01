@@ -9,9 +9,8 @@
 ## development
 
 ```
-cp Procfile.development Procfile
 bundle install --without=heroku
 bin/rails db:create db:migrate
 npm install
-bundle exec foreman start
+bundle exec foreman start -f Procfile.development
 ```
