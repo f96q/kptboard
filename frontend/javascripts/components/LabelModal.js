@@ -41,7 +41,7 @@ export default class LabelModal extends Component {
       }
     }
     return (
-      <Modal className="LabelModal label-modal modal-dialog" isOpen={this.props.isOpen} style={style}>
+      <Modal className="LabelModal label-modal modal-dialog" isOpen={this.props.isOpen} style={style} contentLabel="Modal">
         <div className="modal-content">
           <div className={`modal-header LabelModal-header is-${this.props.label.typ}`}>
             <h4 className="LabelModal-title modal-title">{this.props.label.typ}</h4>
