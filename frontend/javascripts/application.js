@@ -1,5 +1,5 @@
 window.onload = () => {
-  let dropdown = document.getElementsByClassName('dropdown')[0]
+  const dropdown = document.getElementsByClassName('dropdown')[0]
   dropdown.addEventListener('click', () => {
     dropdown.classList.toggle('open')
   })

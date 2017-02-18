@@ -22,7 +22,7 @@ function setup(user, isDestroy = false) {
 }
 
 describe('UserItem component', () => {
-  let user = {
+  const user = {
     id: 1,
     name: 'name'
   }

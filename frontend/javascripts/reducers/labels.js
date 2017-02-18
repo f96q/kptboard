@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes'
 function findLabelPosition(labels, id) {
   for (let typ of ['keep', 'problem', 'try']) {
     for (let i in labels[typ]) {
-      let label = labels[typ][i];
+      const label = labels[typ][i];
       if (label.id == id) {
         return { typ: typ, index: parseInt(i) }
       }
@@ -38,7 +38,7 @@ export default function labels(state = initialState, action) {
     }
 
     case types.OPEN_NEW_LABEL_MODAL: {
-      let labelModal = {
+      const labelModal = {
         isOpen: true,
         clientX: action.clientX,
         clientY: action.clientY,
@@ -52,9 +52,9 @@ export default function labels(state = initialState, action) {
     }
 
     case types.OPEN_EDIT_LABEL_MODAL: {
-      let position = findLabelPosition(state.labels, action.id)
-      let label = state.labels[position.typ][position.index]
-      let labelModal = {
+      const position = findLabelPosition(state.labels, action.id)
+      const label = state.labels[position.typ][position.index]
+      const labelModal = {
         isOpen: true,
         clientX: action.clientX,
         clientY: action.clientY,
@@ -85,14 +85,14 @@ export default function labels(state = initialState, action) {
 
     case types.UPDATE_LABEL: {
       let labels = Object.assign({}, state.labels)
-      let position = findLabelPosition(labels, action.id)
+      const position = findLabelPosition(labels, action.id)
       labels[position.typ][position.index].description = action.label.description
       return Object.assign({}, state, { labels: labels })
     }
 
     case types.DESTROY_LABEL: {
       let labels = Object.assign({}, state.labels)
-      let position = findLabelPosition(labels, action.id)
+      const position = findLabelPosition(labels, action.id)
       labels[position.typ].splice(position.index, 1)
       return Object.assign({}, state, { labels: labels })
     }
@@ -105,8 +105,8 @@ export default function labels(state = initialState, action) {
 
     case types.DROP_LABEL: {
       let labels = Object.assign({}, state.labels)
-      let from = findLabelPosition(labels, action.id)
-      let label = Object.assign({}, labels[from.typ][from.index])
+      const from = findLabelPosition(labels, action.id)
+      const label = Object.assign({}, labels[from.typ][from.index])
       labels[from.typ].splice(from.index, 1)
       if (label.typ != action.typ) {
         label.typ = action.typ

@@ -26,7 +26,7 @@ function setup(labelModel) {
 }
 
 describe('LabelModal component', () => {
-  let labelModal = {
+  const labelModal = {
     isOpen: true,
     clientX: 0,
     clientY: 0,
@@ -58,7 +58,7 @@ describe('LabelModal component', () => {
   })
 
   it('should call save button click', () => {
-    let labelModal = {
+    const labelModal = {
       isOpen: true,
       clientX: 0,
       clientY: 0,

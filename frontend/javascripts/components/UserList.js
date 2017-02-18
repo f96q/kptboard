@@ -19,7 +19,7 @@ export default class UserList extends Component {
   }
 
   render() {
-    let users = this.props.users.map((user) => {
+    const users = this.props.users.map((user) => {
       return (
         <UserItem key={user.id}
                   user={user}

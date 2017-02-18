@@ -29,7 +29,7 @@ export default class LabelModal extends Component {
   }
 
   render() {
-    let style = {
+    const style = {
       overlay: {
         top: this.props.clientY,
         left: this.props.clientX,

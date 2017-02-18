@@ -5,7 +5,7 @@ import UserList from './UserList'
 
 export default class Retrospective extends Component {
   openLabelForm(e) {
-    let typ = this.closestType(e.target)
+    const typ = this.closestType(e.target)
     this.props.actions.openNewLabelModal(typ, e.clientX, e.clientY)
   }
 
@@ -20,7 +20,7 @@ export default class Retrospective extends Component {
 
   closestLabelIndex(typ, target) {
     for (let i in this.props.labels[typ]) {
-      let label = this.props.labels[typ][i]
+      const label = this.props.labels[typ][i]
       if (findDOMNode(this.refs[`label_${label.id}`]).contains(target)) {
         return parseInt(i)
       }
@@ -31,8 +31,8 @@ export default class Retrospective extends Component {
   onDrop(e) {
     e.preventDefault()
 
-    let typ = this.closestType(e.target)
-    let index = this.closestLabelIndex(typ, e.target)
+    const typ = this.closestType(e.target)
+    const index = this.closestLabelIndex(typ, e.target)
 
     this.props.actions.dropLabel(this.props.dragStartId, typ, index)
   }
@@ -43,13 +43,12 @@ export default class Retrospective extends Component {
 
   render() {
     const actions = this.props.actions
-    let label = (label) => {
+    const label = (label) => {
       return (<Label key={label.id} label={label} ref={`label_${label.id}`} actions={actions} />)
     }
-
-    let keepLabels = this.props.labels.keep.map(label)
-    let problemLabels = this.props.labels.problem.map(label)
-    let tryLabels = this.props.labels.try.map(label)
+    const keepLabels = this.props.labels.keep.map(label)
+    const problemLabels = this.props.labels.problem.map(label)
+    const tryLabels = this.props.labels.try.map(label)
 
     return (
       <div className="Retrospective">
