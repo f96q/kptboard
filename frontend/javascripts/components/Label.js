@@ -2,21 +2,21 @@ import React, { Component, PropTypes } from 'react'
 
 export default class Label extends Component {
   destroy(e) {
-    this.props.destroyLabel(this.props.label.id)
+    this.props.actions.destroyLabel(this.props.label.id)
     e.stopPropagation()
   }
 
   edit(e) {
-    this.props.openEditLabelModal(this.props.label.id, e.clientX, e.clientY)
+    this.props.actions.openEditLabelModal(this.props.label.id, e.clientX, e.clientY)
     e.stopPropagation()
   }
 
   onDragStart() {
-    this.props.dragStartLabel(this.props.label.id)
+    this.props.actions.dragStartLabel(this.props.label.id)
   }
 
   onDragEnd() {
-    this.props.dragEndLabel()
+    this.props.actions.dragEndLabel()
   }
 
   render() {
@@ -42,9 +42,5 @@ Label.propTypes = {
     createdAt: PropTypes.string.isRequired,
     userName: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
-  }).isRequired,
-  destroyLabel: PropTypes.func.isRequired,
-  openEditLabelModal: PropTypes.func.isRequired,
-  dragStartLabel: PropTypes.func.isRequired,
-  dragEndLabel: PropTypes.func.isRequired
+  }).isRequired
 }

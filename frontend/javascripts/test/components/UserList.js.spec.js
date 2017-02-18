@@ -11,7 +11,7 @@ function setup(users) {
   }
 
   const component = shallow(
-    <UserList users={users} {...actions} />
+    <UserList users={users} actions={actions} />
   )
 
   return {

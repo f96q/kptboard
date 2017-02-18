@@ -52,15 +52,25 @@ describe('Retrospective component', () => {
     const { label, userList } = setup(null, labels, users)
     expect(label.at(0).props()).toEqual({
       label: labels.keep[0],
-      destroyLabel: expect.createSpy(),
-      openEditLabelModal: expect.createSpy(),
-      dragStartLabel: expect.createSpy(),
-      dragEndLabel: expect.createSpy()
+      actions: {
+        addUser: expect.createSpy(),
+        removeUser: expect.createSpy(),
+        destroyLabel: expect.createSpy(),
+        openEditLabelModal: expect.createSpy(),
+        dragStartLabel: expect.createSpy(),
+        dragEndLabel: expect.createSpy()
+      }
     })
     expect(userList.props()).toEqual({
       users: users,
-      addUser: expect.createSpy(),
-      removeUser: expect.createSpy()
+      actions: {
+        addUser: expect.createSpy(),
+        removeUser: expect.createSpy(),
+        destroyLabel: expect.createSpy(),
+        openEditLabelModal: expect.createSpy(),
+        dragStartLabel: expect.createSpy(),
+        dragEndLabel: expect.createSpy()
+      }
     })
   })
 })

@@ -29,7 +29,6 @@
     "react-redux": "^4.4.5",
     "react-modal": "^1.4.0",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.1.0",
     "actioncable": "^5.0.0",
     "humps": "^1.1.0"
   },
@@ -37,6 +36,8 @@
     "mocha": "^2.5.3",
     "expect": "^1.20.2",
     "enzyme": "^2.4.1",
-    "jsdom": "^9.4.1"
+    "jsdom": "^9.4.1",
+    "react-addons-test-utils": "^15.4.2",
+    "sinon": "^1.17.7"
   }
 }

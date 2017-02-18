@@ -9,7 +9,7 @@ export default class UserList extends Component {
 
   addUser() {
     if (this.state.email) {
-      this.props.addUser(this.state.email)
+      this.props.actions.addUser(this.state.email)
       this.setState({ email: '' })
     }
   }
@@ -24,7 +24,7 @@ export default class UserList extends Component {
         <UserItem key={user.id}
                   user={user}
                   isDestroy={this.props.users.length == 1}
-                  removeUser={this.props.removeUser} />
+                  removeUser={this.props.actions.removeUser} />
       )
     })
     return (
@@ -38,7 +38,5 @@ export default class UserList extends Component {
 }
 
 UserList.propTypes = {
-  users: PropTypes.array.isRequired,
-  addUser: PropTypes.func.isRequired,
-  removeUser: PropTypes.func.isRequired
+  users: PropTypes.array.isRequired
 }

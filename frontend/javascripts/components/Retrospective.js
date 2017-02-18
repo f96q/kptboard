@@ -42,18 +42,9 @@ export default class Retrospective extends Component {
   }
 
   render() {
-    const { actions } = this.props
-
+    const actions = this.props.actions
     let label = (label) => {
-      return (
-        <Label key={label.id}
-               label={label}
-               ref={`label_${label.id}`}
-               destroyLabel={actions.destroyLabel}
-               openEditLabelModal={actions.openEditLabelModal}
-               dragStartLabel={actions.dragStartLabel}
-               dragEndLabel={actions.dragEndLabel} />
-      )
+      return (<Label key={label.id} label={label} ref={`label_${label.id}`} actions={actions} />)
     }
 
     let keepLabels = this.props.labels.keep.map(label)
@@ -82,9 +73,7 @@ export default class Retrospective extends Component {
             </div>
           </div>
 
-          <UserList users={this.props.users}
-                    addUser={actions.addUser}
-                    removeUser={actions.removeUser} />
+          <UserList users={this.props.users} actions={actions} />
         </div>
       </div>
     )

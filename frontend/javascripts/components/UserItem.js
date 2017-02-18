@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react'
 export default class UserItem extends Component {
   removeUser() {
     if (window.confirm(`remove user ${this.props.user.name}`)) {
-      this.props.removeUser(this.props.user.id)
+      this.props.actions.removeUser(this.props.user.id)
     }
   }
 
@@ -30,6 +30,5 @@ UserItem.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
   }),
-  isDestroy: PropTypes.bool.isRequired,
-  removeUser: PropTypes.func.isRequired
+  isDestroy: PropTypes.bool.isRequired
 }

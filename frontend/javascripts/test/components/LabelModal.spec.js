@@ -12,7 +12,7 @@ function setup(labelModel) {
   }
 
   const component = shallow(
-    <LabelModal {...labelModel} {...actions} />
+    <LabelModal {...labelModel} actions={actions} />
   )
 
   return {
@@ -36,7 +36,7 @@ describe('LabelModal component', () => {
   it('should display', () => {
     const { title, textarea } = setup(labelModal)
     expect(title.text()).toEqual('keep')
-    expect(textarea.text()).toEqual('description')
+    expect(textarea.props().value).toEqual('description')
   })
 
   it('should call textarea change', () => {

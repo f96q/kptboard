@@ -3,7 +3,7 @@ import Modal from 'react-modal'
 
 export default class LabelModal extends Component {
   onChange(e) {
-    this.props.updateLabelModal(e.target.value)
+    this.props.actions.updateLabelModal(e.target.value)
   }
 
   onKeyDown(e) {
@@ -17,15 +17,15 @@ export default class LabelModal extends Component {
       return
     }
     if (this.props.label.id) {
-      this.props.updateLabel(this.props.label.id, {description: this.props.label.description})
+      this.props.actions.updateLabel(this.props.label.id, {description: this.props.label.description})
     } else {
-      this.props.createLabel(this.props.label)
+      this.props.actions.createLabel(this.props.label)
     }
     this.close()
   }
 
   close() {
-    this.props.closeLabelModal()
+    this.props.actions.closeLabelModal()
   }
 
   render() {
@@ -67,9 +67,5 @@ LabelModal.propTypes = {
     id: PropTypes.number,
     typ: PropTypes.string,
     description: PropTypes.string.isRequired
-  }).isRequired,
-  updateLabelModal: PropTypes.func.isRequired,
-  closeLabelModal: PropTypes.func.isRequired,
-  createLabel: PropTypes.func.isRequired,
-  updateLabel: PropTypes.func.isRequired
+  }).isRequired
 }

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import Retrospective from '../components/Retrospective'
 import LabelModal from '../components/LabelModal'
 import { getDragStartId, getLabelModal, getLabels, getUsers } from '../reducers'
-import * as RetrospectiveActions from '../actions'
+import ActionDispatcher from '../actions'
 
 class App extends Component {
   render() {
@@ -16,10 +16,7 @@ class App extends Component {
                     clientX={labelModal.clientX}
                     clientY={labelModal.clientY}
                     label={labelModal.label}
-                    updateLabelModal={actions.updateLabelModal}
-                    createLabel={actions.createLabel}
-                    updateLabel={actions.updateLabel}
-                    closeLabelModal={actions.closeLabelModal} />
+                    actions={actions} />
      </div>
     )
   }
@@ -43,11 +40,12 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(RetrospectiveActions, dispatch) }
+function mergeProps(stateProps, dispatchProps, ownProps) {
+  return Object.assign({}, ownProps, stateProps, { actions: new ActionDispatcher(stateProps, dispatchProps.dispatch) })
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null,
+  mergeProps
 )(App)
