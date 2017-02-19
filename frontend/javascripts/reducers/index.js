@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import labels from './labels'
 import users from './users'
+import subscriptions from './subscriptions'
 
 export default combineReducers({
   labels,
-  users
+  users,
+  subscriptions
 })
 
 export function getDragStartId(state) {
@@ -21,4 +23,8 @@ export function getLabels(state) {
 
 export function getUsers(state) {
   return state.users
+}
+
+export function getSubscriptions(state) {
+  return state.subscriptions
 }

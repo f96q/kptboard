@@ -24,7 +24,7 @@ export default class UserList extends Component {
         <UserItem key={user.id}
                   user={user}
                   isDestroy={this.props.users.length == 1}
-                  removeUser={this.props.actions.removeUser} />
+                  actions={this.props.actions} />
       )
     })
     return (

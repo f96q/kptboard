@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes'
-import channel from '../channels'
 
 export default class ActionDispatcher {
   constructor(state, dispatch) {
@@ -44,15 +43,15 @@ export default class ActionDispatcher {
   }
 
   createLabel(label) {
-    channel.labels.perform('create', { label: label })
+    this.state.subscriptions.labels.perform('create', { label: label })
   }
 
   updateLabel(id, label) {
-    channel.labels.perform('update', { id: id, label: label })
+    this.state.subscriptions.labels.perform('update', { id: id, label: label })
   }
 
   destroyLabel(id) {
-    channel.labels.perform('destroy', { id: id })
+    this.state.subscriptions.labels.perform('destroy', { id: id })
   }
 
   dragStartLabel(id) {
@@ -64,7 +63,7 @@ export default class ActionDispatcher {
   }
 
   dropLabel(id, typ, index) {
-    channel.labels.perform('position', { id: id, typ: typ, position: index + 1 })
+    this.state.subscriptions.labels.perform('position', { id: id, typ: typ, position: index + 1 })
   }
 
   setUsers(users) {
@@ -75,10 +74,10 @@ export default class ActionDispatcher {
   }
 
   addUser(email) {
-    channel.retrospectives.perform('add_user', { email: email })
+    this.state.subscriptions.retrospectives.perform('add_user', { email: email })
   }
 
   removeUser(id) {
-    channel.retrospectives.perform('remove_user', { id: id })
+    this.state.subscriptions.retrospectives.perform('remove_user', { id: id })
   }
 }

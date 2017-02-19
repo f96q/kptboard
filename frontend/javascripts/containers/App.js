@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Retrospective from '../components/Retrospective'
 import LabelModal from '../components/LabelModal'
-import { getDragStartId, getLabelModal, getLabels, getUsers } from '../reducers'
+import { getDragStartId, getLabelModal, getLabels, getUsers, getSubscriptions } from '../reducers'
 import ActionDispatcher from '../actions'
 
 class App extends Component {
@@ -36,6 +36,7 @@ function mapStateToProps(state) {
     labelModal: getLabelModal(state),
     labels: getLabels(state),
     users: getUsers(state),
+    subscriptions: getSubscriptions(state),
     actions: state.actions
   }
 }
