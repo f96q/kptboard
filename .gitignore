@@ -18,3 +18,4 @@
 Procfile
 node_modules
 /app/assets/javascripts/application.js
+.env
