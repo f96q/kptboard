@@ -10,7 +10,16 @@ class RetrospectivesChannel < ApplicationChannel
   def add_user(data)
     return unless authenticate_retrospective?
     @user = User.where(email: data['email']).first
-    return unless @user
+    unless @user
+      RetrospectivesChannel.broadcast_to(params[:room], {
+        type: 'SET_ALERT',
+        alert: {
+          type: 'error',
+          messages: [I18n.t('channels.retrospectives.not_found_user')]
+        }
+      })
+      return
+    end
     @retrospective.add_user!(@user.id)
     RetrospectivesChannel.broadcast_to(params[:room], {
       type: 'ADD_USER',
