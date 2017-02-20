@@ -3,14 +3,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Retrospective from '../components/Retrospective'
 import LabelModal from '../components/LabelModal'
-import { getDragStartId, getLabelModal, getLabels, getUsers, getSubscriptions } from '../reducers'
+import Alert from '../components/Alert'
+import { getAlert, getDragStartId, getLabelModal, getLabels, getUsers, getSubscriptions } from '../reducers'
 import ActionDispatcher from '../actions'
 
 class App extends Component {
   render() {
-    const { dragStartId, labelModal, labels, users, actions } = this.props
+    const { alert, dragStartId, labelModal, labels, users, actions } = this.props
     return (
       <div>
+        <Alert alert={alert} actions={actions} />
         <Retrospective dragStartId={dragStartId} labels={labels} users={users} actions={actions} />
         <LabelModal isOpen={labelModal.isOpen}
                     clientX={labelModal.clientX}
@@ -32,6 +34,7 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    alert: getAlert(state),
     dragStartId: getDragStartId(state),
     labelModal: getLabelModal(state),
     labels: getLabels(state),

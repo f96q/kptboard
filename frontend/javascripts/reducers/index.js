@@ -1,13 +1,19 @@
 import { combineReducers } from 'redux'
+import application from './application'
 import labels from './labels'
 import users from './users'
 import subscriptions from './subscriptions'
 
 export default combineReducers({
+  application,
   labels,
   users,
   subscriptions
 })
+
+export function getAlert(state) {
+  return state.application.alert
+}
 
 export function getDragStartId(state) {
   return state.labels.dragStartId

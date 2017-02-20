@@ -1,0 +1,15 @@
+.Alert {
+  border: 1px solid $color-black;
+  border-radius: 10px;
+  margin-bottom: 30px;
+
+  &-messages {
+    margin: 15px;
+  }
+
+  &.is-error {
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+  }
+}

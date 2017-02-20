@@ -80,4 +80,8 @@ export default class ActionDispatcher {
   removeUser(id) {
     this.state.subscriptions.retrospectives.perform('remove_user', { id: id })
   }
+
+  clearAlert() {
+    this.dispatch({ type: types.CLEAR_ALERT })
+  }
 }
