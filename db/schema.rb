@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311144534) do
+ActiveRecord::Schema.define(version: 20170311150321) do
 
   create_table "labels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "typ",                            null: false
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20170311144534) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "labels", "retrospectives"
+  add_foreign_key "labels", "users", on_delete: :nullify
   add_foreign_key "retrospectives_users", "retrospectives"
   add_foreign_key "retrospectives_users", "users"
 end
