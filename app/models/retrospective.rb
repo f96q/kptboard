@@ -5,7 +5,7 @@ class Retrospective < ActiveRecord::Base
   has_many :users, through: :retrospectives_users
 
   def add_user!(user_id)
-    retrospectives_users.create! user_id: user_id
+    retrospectives_users.create!(user_id: user_id)
   end
 
   def remove_user(user_id)

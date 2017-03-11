@@ -29,12 +29,11 @@ class RetrospectivesChannel < ApplicationChannel
 
   def remove_user(data)
     return unless authenticate_retrospective?
-    return unless @retrospective.has_user?(data[:id])
-    @user = User.find_by(id: data['id'])
-    @retrospective.remove_user(@user.id)
+    return unless @retrospective.has_user?(data['id'])
+    @retrospective.remove_user(data['id'])
     RetrospectivesChannel.broadcast_to(params[:room], {
       type: 'REMOVE_USER',
-      id: @user.id
+      id: data['id']
     })
   end
 end
