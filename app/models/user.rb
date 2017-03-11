@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
-  has_many :retrospective_users, dependent: :destroy
-  has_many :retrospectives, :through => :retrospective_users
+  has_many :retrospectives_users, dependent: :destroy
+  has_many :retrospectives, through: :retrospectives_users
   has_many :labels
 end

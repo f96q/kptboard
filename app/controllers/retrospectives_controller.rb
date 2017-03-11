@@ -13,7 +13,7 @@ class RetrospectivesController < ApplicationController
 
   def create
     @retrospective = Retrospective.new retrospective_params
-    @retrospective.retrospective_users.build user: current_user
+    @retrospective.retrospectives_users.build(user: current_user)
     @retrospective.save
     respond_with @retrospective
   end

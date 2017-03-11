@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112124943) do
+ActiveRecord::Schema.define(version: 20170311144534) do
 
   create_table "labels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "typ",                            null: false
@@ -24,21 +24,21 @@ ActiveRecord::Schema.define(version: 20140112124943) do
     t.index ["user_id"], name: "index_labels_on_user_id", using: :btree
   end
 
-  create_table "retrospective_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "retrospective_id", null: false
-    t.integer  "user_id",          null: false
-    t.index ["retrospective_id", "user_id"], name: "index_retrospective_users_on_retrospective_id_and_user_id", unique: true, using: :btree
-    t.index ["retrospective_id"], name: "index_retrospective_users_on_retrospective_id", using: :btree
-    t.index ["user_id"], name: "index_retrospective_users_on_user_id", using: :btree
-  end
-
   create_table "retrospectives", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["title"], name: "index_retrospectives_on_title", unique: true, using: :btree
+  end
+
+  create_table "retrospectives_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "retrospective_id", null: false
+    t.integer  "user_id",          null: false
+    t.index ["retrospective_id", "user_id"], name: "index_retrospectives_users_on_retrospective_id_and_user_id", unique: true, using: :btree
+    t.index ["retrospective_id"], name: "index_retrospectives_users_on_retrospective_id", using: :btree
+    t.index ["user_id"], name: "index_retrospectives_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -59,4 +59,6 @@ ActiveRecord::Schema.define(version: 20140112124943) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "retrospectives_users", "retrospectives"
+  add_foreign_key "retrospectives_users", "users"
 end
