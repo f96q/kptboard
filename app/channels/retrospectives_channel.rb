@@ -1,7 +1,8 @@
 class RetrospectivesChannel < ApplicationChannel
   def open
     return unless authenticate_retrospective?
-    broadcast_to(type: 'SET_RETROSPECTIVE', retrospective: ActiveModelSerializers::SerializableResource.new(@retrospective).as_json)
+    retrospective = ApplicationController.render('channels/retrospective', assigns: { retrospective: @retrospective })
+    broadcast_to(type: 'SET_RETROSPECTIVE', retrospective: JSON.parse(retrospective))
   end
 
   private

@@ -5,7 +5,8 @@ class LabelsChannel < ApplicationChannel
     Label.transaction do
       @label.save!
       @label.insert_at 1
-      broadcast_to(type: 'CREATE_LABEL', label: ActiveModelSerializers::SerializableResource.new(@label).as_json)
+      label = ApplicationController.render(partial: 'channels/label', locals: { label: @label })
+      broadcast_to(type: 'CREATE_LABEL', label: JSON.parse(label))
     end
   end
 
