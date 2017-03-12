@@ -11,6 +11,6 @@ class ApplicationChannel < ApplicationCable::Channel
   end
 
   def authenticate_retrospective?
-    @retrospective.has_user?(current_user.id)
+    RetrospectivesUser.find_by(retrospective_id: params[:room], user: current_user).present?
   end
 end

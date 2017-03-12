@@ -4,7 +4,7 @@ class RetrospectivesController < ApplicationController
   respond_to :html
 
   def index
-    @retrospectives = Retrospective.has_user current_user.id
+    @retrospectives = Retrospective.has_user(current_user)
   end
 
   def new
@@ -47,7 +47,7 @@ class RetrospectivesController < ApplicationController
   end
 
   def set_retrospective
-    @retrospective = Retrospective.has_user(current_user.id).find params[:id]
+    @retrospective = Retrospective.has_user(current_user).find(params[:id])
   end
 
   def retrospective_params

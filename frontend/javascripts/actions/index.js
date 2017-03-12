@@ -74,11 +74,11 @@ export default class ActionDispatcher {
   }
 
   addUser(email) {
-    this.state.subscriptions.retrospectives.perform('add_user', { email: email })
+    this.state.subscriptions.retrospectivesUsers.perform('create', { email: email })
   }
 
   removeUser(id) {
-    this.state.subscriptions.retrospectives.perform('remove_user', { id: id })
+    this.state.subscriptions.retrospectivesUsers.perform('destroy', { id: id })
   }
 
   clearAlert() {

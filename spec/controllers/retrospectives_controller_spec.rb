@@ -9,9 +9,9 @@ describe RetrospectivesController do
     let!(:keep_label) { Fabricate :label, typ: 'keep', retrospective: retrospective, user: user, description: 'description1', created_at: '2014-04-26' }
     let!(:problem_label) { Fabricate :label, typ: 'problem', retrospective: retrospective, user: user, description: 'description2', created_at: '2014-04-26' }
     let!(:try_label) { Fabricate :label, typ: 'try', retrospective: retrospective, user: user, description: 'description3', created_at: '2014-04-26' }
+    let!(:retrospectives_user) { Fabricate :retrospectives_user, retrospective: retrospective, user: user }
 
     before do
-      retrospective.add_user! user.id
       sign_in user
     end
 

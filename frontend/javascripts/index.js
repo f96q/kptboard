@@ -21,12 +21,20 @@ const retrospectivesSubscription = cable.subscriptions.create({ channel: 'Retros
     store.dispatch(humps.camelizeKeys(data))
   }
 })
+
+const retrospectivesUsersSubscription = cable.subscriptions.create({ channel: 'RetrospectivesUsersChannel', room: retrospectiveId }, {
+  received: (data) => {
+    store.dispatch(humps.camelizeKeys(data))
+  }
+})
+
 const labelsSubscription = cable.subscriptions.create({ channel: 'LabelsChannel', room: retrospectiveId }, {
   received: (data) => {
     store.dispatch(humps.camelizeKeys(data))
   }
 })
-store.dispatch({type: SET_SUBSCRIPTIONS, subscriptions: { retrospectives: retrospectivesSubscription, labels: labelsSubscription }})
+
+store.dispatch({type: SET_SUBSCRIPTIONS, subscriptions: { retrospectives: retrospectivesSubscription, retrospectivesUsers: retrospectivesUsersSubscription, labels: labelsSubscription }})
 
 render((
   <Provider store={store}>
