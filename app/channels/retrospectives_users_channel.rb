@@ -22,7 +22,7 @@ class RetrospectivesUsersChannel < ApplicationChannel
 
   private
 
-  def broadcast_to(data = {})
-    RetrospectivesUsersChannel.broadcast_to(params[:room], data)
+  def broadcast_class
+    RetrospectivesUsersChannel
   end
 end

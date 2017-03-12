@@ -13,4 +13,12 @@ class ApplicationChannel < ApplicationCable::Channel
   def authenticate_retrospective?
     RetrospectivesUser.find_by(retrospective_id: params[:room], user: current_user).present?
   end
+
+  def broadcast_class
+    raise NotImplementedError
+  end
+
+  def broadcast_to(data = {})
+    broadcast_class.broadcast_to(params[:room], data)
+  end
 end

@@ -5,10 +5,7 @@ class LabelsChannel < ApplicationChannel
     Label.transaction do
       @label.save!
       @label.insert_at 1
-      LabelsChannel.broadcast_to(params[:room], {
-        type: 'CREATE_LABEL',
-        label: ActiveModelSerializers::SerializableResource.new(@label).as_json
-      })
+      broadcast_to(type: 'CREATE_LABEL', label: ActiveModelSerializers::SerializableResource.new(@label).as_json)
     end
   end
 
@@ -16,21 +13,14 @@ class LabelsChannel < ApplicationChannel
     return unless authenticate_retrospective?
     set_label(data)
     @label.destroy
-    LabelsChannel.broadcast_to(params[:room], {
-      type: 'DESTROY_LABEL',
-      id: @label.id
-    })
+    broadcast_to(type: 'DESTROY_LABEL', id: @label.id)
   end
 
   def update(data)
     return unless authenticate_retrospective?
     set_label(data)
     @label.update(data['label'])
-    LabelsChannel.broadcast_to(params[:room], {
-      type: 'UPDATE_LABEL',
-      id: @label.id,
-      label: data['label']
-    })
+    broadcast_to(type: 'UPDATE_LABEL',id: @label.id, label: data['label'])
   end
 
   def position(data)
@@ -43,17 +33,16 @@ class LabelsChannel < ApplicationChannel
       end
       @label.insert_at(data['position'].to_i)
     end
-    LabelsChannel.broadcast_to(params[:room], {
-      type: 'DROP_LABEL',
-      id: @label.id,
-      typ: @label.typ,
-      index: @label.position - 1
-    })
+    broadcast_to(type: 'DROP_LABEL', id: @label.id, typ: @label.typ, index: @label.position - 1)
   end
 
   private
 
   def set_label(data)
     @label = @retrospective.labels.find_by(id: data['id'])
+  end
+
+  def broadcast_class
+    LabelsChannel
   end
 end
