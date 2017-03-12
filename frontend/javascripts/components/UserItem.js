@@ -9,7 +9,7 @@ export default class UserItem extends Component {
 
   removeButton() {
     return (
-      <i className="UserItem-remove fa fa-remove pull-right" onClick={this.removeUser.bind(this)}></i>
+      <i className="UserItem-remove fa fa-remove" onClick={this.removeUser.bind(this)}></i>
     )
   }
 
