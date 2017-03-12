@@ -2,6 +2,9 @@ import React, { Component, PropTypes } from 'react'
 
 export default class Alert extends Component {
   componentDidUpdate() {
+    if (this.props.alert.messages.length == 0) {
+      return
+    }
     setTimeout(() => {
       this.props.actions.clearAlert()
     }, 5000)
