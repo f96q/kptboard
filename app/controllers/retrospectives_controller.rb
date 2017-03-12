@@ -42,7 +42,7 @@ class RetrospectivesController < ApplicationController
   private
 
   def render_send_data(type, filename)
-    data = render_to_string template: 'retrospectives/export'
+    data = ApplicationController.render('retrospectives/export', assigns: { retrospective: @retrospective })
     send_data data, type: type, filename: filename
   end
 
