@@ -19,7 +19,7 @@ export default class UserItem extends Component {
         <div className="fa fa-user">
           <div className="UserItem-name">{this.props.user.name}</div>
         </div>
-        {this.props.isDestroy ? null : this.removeButton()}
+        {this.props.isDestroy ? this.removeButton() : null}
       </div>
     )
   }

@@ -19,11 +19,12 @@ export default class UserList extends Component {
   }
 
   render() {
+    const isDestroy = this.props.users.length > 1
     const users = this.props.users.map((user) => {
       return (
         <UserItem key={user.id}
                   user={user}
-                  isDestroy={this.props.users.length == 1}
+                  isDestroy={isDestroy}
                   actions={this.props.actions} />
       )
     })
