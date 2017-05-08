@@ -1,20 +1,23 @@
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
-  entry: './frontend/javascripts/application.js',
+  entry: {
+    app: './frontend/javascripts/application.js'
+  },
   output: {
-    path: './app/assets/javascripts',
-    filename: 'application.js'
+    filename: 'application.js',
+    path: path.resolve('./app/assets/javascripts')
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query:{
-          presets: ['react', 'es2015', 'stage-2']
-        }
+        use: [{
+          loader: 'babel-loader',
+          options: { presets: ['react', 'es2015', 'stage-2'] }
+        }]
       }
     ]
   },
