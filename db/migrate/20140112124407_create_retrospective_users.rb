@@ -1,4 +1,4 @@
-class CreateRetrospectiveUsers < ActiveRecord::Migration
+class CreateRetrospectiveUsers < ActiveRecord::Migration[5.0]
   def change
     create_table :retrospective_users do |t|
       t.timestamps

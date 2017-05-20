@@ -5,9 +5,19 @@ rvm:
 
 sudo: false
 
-cache: bundler
+cache:
+  bundler: true
+  directories:
+    - $HOME/.yarn-cache
+
+before_install:
+  - nvm install 4.6.0
+  - npm config set spin false
+  - npm install -g yarn
 
 before_script:
-  - cp config/database.yml.travis config/database.yml
+ - cp config/database.yml.travis config/database.yml
+ - yarn install
+ - yarn run build
 
 script: 'RAILS_ENV=test bundle exec rake db:drop db:create db:migrate spec'
