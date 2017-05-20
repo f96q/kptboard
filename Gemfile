@@ -23,7 +23,7 @@ gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem 'autoprefixer-rails'
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bootstrap', '4.0.0.alpha3'
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks', '~> 5'
