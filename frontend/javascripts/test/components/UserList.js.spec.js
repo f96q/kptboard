@@ -29,11 +29,11 @@ describe('UserList component', () => {
   ]
 
   it('should render users', () => {
-    const { userItem } = setup(users)
+    const { userItem, actions } = setup(users)
     expect(userItem.at(0).props()).toEqual({
-      isDestroy: true,
+      isDestroy: false,
       user: users[0],
-      removeUser: expect.createSpy()
+      actions: actions
     })
   })
 

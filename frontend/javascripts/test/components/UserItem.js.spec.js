@@ -33,7 +33,7 @@ describe('UserItem component', () => {
   })
 
   it('should call remove button click', () => {
-    const { remove, actions } = setup(user)
+    const { remove, actions } = setup(user, true)
     const confirmStub = sinon.stub(window, 'confirm')
     confirmStub.returns(true)
     remove.simulate('click')
