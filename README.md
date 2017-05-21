@@ -14,3 +14,10 @@ bin/rails db:create db:migrate
 yarn install
 bundle exec foreman start -f Procfile.development
 ```
+
+## test
+
+```
+bundle exec rake spec
+yarn run test
+```
