@@ -8,18 +8,18 @@ const initialState = {
 export default function users(state = initialState, action) {
   switch (action.type) {
     case types.SET_RETROSPECTIVE:
-      return Object.assign({}, state, { users: action.retrospective.users })
+      return { ...state, users: action.retrospective.users }
 
     case types.ADD_USER:
-      return Object.assign({}, state, { users: [...state, action.user]  })
+      return { ...state, users: [...state, action.user] }
 
     case types.REMOVE_USER: {
       const users = state.users.filter(user => user.id != action.id)
-      return Object.assign({}, state, { users: users })
+      return { ...state, users: users }
     }
 
     case types.SET_EMAIL:
-      return Object.assign({}, state, { email: action.email })
+      return { ...state, email: action.email }
   }
   return state
 }

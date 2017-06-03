@@ -5,16 +5,18 @@ import * as types from '../../constants/ActionTypes'
 describe('subscriptions', () => {
   const initialState = {
     retrospectives: null,
-    labels: null
+    retrospectivesUsers: null,
+    labels: null,
   }
 
   it('should handle SET_SUBSCRIPTIONS action', () => {
     const action = {
       type: types.SET_SUBSCRIPTIONS,
-      subscriptions: { retrospectives: {}, labels: {} }
+      subscriptions: { retrospectives: {}, retrospectivesUsers: {}, labels: {} }
     }
     const afterState = {
       retrospectives: {},
+      retrospectivesUsers: {},
       labels: {}
     }
     expect(subscriptions(initialState, action)).toEqual(afterState)

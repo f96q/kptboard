@@ -10,9 +10,9 @@ const initialState = {
 export default function application(state = initialState, action) {
   switch (action.type) {
     case types.SET_ALERT:
-      return Object.assign({}, state, { alert: action.alert })
+      return { ...state, alert: action.alert }
     case types.CLEAR_ALERT:
-      return Object.assign({}, state, initialState)
+      return { ...state, initialState }
   }
   return state
 }

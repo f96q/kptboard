@@ -47,7 +47,7 @@ describe('labels', () => {
         ]
       }
     }
-    const afterState = Object.assign({}, initialState, {
+    const afterState = { ...initialState,
       labels: {
         keep: [
           {
@@ -61,7 +61,7 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
+    }
     expect(labels(initialState, action)).toEqual(afterState)
   })
 
@@ -72,7 +72,7 @@ describe('labels', () => {
       clientY: 1,
       typ: 'keep'
     }
-    const afterState = Object.assign({}, initialState, {
+    const afterState = { ...initialState,
       labelModal: {
         isOpen: true,
         clientX: 1,
@@ -83,7 +83,7 @@ describe('labels', () => {
           description: ''
         }
       }
-    })
+    }
     expect(labels(initialState, action)).toEqual(afterState)
   })
 
@@ -94,7 +94,7 @@ describe('labels', () => {
       clientY: 1,
       id: 1
     }
-    const beforeState = Object.assign({}, initialState, {
+    const beforeState = { ...initialState,
       labels: {
         keep: [
           {
@@ -108,8 +108,8 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
-    const afterState = Object.assign({}, initialState, {
+    }
+    const afterState = { ...initialState,
       labels: {
         keep: [
           {
@@ -133,7 +133,7 @@ describe('labels', () => {
           description: 'description'
         }
       }
-    })
+    }
     expect(labels(beforeState, action)).toEqual(afterState)
   })
 
@@ -141,7 +141,7 @@ describe('labels', () => {
     const action = {
       type: types.CLOSE_LABEL_MODAL
     }
-    const beforeState = Object.assign({}, initialState, {
+    const beforeState = { ...initialState,
       labelModal: {
         isOpen: true,
         clientX: 0,
@@ -152,7 +152,7 @@ describe('labels', () => {
           description: 'update description'
         }
       }
-    })
+    }
     expect(labels(beforeState, action)).toEqual(initialState)
   })
 
@@ -161,7 +161,7 @@ describe('labels', () => {
       type: types.UPDATE_LABEL_MODAL,
       description: 'update description'
     }
-    const afterState = Object.assign({}, initialState, {
+    const afterState = { ...initialState,
       labelModal: {
         isOpen: false,
         clientX: 0,
@@ -172,7 +172,7 @@ describe('labels', () => {
           description: 'update description'
         }
       }
-    })
+    }
     expect(labels(initialState, action)).toEqual(afterState)
   })
 
@@ -187,7 +187,7 @@ describe('labels', () => {
         description: 'description'
       }
     }
-    const afterState = Object.assign({}, initialState, {
+    const afterState = { ...initialState,
       labels: {
         keep: [
           {
@@ -201,7 +201,7 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
+    }
     expect(labels(initialState, action)).toEqual(afterState)
   })
 
@@ -213,7 +213,7 @@ describe('labels', () => {
         description: 'update description'
       }
     }
-    const beforeState = Object.assign({}, initialState, {
+    const beforeState = { ...initialState,
       labels: {
         keep: [
           {
@@ -227,8 +227,8 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
-    const afterState = Object.assign({}, initialState, {
+    }
+    const afterState = { ...initialState,
       labels: {
         keep: [
           {
@@ -242,7 +242,7 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
+    }
     expect(labels(beforeState, action)).toEqual(afterState)
   })
 
@@ -251,7 +251,7 @@ describe('labels', () => {
       type: types.DESTROY_LABEL,
       id: 1
     }
-    const beforeState = Object.assign({}, initialState, {
+    const beforeState = { ...initialState,
       labels: {
         keep: [
           {
@@ -265,7 +265,7 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
+    }
     expect(labels(beforeState, action)).toEqual(initialState)
   })
 
@@ -274,7 +274,7 @@ describe('labels', () => {
       type: types.DRAG_START_LABEL,
       id: 1
     }
-    const afterState = Object.assign({}, initialState, { dragStartId: 1 })
+    const afterState = { ...initialState, dragStartId: 1 }
     expect(labels(initialState, action)).toEqual(afterState)
   })
 
@@ -282,7 +282,7 @@ describe('labels', () => {
     const action = {
       type: types.DRAG_END_LABEL
     }
-    const beforeState = Object.assign({}, initialState, { dragStartId: 1 })
+    const beforeState = { ...initialState, dragStartId: 1 }
     expect(labels(beforeState, action)).toEqual(initialState)
   })
 
@@ -293,7 +293,7 @@ describe('labels', () => {
       typ: 'keep',
       index: 2
     }
-    const beforeState = Object.assign({}, initialState, {
+    const beforeState = { ...initialState,
       labels: {
         keep: [
           {
@@ -314,8 +314,8 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
-    const afterState = Object.assign({}, initialState, {
+    }
+    const afterState = { ...initialState,
       labels: {
         keep: [
           {
@@ -336,7 +336,7 @@ describe('labels', () => {
         problem: [],
         try: []
       }
-    })
+    }
     expect(labels(beforeState, action)).toEqual(afterState)
   })
 
@@ -348,7 +348,7 @@ describe('labels', () => {
         typ: 'problem',
         index: 2
       }
-      const beforeState = Object.assign({}, initialState, {
+      const beforeState = { ...initialState,
         labels: {
           keep: [
             {
@@ -370,8 +370,8 @@ describe('labels', () => {
           ],
           try: []
         }
-      })
-      const afterState = Object.assign({}, initialState, {
+      }
+      const afterState = { ...initialState,
         labels: {
           keep: [],
           problem: [
@@ -392,7 +392,7 @@ describe('labels', () => {
           ],
           try: []
         }
-      })
+      }
       expect(labels(beforeState, action)).toEqual(afterState)
     })
   })

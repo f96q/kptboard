@@ -34,7 +34,7 @@ const initialState = {
 export default function labels(state = initialState, action) {
   switch (action.type) {
     case types.SET_RETROSPECTIVE: {
-      return Object.assign({}, state, { labels: action.retrospective.labels })
+      return { ...state, labels: action.retrospective.labels }
     }
 
     case types.OPEN_NEW_LABEL_MODAL: {
@@ -48,7 +48,7 @@ export default function labels(state = initialState, action) {
           description: ''
         }
       }
-      return Object.assign({}, state, { labelModal: labelModal })
+      return { ...state, labelModal: labelModal }
     }
 
     case types.OPEN_EDIT_LABEL_MODAL: {
@@ -64,55 +64,55 @@ export default function labels(state = initialState, action) {
           description: label.description
         }
       }
-      return Object.assign({}, state, { labelModal: labelModal })
+      return { ...state, labelModal: labelModal }
     }
 
     case types.CLOSE_LABEL_MODAL: {
-      return Object.assign({}, state, { labelModal: initialState.labelModal })
+      return { ...state, labelModal: initialState.labelModal }
     }
 
     case types.UPDATE_LABEL_MODAL: {
-      let labelModal = Object.assign({}, state.labelModal)
+      let labelModal = { ...state.labelModal }
       labelModal.label.description = action.description
-      return Object.assign({}, state, { labelModal: labelModal })
+      return { ...state, labelModal: labelModal }
     }
 
     case types.CREATE_LABEL: {
-      let labels = Object.assign({}, state.labels)
+      let labels = { ...state.labels }
       labels[action.label.typ] = [action.label, ...state.labels[action.label.typ]]
-      return Object.assign({}, state, { labels: labels })
+      return { ...state, labels: labels }
     }
 
     case types.UPDATE_LABEL: {
-      let labels = Object.assign({}, state.labels)
+      let labels = { ...state.labels }
       const position = findLabelPosition(labels, action.id)
       labels[position.typ][position.index].description = action.label.description
-      return Object.assign({}, state, { labels: labels })
+      return { ...state, labels: labels }
     }
 
     case types.DESTROY_LABEL: {
-      let labels = Object.assign({}, state.labels)
+      let labels = { ...state.labels }
       const position = findLabelPosition(labels, action.id)
       labels[position.typ].splice(position.index, 1)
-      return Object.assign({}, state, { labels: labels })
+      return { ...state, labels: labels }
     }
 
     case types.DRAG_START_LABEL:
-      return Object.assign({}, state, { dragStartId: action.id })
+      return { ...state, dragStartId: action.id }
 
     case types.DRAG_END_LABEL:
-      return Object.assign({}, state, { dragStartId: null })
+      return { ...state, dragStartId: null }
 
     case types.DROP_LABEL: {
-      let labels = Object.assign({}, state.labels)
+      let labels = { ...state.labels }
       const from = findLabelPosition(labels, action.id)
-      const label = Object.assign({}, labels[from.typ][from.index])
+      const label = { ...labels[from.typ][from.index] }
       labels[from.typ].splice(from.index, 1)
       if (label.typ != action.typ) {
         label.typ = action.typ
       }
       labels[action.typ].splice(action.index, 0, label)
-      return Object.assign({}, state, { labels: labels })
+      return { ...state, labels: labels }
     }
   }
   return state
