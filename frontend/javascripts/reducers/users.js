@@ -1,21 +1,25 @@
 import * as types from '../constants/ActionTypes'
 
 const initialState = {
-  users: []
+  users: [],
+  email: ''
 }
 
-export default function users(state = initialState.users, action) {
+export default function users(state = initialState, action) {
   switch (action.type) {
     case types.SET_RETROSPECTIVE:
-      return action.retrospective.users
+      return Object.assign({}, state, { users: action.retrospective.users })
 
-    case types.ADD_USER: {
-      return [...state, action.user]
-    }
+    case types.ADD_USER:
+      return Object.assign({}, state, { users: [...state, action.user]  })
 
     case types.REMOVE_USER: {
-      return state.filter(user => user.id != action.id)
+      const users = state.users.filter(user => user.id != action.id)
+      return Object.assign({}, state, { users: users })
     }
+
+    case types.SET_EMAIL:
+      return Object.assign({}, state, { email: action.email })
   }
   return state
 }

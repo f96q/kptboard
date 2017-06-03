@@ -4,14 +4,15 @@ import { shallow } from 'enzyme'
 import UserList from '../../components/UserList'
 import UserItem from '../../components/UserItem'
 
-function setup(users) {
+function setup(users, email) {
   const actions = {
     removeUser: expect.createSpy(),
-    addUser: expect.createSpy()
+    addUser: expect.createSpy(),
+    setUserEmail: expect.createSpy()
   }
 
   const component = shallow(
-    <UserList users={users} actions={actions} />
+    <UserList users={users} email={email} actions={actions} />
   )
 
   return {
@@ -38,8 +39,7 @@ describe('UserList component', () => {
   })
 
   it('should call add user button click', () => {
-    const { emailForm, emailFormButton, actions } = setup(users)
-    emailForm.simulate('change', {target: {value: 'test@example.com'}})
+    const { emailForm, emailFormButton, actions } = setup(users, 'test@example.com')
     emailFormButton.simulate('click')
     expect(actions.addUser).toHaveBeenCalled()
   })

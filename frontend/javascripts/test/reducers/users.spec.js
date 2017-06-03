@@ -3,7 +3,7 @@ import users from '../../reducers/users'
 import * as types from '../../constants/ActionTypes'
 
 describe('users', () => {
-  const initialState = []
+  const initialState = { users: [], email: '' }
 
   it('should handle SET_RETROSPECTIVE action', () => {
     const action = {
@@ -30,12 +30,13 @@ describe('users', () => {
         ]
       }
     }
-    const afterState = [
-      {
+    const afterState = {
+      users: [{
         id: 1,
         name: 'name'
-      }
-    ]
+      }],
+      email: ''
+    }
     expect(users(initialState, action)).toEqual(afterState)
   })
 
@@ -47,12 +48,13 @@ describe('users', () => {
         name: 'name'
       }
     }
-    const afterState = [
-      {
+    const afterState =  {
+      users: [{
         id: 1,
         name: 'name'
-      }
-    ]
+      }],
+      email: ''
+    }
     expect(users(initialState, action)).toEqual(afterState)
   })
 
@@ -61,12 +63,13 @@ describe('users', () => {
       type: types.REMOVE_USER,
       id: 1
     }
-    const beforeState = [
-      {
+    const beforeState = {
+      users: [{
         id: 1,
         name: 'name'
-      }
-    ]
+      }],
+      email: ''
+    }
     expect(users(beforeState, action)).toEqual(initialState)
   })
 })

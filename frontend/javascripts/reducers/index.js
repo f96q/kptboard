@@ -28,7 +28,11 @@ export function getLabels(state) {
 }
 
 export function getUsers(state) {
-  return state.users
+  return state.users.users
+}
+
+export function getEmail(state) {
+  return state.users.email
 }
 
 export function getSubscriptions(state) {

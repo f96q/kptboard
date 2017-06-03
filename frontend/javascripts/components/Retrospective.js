@@ -73,7 +73,7 @@ export default class Retrospective extends Component {
             </div>
           </div>
 
-          <UserList users={this.props.users} actions={actions} />
+          <UserList users={this.props.users} email={this.props.email} actions={actions} />
         </div>
       </div>
     )

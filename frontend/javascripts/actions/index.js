@@ -73,6 +73,13 @@ export default class ActionDispatcher {
     })
   }
 
+  setEmail(email) {
+    this.dispatch({
+      type: types.SET_EMAIL,
+      email: email
+    })
+  }
+
   addUser(email) {
     this.state.subscriptions.retrospectivesUsers.perform('create', { email: email })
   }

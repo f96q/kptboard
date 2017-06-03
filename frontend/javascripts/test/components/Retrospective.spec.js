@@ -5,18 +5,18 @@ import Retrospective from '../../components/Retrospective'
 import UserList from '../../components/UserList'
 import Label from '../../components/Label'
 
-function setup(dragStartId, labels, users) {
+function setup(dragStartId, labels, users, email) {
   const actions = {
     addUser: expect.createSpy(),
     removeUser: expect.createSpy(),
     destroyLabel: expect.createSpy(),
     openEditLabelModal: expect.createSpy(),
     dragStartLabel: expect.createSpy(),
-    dragEndLabel: expect.createSpy()
+    dragEndLabel: expect.createSpy(),
+    setUserEmail: expect.createSpy()
   }
-
   const component = shallow(
-    <Retrospective dragStartId={dragStartId} labels={labels} users={users} actions={actions} />
+    <Retrospective dragStartId={dragStartId} labels={labels} users={users} email={email} actions={actions} />
   )
 
   return {
@@ -49,7 +49,7 @@ describe('Retrospective component', () => {
   ]
 
   it('should render', () => {
-    const { label, userList } = setup(null, labels, users)
+    const { label, userList } = setup(null, labels, users, '')
     expect(label.at(0).props()).toEqual({
       label: labels.keep[0],
       actions: {
@@ -58,18 +58,21 @@ describe('Retrospective component', () => {
         destroyLabel: expect.createSpy(),
         openEditLabelModal: expect.createSpy(),
         dragStartLabel: expect.createSpy(),
-        dragEndLabel: expect.createSpy()
+        dragEndLabel: expect.createSpy(),
+        setUserEmail: expect.createSpy()
       }
     })
     expect(userList.props()).toEqual({
       users: users,
+      email: '',
       actions: {
         addUser: expect.createSpy(),
         removeUser: expect.createSpy(),
         destroyLabel: expect.createSpy(),
         openEditLabelModal: expect.createSpy(),
         dragStartLabel: expect.createSpy(),
-        dragEndLabel: expect.createSpy()
+        dragEndLabel: expect.createSpy(),
+        setUserEmail: expect.createSpy()
       }
     })
   })

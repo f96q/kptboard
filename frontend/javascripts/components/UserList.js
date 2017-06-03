@@ -3,20 +3,14 @@ import PropTypes from 'prop-types'
 import UserItem from './UserItem'
 
 export default class UserList extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { email: '' }
-  }
-
   addUser() {
-    if (this.state.email) {
-      this.props.actions.addUser(this.state.email)
-      this.setState({ email: '' })
+    if (this.props.email) {
+      this.props.actions.addUser(this.props.email)
     }
   }
 
   updateEmail(e) {
-    this.setState({ email: e.target.value })
+    this.props.actions.setEmail(e.target.value)
   }
 
   render() {
@@ -30,15 +24,16 @@ export default class UserList extends Component {
       )
     })
     return (
-      <div className="UserList">
-        <input className="UserList-emailForm" type="email" placeholder="email" value={this.state.email} onChange={this.updateEmail.bind(this)}></input>
+     <div className="UserList">
+        <input className="UserList-emailForm" type="email" placeholder="email" onChange={this.updateEmail.bind(this)}></input>
         <button className="UserList-emailFormButton fa fa-user-plus" type="button" onClick={this.addUser.bind(this)}></button>
         <div className="UserList-items">{users}</div>
-      </div>
+     </div>
     )
   }
 }
 
 UserList.propTypes = {
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
+  email: PropTypes.string
 }
