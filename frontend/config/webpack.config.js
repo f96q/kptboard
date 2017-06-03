@@ -2,9 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  entry: {
-    app: './frontend/javascripts/application.js'
-  },
+  entry: './frontend/javascripts/application.js',
   output: {
     filename: 'application.js',
     path: path.resolve('./app/assets/javascripts')
