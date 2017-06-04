@@ -48,11 +48,11 @@ export default class LabelModal extends Component {
             <h4 className="LabelModal-title modal-title">{this.props.label.typ}</h4>
           </div>
           <div className="modal-body">
-            <textarea className="LabelModal-textarea form-control" rows="10" onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)} value={this.props.label.description}></textarea>
+            <textarea className="LabelModal-textarea form-control" rows="10" onChange={::this.onChange} onKeyDown={::this.onKeyDown} value={this.props.label.description}></textarea>
           </div>
           <div className="modal-footer">
-            <button type="button" className="LabelModal-close btn btn-secondary" onClick={this.close.bind(this)}>Close</button>
-            <button type="button" className="LabelModal-save btn btn-primary" onClick={this.save.bind(this)}>Save</button>
+            <button type="button" className="LabelModal-close btn btn-secondary" onClick={::this.close}>Close</button>
+            <button type="button" className="LabelModal-save btn btn-primary" onClick={::this.save}>Save</button>
           </div>
         </div>
       </Modal>

@@ -55,21 +55,21 @@ export default class Retrospective extends Component {
       <div className="Retrospective">
         <div className="Retrospective-content">
           <div className="Retrospective-boards">
-            <div className="Retrospective-board" ref="keep" onClick={this.openLabelForm.bind(this)}>
+            <div className="Retrospective-board" ref="keep" onClick={::this.openLabelForm}>
               <h4 className="Retrospective-boardTitle">Keep</h4>
-              <div className="Retrospective-boardLabels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{keepLabels}</div>
+              <div className="Retrospective-boardLabels" onDrop={::this.onDrop} onDragOver={::this.onDragOver}>{keepLabels}</div>
             </div>
 
-            <div className="Retrospective-boards" ref="problem" onClick={this.openLabelForm.bind(this)}>
+            <div className="Retrospective-boards" ref="problem" onClick={::this.openLabelForm}>
               <h4 className="Retrospective-boardTitle">Problem</h4>
-              <div className="Retrospective-boardLabels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{problemLabels}</div>
+              <div className="Retrospective-boardLabels" onDrop={::this.onDrop} onDragOver={::this.onDragOver}>{problemLabels}</div>
             </div>
           </div>
 
           <div className="Retrospective-boards">
-            <div className="Retrospective-board" ref="try" onClick={this.openLabelForm.bind(this)}>
+            <div className="Retrospective-board" ref="try" onClick={::this.openLabelForm}>
               <h4 className="Retrospective-boardTitle">Try</h4>
-              <div className="Retrospective-boardLabels" onDrop={this.onDrop.bind(this)} onDragOver={this.onDragOver.bind(this)}>{tryLabels}</div>
+              <div className="Retrospective-boardLabels" onDrop={::this.onDrop} onDragOver={::this.onDragOver}>{tryLabels}</div>
             </div>
           </div>
 

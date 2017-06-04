@@ -22,10 +22,10 @@ export default class Label extends Component {
 
   render() {
     return (
-      <div className={`Label is-${this.props.label.typ}`} onClick={this.edit.bind(this)} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
+      <div className={`Label is-${this.props.label.typ}`} onClick={::this.edit} draggable="true" onDragStart={::this.onDragStart} onDragEnd={::this.onDragEnd}>
         <div className="Label-content">
           <div className="Label-header">
-            <i className="Label-remove fa fa-remove" onClick={this.destroy.bind(this)}></i>
+            <i className="Label-remove fa fa-remove" onClick={::this.destroy}></i>
             <div className="Label-createdAt">{this.props.label.createdAt}</div>
             <div className="Label-userName">{this.props.label.userName}</div>
           </div>
