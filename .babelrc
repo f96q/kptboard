@@ -1,7 +1,3 @@
 {
-  "plugins": [
-    "transform-object-rest-spread",
-    "transform-function-bind"
-  ],
-  "presets": ["react", "latest"]
+  "presets": ["es2015", "stage-0", "react"]
 }
