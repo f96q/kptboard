@@ -7,6 +7,11 @@
 
   &-boards {
     display: table-cell;
+    padding-right: 10px;
+  }
+
+  &-board {
+    margin-bottom: 10px;
   }
 
   &-boardTitle {
@@ -20,5 +25,22 @@
     flex-wrap: wrap;
     min-height: 150px;
     width: 470px;
+
+    &:empty {
+      background-color: #efefef;
+      border-radius: 10px;
+      position: relative;
+      &::after {
+        content: "Click to add label";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: $font-size-xx-small;
+        color: #999;
+        letter-spacing: 0.07em;
+      }
+    }
   }
 }
