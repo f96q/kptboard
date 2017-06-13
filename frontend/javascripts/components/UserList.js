@@ -25,9 +25,9 @@ export default class UserList extends Component {
     })
     return (
      <div className="UserList">
-       <input className="UserList-emailForm" type="email" placeholder="email" onChange={::this.updateEmail}></input>
-       <button className="UserList-emailFormButton fa fa-user-plus" type="button" onClick={::this.addUser}></button>
-       <div className="UserList-items">{users}</div>
+        <input className="UserList-emailForm" type="email" placeholder="email" onChange={this.updateEmail.bind(this)}></input>
+        <button className="UserList-emailFormButton fa fa-user-plus" type="button" onClick={this.addUser.bind(this)}></button>
+        <div className="UserList-items">{users}</div>
      </div>
     )
   }
