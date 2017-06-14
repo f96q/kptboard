@@ -1,13 +1,12 @@
 import expect from 'expect'
 import users from '../../reducers/users'
-import * as types from '../../constants/ActionTypes'
 
 describe('users', () => {
   const initialState = { users: [], email: '' }
 
   it('should handle SET_RETROSPECTIVE action', () => {
     const action = {
-      type: types.SET_RETROSPECTIVE,
+      type: 'SET_RETROSPECTIVE',
       retrospective: {
         labels: {
           keep: [
@@ -42,7 +41,7 @@ describe('users', () => {
 
   it('should handle ADD_USER action', () => {
     const action = {
-      type: types.ADD_USER,
+      type: 'ADD_USER',
       user: {
         id: 1,
         name: 'name'
@@ -60,7 +59,7 @@ describe('users', () => {
 
   it('should handle REMOVE_USER action', () => {
     const action = {
-      type: types.REMOVE_USER,
+      type: 'REMOVE_USER',
       id: 1
     }
     const beforeState = {

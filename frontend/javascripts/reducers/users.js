@@ -1,25 +1,33 @@
-import * as types from '../constants/ActionTypes'
+// @flow
 
-const initialState = {
+import type { Action } from '../types'
+import type { Users, UsersState } from '../types/users'
+
+const initialState: UsersState = {
   users: [],
   email: ''
 }
 
-export default function users(state = initialState, action) {
+const users = (state: UsersState = initialState, action: Action): UsersState => {
   switch (action.type) {
-    case types.SET_RETROSPECTIVE:
+    case 'SET_RETROSPECTIVE':
       return { ...state, users: action.retrospective.users }
 
-    case types.ADD_USER:
-      return { ...state, users: [...state, action.user] }
+    case 'ADD_USER':
+      return { ...state, users: [...state.users, action.user] }
 
-    case types.REMOVE_USER: {
-      const users = state.users.filter(user => user.id != action.id)
+    case 'REMOVE_USER': {
+      const id = action.id
+      const users = state.users.filter(user => user.id != id)
       return { ...state, users: users }
     }
 
-    case types.SET_EMAIL:
+    case 'SET_INVITATION_EMAIL':
       return { ...state, email: action.email }
+
+    default:
+      return state
   }
-  return state
 }
+
+export default users

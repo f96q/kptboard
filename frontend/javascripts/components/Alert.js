@@ -1,13 +1,23 @@
+// @flow
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import type { Alert as AlertType } from '../types/application'
+import type { clearAlert } from '../types/actions'
+
+type Props = {
+  alert: AlertType,
+  clearAlert: clearAlert
+}
 
 export default class Alert extends Component {
+  props: Props
+
   componentDidUpdate() {
     if (this.props.alert.messages.length == 0) {
       return
     }
     setTimeout(() => {
-      this.props.actions.clearAlert()
+      this.props.clearAlert()
     }, 5000)
   }
 
@@ -18,16 +28,13 @@ export default class Alert extends Component {
     const messages = this.props.alert.messages.map((message, i) => {
       return (<div key={`message-${i + 1}`} className="Alert-message">{message}</div>)
     })
+    if (this.props.alert.type == null) {
+      return null
+    }
     return (
       <div className={`Alert is-${this.props.alert.type}`}>
         <div className="Alert-messages">{messages}</div>
       </div>
     )
   }
-}
-
-Alert.propTypes = {
-  alert: PropTypes.shape({
-    messages: PropTypes.array.isRequired
-  }).isRequired
 }

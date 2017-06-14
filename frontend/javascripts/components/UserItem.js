@@ -1,35 +1,36 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
 
-export default class UserItem extends Component {
-  removeUser() {
-    if (window.confirm(`remove user ${this.props.user.name}`)) {
-      this.props.actions.removeUser(this.props.user.id)
-    }
-  }
+import React from 'react'
 
-  removeButton() {
+import type { User } from '../types/users'
+import type { removeUser } from '../types/actions'
+
+type Props = {
+  user: User,
+  removeUser: removeUser,
+  isDestroy: boolean
+}
+
+const UserItem = ({ user, removeUser, isDestroy }: Props) => {
+  const removeButton = () => {
     return (
-      <i className="UserItem-remove fa fa-remove" onClick={this.removeUser.bind(this)}></i>
-    )
+      <i
+        className="UserItem-remove fa fa-remove"
+        onClick={() => {
+          if (window.confirm(`remove user ${user.name}`)) {
+            removeUser(user.id)
+          }
+        }}
+      />)
   }
-
-  render() {
-    return (
-      <div className="UserItem">
-        <div className="fa fa-user">
-          <div className="UserItem-name">{this.props.user.name}</div>
-        </div>
-        {this.props.isDestroy ? this.removeButton() : null}
+  return (
+    <div className="UserItem">
+      <div className="fa fa-user">
+        <div className="UserItem-name">{user.name}</div>
       </div>
-    )
-  }
+      {isDestroy ? removeButton() : null}
+    </div>
+  )
 }
 
-UserItem.propTypes = {
-  user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
-  }),
-  isDestroy: PropTypes.bool.isRequired
-}
+export default UserItem

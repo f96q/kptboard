@@ -1,72 +1,68 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+
+import React from 'react'
 import Modal from 'react-modal'
 
-export default class LabelModal extends Component {
-  onChange(e) {
-    this.props.actions.updateLabelModal(e.target.value)
-  }
+import type { Label, LabelModal as LabelModalType } from '../types/labels'
+import type { createLabel, updateLabel, updateLabelModal, closeLabelModal } from '../types/actions'
 
-  onKeyDown(e) {
-    if (e.keyCode == 13) {
-      this.save()
+type Props = {
+  labelModal: LabelModalType,
+  createLabel: createLabel,
+  updateLabel: updateLabel,
+  updateLabelModal: updateLabelModal,
+  closeLabelModal: closeLabelModal
+}
+
+const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, closeLabelModal }: Props) => {
+  const style = {
+    overlay: {
+      top: labelModal.clientY,
+      left: labelModal.clientX,
+      backgroundColor: 'transparent'
+    },
+    content: {
+      marginTop: 0,
+      marginLeft: 0
     }
   }
 
-  save() {
-    if (this.props.label.description == '') {
+  const save = () => {
+    if (labelModal.label.description == '') {
       return
     }
-    if (this.props.label.id) {
-      this.props.actions.updateLabel(this.props.label.id, {description: this.props.label.description})
+    if (labelModal.label.id) {
+      updateLabel(labelModal.label.id, { description: labelModal.label.description })
     } else {
-      this.props.actions.createLabel(this.props.label)
+      createLabel(labelModal.label)
     }
-    this.close()
+    closeLabelModal()
   }
 
-  close() {
-    this.props.actions.closeLabelModal()
-  }
+  if (labelModal.label.typ == null) return null
 
-  render() {
-    const style = {
-      overlay: {
-        top: this.props.clientY,
-        left: this.props.clientX,
-        backgroundColor: 'transparent'
-      },
-      content: {
-        marginTop: 0,
-        marginLeft: 0
-      }
-    }
-    return (
-      <Modal className="LabelModal label-modal modal-dialog" isOpen={this.props.isOpen} style={style} contentLabel="Modal">
-        <div className="modal-content">
-          <div className={`modal-header LabelModal-header is-${this.props.label.typ}`}>
-            <h4 className="LabelModal-title modal-title">{this.props.label.typ}</h4>
-          </div>
-          <div className="modal-body">
-            <textarea className="LabelModal-textarea form-control" rows="10" onChange={this.onChange.bind(this)} onKeyDown={this.onKeyDown.bind(this)} value={this.props.label.description}></textarea>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="LabelModal-close btn btn-secondary" onClick={this.close.bind(this)}>Close</button>
-            <button type="button" className="LabelModal-save btn btn-primary" onClick={this.save.bind(this)}>Save</button>
-          </div>
+  return (
+    <Modal className="LabelModal label-modal modal-dialog" isOpen={labelModal.isOpen} style={style} contentLabel="Modal">
+      <div className="modal-content">
+        <div className={`modal-header LabelModal-header is-${labelModal.label.typ}`}>
+          <h4 className="LabelModal-title modal-title">{labelModal.label.typ}</h4>
         </div>
-      </Modal>
-    )
-  }
+        <div className="modal-body">
+          <textarea
+            className="LabelModal-textarea form-control"
+            rows="10"
+            onChange={(event: SyntheticInputEvent) => updateLabelModal(event.target.value)}
+            onKeyDown={(event: Event) => { if (event.keyCode == 13) save() } }
+            value={labelModal.label.description}
+          ></textarea>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="LabelModal-close btn btn-secondary" onClick={() => closeLabelModal()}>Close</button>
+          <button type="button" className="LabelModal-save btn btn-primary" onClick={() => save()}>Save</button>
+        </div>
+      </div>
+    </Modal>
+  )
 }
 
-LabelModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  clientX: PropTypes.number.isRequired,
-  clientY: PropTypes.number.isRequired,
-  label: PropTypes.shape({
-    id: PropTypes.number,
-    typ: PropTypes.string,
-    description: PropTypes.string.isRequired
-  }).isRequired
-}
+export default LabelModal

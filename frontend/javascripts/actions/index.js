@@ -1,94 +1,75 @@
-import * as types from '../constants/ActionTypes'
+// @flow
 
-export default class ActionDispatcher {
-  constructor(state, dispatch) {
-    this.state = state
-    this.dispatch = dispatch
-  }
+import type { Labels, Label, CreateLabel, UpdateLabel } from '../types/labels'
+import type { Users } from '../types/users'
+import type { Action } from '../types/'
 
-  setLabels(labels) {
-    this.dispatch({
-      type: types.SET_LABELS,
-      labels: labels
-    })
-  }
-
-  openNewLabelModal(typ, clientX, clientY) {
-    this.dispatch({
-      type: types.OPEN_NEW_LABEL_MODAL,
-      clientX: clientX,
-      clientY: clientY,
-      typ: typ
-    })
-  }
-
-  openEditLabelModal(id, clientX, clientY) {
-    this.dispatch({
-      type: types.OPEN_EDIT_LABEL_MODAL,
-      clientX: clientX,
-      clientY: clientY,
-      id: id
-    })
-  }
-
-  closeLabelModal() {
-    this.dispatch({ type: types.CLOSE_LABEL_MODAL })
-  }
-
-  updateLabelModal(description) {
-    this.dispatch({
-      type: types.UPDATE_LABEL_MODAL,
-      description: description
-    })
-  }
-
-  createLabel(label) {
-    this.state.subscriptions.labels.perform('create', { label: label })
-  }
-
-  updateLabel(id, label) {
-    this.state.subscriptions.labels.perform('update', { id: id, label: label })
-  }
-
-  destroyLabel(id) {
-    this.state.subscriptions.labels.perform('destroy', { id: id })
-  }
-
-  dragStartLabel(id) {
-    this.dispatch({ type: types.DRAG_START_LABEL, id: id })
-  }
-
-  dragEndLabel() {
-    this.dispatch({ type: types.DRAG_END_LABEL })
-  }
-
-  dropLabel(id, typ, index) {
-    this.state.subscriptions.labels.perform('position', { id: id, typ: typ, position: index + 1 })
-  }
-
-  setUsers(users) {
-    this.dispatch({
-      type: types.SET_USERS,
-      users: users
-    })
-  }
-
-  setEmail(email) {
-    this.dispatch({
-      type: types.SET_EMAIL,
-      email: email
-    })
-  }
-
-  addUser(email) {
-    this.state.subscriptions.retrospectivesUsers.perform('create', { email: email })
-  }
-
-  removeUser(id) {
-    this.state.subscriptions.retrospectivesUsers.perform('destroy', { id: id })
-  }
-
-  clearAlert() {
-    this.dispatch({ type: types.CLEAR_ALERT })
+export const openNewLabelModal = (typ: string, clientX: number, clientY: number): Action => {
+  return {
+    type: 'OPEN_NEW_LABEL_MODAL',
+    clientX: clientX,
+    clientY: clientY,
+    typ: typ
   }
 }
+
+export const openEditLabelModal = (id: number, clientX: number, clientY: number): Action => {
+  return {
+    type: 'OPEN_EDIT_LABEL_MODAL',
+    clientX: clientX,
+    clientY: clientY,
+    id: id
+  }
+}
+
+export const closeLabelModal = (): Action => {
+  return { type: 'CLOSE_LABEL_MODAL' }
+}
+
+export const updateLabelModal = (description: string): Action => {
+  return {
+    type: 'UPDATE_LABEL_MODAL',
+    description: description
+  }
+}
+
+export const dragStartLabel = (id: number): Action => {
+  return { type: 'DRAG_START_LABEL', id: id }
+}
+
+export const dragEndLabel = (): Action => {
+  return { type: 'DRAG_END_LABEL' }
+}
+
+export const setInvitationEmail = (email: string): Action => {
+  return { type: 'SET_INVITATION_EMAIL', email: email }
+}
+
+export const clearAlert = (): Action => {
+  return { type: 'CLEAR_ALERT' }
+}
+
+export const createLabel = (label: CreateLabel): Action => {
+  return { type: 'ACTION_CABLE_CREATE_LABEL', label: label }
+}
+
+export const updateLabel = (id: number, label: UpdateLabel): Action =>{
+  return { type: 'ACTION_CABLE_UPDATE_LABEL', id: id, label: label }
+}
+
+export const destroyLabel = (id: number): Action => {
+  return { type: 'ACTION_CABLE_DESTROY_LABEL', id: id }
+}
+
+export const dropLabel = (id: number, typ: string, index: number): Action => {
+  return { type: 'ACTION_CABLE_DROP_LABEL', id: id, typ: typ, index: index }
+}
+
+export const addUser = (email: string): Action => {
+  return { type: 'ACTION_CABLE_ADD_USER', email: email }
+}
+
+export const removeUser = (id: number): Action => {
+  return { type: 'ACTION_CABLE_REMOVE_USER', id: id }
+}
+

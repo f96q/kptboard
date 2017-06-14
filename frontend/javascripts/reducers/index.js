@@ -1,40 +1,38 @@
+// @flow
+
 import { combineReducers } from 'redux'
 import application from './application'
 import labels from './labels'
 import users from './users'
-import subscriptions from './subscriptions'
+
+import type { State } from '../types'
 
 export default combineReducers({
   application,
   labels,
-  users,
-  subscriptions
+  users
 })
 
-export function getAlert(state) {
+export const getAlert = (state: State) => {
   return state.application.alert
 }
 
-export function getDragStartId(state) {
+export const getDragStartId = (state: State) => {
   return state.labels.dragStartId
 }
 
-export function getLabelModal(state) {
+export const getLabelModal = (state: State) => {
   return state.labels.labelModal
 }
 
-export function getLabels(state) {
+export const getLabels = (state: State) => {
   return state.labels.labels
 }
 
-export function getUsers(state) {
+export const getUsers = (state: State) => {
   return state.users.users
 }
 
-export function getEmail(state) {
+export const getEmail = (state: State) => {
   return state.users.email
-}
-
-export function getSubscriptions(state) {
-  return state.subscriptions
 }

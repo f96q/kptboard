@@ -1,23 +1,37 @@
+// @flow
+
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+
+import type { Label as LabelType } from '../types/labels'
+import type { destroyLabel, openEditLabelModal, dragStartLabel, dragEndLabel } from '../types/actions'
+
+type Props = {
+  label: LabelType,
+  destroyLabel: destroyLabel,
+  openEditLabelModal: openEditLabelModal,
+  dragStartLabel: dragStartLabel,
+  dragEndLabel: dragEndLabel
+}
 
 export default class Label extends Component {
-  destroy(e) {
-    this.props.actions.destroyLabel(this.props.label.id)
+  props: Props
+
+  destroy(e: Event) {
+    this.props.destroyLabel(this.props.label.id)
     e.stopPropagation()
   }
 
-  edit(e) {
-    this.props.actions.openEditLabelModal(this.props.label.id, e.clientX, e.clientY)
+  edit(e: MouseEvent) {
+    this.props.openEditLabelModal(this.props.label.id, e.clientX, e.clientY)
     e.stopPropagation()
   }
 
   onDragStart() {
-    this.props.actions.dragStartLabel(this.props.label.id)
+    this.props.dragStartLabel(this.props.label.id)
   }
 
   onDragEnd() {
-    this.props.actions.dragEndLabel()
+    this.props.dragEndLabel()
   }
 
   render() {
@@ -34,14 +48,4 @@ export default class Label extends Component {
       </div>
     )
   }
-}
-
-Label.propTypes = {
-  label: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    typ: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    userName: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
-  }).isRequired
 }

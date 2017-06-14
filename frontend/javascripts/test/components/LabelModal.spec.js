@@ -3,16 +3,15 @@ import expect from 'expect'
 import { shallow } from 'enzyme'
 import LabelModal from '../../components/LabelModal'
 
-function setup(labelModel) {
+function setup(labelModal) {
   const actions = {
     updateLabelModal: expect.createSpy(),
     closeLabelModal: expect.createSpy(),
     createLabel: expect.createSpy(),
     updateLabel: expect.createSpy()
   }
-
   const component = shallow(
-    <LabelModal {...labelModel} actions={actions} />
+    <LabelModal labelModal={labelModal} {...actions}/>
   )
 
   return {

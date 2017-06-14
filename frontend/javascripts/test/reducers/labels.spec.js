@@ -1,6 +1,5 @@
 import expect from 'expect'
 import labels from '../../reducers/labels'
-import * as types from '../../constants/ActionTypes'
 
 describe('labels', () => {
   const initialState = {
@@ -24,7 +23,7 @@ describe('labels', () => {
 
   it('should handle SET_RETROSPECTIVE action', () => {
     const action = {
-      type: types.SET_RETROSPECTIVE,
+      type: 'SET_RETROSPECTIVE',
       retrospective: {
         labels: {
           keep: [
@@ -67,7 +66,7 @@ describe('labels', () => {
 
   it('should handle OPEN_NEW_LABEL_MODAL action', () => {
     const action = {
-      type: types.OPEN_NEW_LABEL_MODAL,
+      type: 'OPEN_NEW_LABEL_MODAL',
       clientX: 1,
       clientY: 1,
       typ: 'keep'
@@ -89,7 +88,7 @@ describe('labels', () => {
 
   it('should handle OPEN_EDIT_LABEL_MODAL action', () => {
     const action = {
-      type: types.OPEN_EDIT_LABEL_MODAL,
+      type: 'OPEN_EDIT_LABEL_MODAL',
       clientX: 1,
       clientY: 1,
       id: 1
@@ -139,7 +138,7 @@ describe('labels', () => {
 
   it('should handle CLOSE_LABEL_MODAL action', () => {
     const action = {
-      type: types.CLOSE_LABEL_MODAL
+      type: 'CLOSE_LABEL_MODAL'
     }
     const beforeState = { ...initialState,
       labelModal: {
@@ -158,7 +157,7 @@ describe('labels', () => {
 
   it('should handle UPDATE_LABEL_MODAL action', () => {
     const action = {
-      type: types.UPDATE_LABEL_MODAL,
+      type: 'UPDATE_LABEL_MODAL',
       description: 'update description'
     }
     const afterState = { ...initialState,
@@ -178,7 +177,7 @@ describe('labels', () => {
 
   it('should handle CREATE_LABEL action', () => {
     const action = {
-      type: types.CREATE_LABEL,
+      type: 'CREATE_LABEL',
       label: {
         id: 1,
         typ: 'keep',
@@ -207,7 +206,7 @@ describe('labels', () => {
 
   it('should handle UPDATE_LABEL action', () => {
     const action = {
-      type: types.UPDATE_LABEL,
+      type: 'UPDATE_LABEL',
       id: 1,
       label: {
         description: 'update description'
@@ -248,7 +247,7 @@ describe('labels', () => {
 
   it('should handle DESTROY_LABEL action', () => {
     const action = {
-      type: types.DESTROY_LABEL,
+      type: 'DESTROY_LABEL',
       id: 1
     }
     const beforeState = { ...initialState,
@@ -271,7 +270,7 @@ describe('labels', () => {
 
   it('should handle DRAG_START_LABEL action', () => {
     const action = {
-      type: types.DRAG_START_LABEL,
+      type: 'DRAG_START_LABEL',
       id: 1
     }
     const afterState = { ...initialState, dragStartId: 1 }
@@ -280,7 +279,7 @@ describe('labels', () => {
 
   it('should handle DRAG_END_LABEL action', () => {
     const action = {
-      type: types.DRAG_END_LABEL
+      type: 'DRAG_END_LABEL'
     }
     const beforeState = { ...initialState, dragStartId: 1 }
     expect(labels(beforeState, action)).toEqual(initialState)
@@ -288,7 +287,7 @@ describe('labels', () => {
 
   it('should handle DROP_LABEL action', () => {
     const action = {
-      type: types.DROP_LABEL,
+      type: 'DROP_LABEL',
       id: 1,
       typ: 'keep',
       index: 2
@@ -343,7 +342,7 @@ describe('labels', () => {
   describe('when other type drop', () => {
     it('should handle DROP_LABEL action', () => {
       const action = {
-        type: types.DROP_LABEL,
+        type: 'DROP_LABEL',
         id: 1,
         typ: 'problem',
         index: 2

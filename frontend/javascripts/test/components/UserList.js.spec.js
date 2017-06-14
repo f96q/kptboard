@@ -8,11 +8,11 @@ function setup(users, email) {
   const actions = {
     removeUser: expect.createSpy(),
     addUser: expect.createSpy(),
-    setUserEmail: expect.createSpy()
+    setInvitationEmail: expect.createSpy()
   }
 
   const component = shallow(
-    <UserList users={users} email={email} actions={actions} />
+    <UserList users={users} email={email} {...actions} />
   )
 
   return {
@@ -30,11 +30,11 @@ describe('UserList component', () => {
   ]
 
   it('should render users', () => {
-    const { userItem, actions } = setup(users)
+    const { userItem } = setup(users)
     expect(userItem.at(0).props()).toEqual({
       isDestroy: false,
       user: users[0],
-      actions: actions
+      removeUser: expect.createSpy()
     })
   })
 

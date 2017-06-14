@@ -1,39 +1,46 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @flow
+
+import React from 'react'
+
 import UserItem from './UserItem'
 
-export default class UserList extends Component {
-  addUser() {
-    if (this.props.email) {
-      this.props.actions.addUser(this.props.email)
-    }
-  }
+import type { Users } from '../types/users'
+import type { addUser, removeUser, setInvitationEmail } from '../types/actions'
 
-  updateEmail(e) {
-    this.props.actions.setEmail(e.target.value)
-  }
-
-  render() {
-    const isDestroy = this.props.users.length > 1
-    const users = this.props.users.map((user) => {
-      return (
-        <UserItem key={user.id}
-                  user={user}
-                  isDestroy={isDestroy}
-                  actions={this.props.actions} />
-      )
-    })
-    return (
-     <div className="UserList">
-        <input className="UserList-emailForm" type="email" placeholder="email" onChange={this.updateEmail.bind(this)}></input>
-        <button className="UserList-emailFormButton fa fa-user-plus" type="button" onClick={this.addUser.bind(this)}></button>
-        <div className="UserList-items">{users}</div>
-     </div>
-    )
-  }
+type Props = {
+  users: Users,
+  email: string,
+  addUser: addUser,
+  removeUser: removeUser,
+  setInvitationEmail: setInvitationEmail
 }
 
-UserList.propTypes = {
-  users: PropTypes.array.isRequired,
-  email: PropTypes.string
+const UserList = ({ users, email, addUser, removeUser, setInvitationEmail }: Props) => {
+  const isDestroy = users.length > 1
+  return (
+    <div className="UserList">
+      <input
+        className="UserList-emailForm"
+        type="email"
+        placeholder="email"
+        onChange={(event: SyntheticInputEvent) => setInvitationEmail(event.target.value)}
+      >
+      </input>
+      <button
+        className="UserList-emailFormButton fa fa-user-plus"
+        type="button"
+        onClick={() => {
+          if (email) addUser(email)
+        }}
+      >
+      </button>
+      <div className="UserList-items">
+        {users.map(user => (
+          <UserItem key={user.id} user={user} isDestroy={isDestroy} removeUser={removeUser} />
+        ))}
+      </div>
+    </div>
+  )
 }
+
+export default UserList

@@ -10,7 +10,7 @@ function setup(user, isDestroy = false) {
   }
 
   const component = shallow(
-    <UserItem user={user} isDestroy={isDestroy} actions={actions} />
+    <UserItem user={user} isDestroy={isDestroy} {...actions} />
   )
 
   return {

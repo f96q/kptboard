@@ -1,18 +1,25 @@
-import * as types from '../constants/ActionTypes'
+// @flow
 
-const initialState = {
+import type { Action } from '../types'
+import type { ApplicationState } from '../types/application'
+
+const initialState: ApplicationState = {
   alert: {
     type: null,
     messages: []
   }
 }
 
-export default function application(state = initialState, action) {
+const application = (state: ApplicationState = initialState, action: Action): ApplicationState => {
   switch (action.type) {
-    case types.SET_ALERT:
+    case 'SET_ALERT':
       return { ...state, alert: action.alert }
-    case types.CLEAR_ALERT:
-      return { ...state, initialState }
+    case 'CLEAR_ALERT':
+      return initialState
+
+    default:
+      return state
   }
-  return state
 }
+
+export default application

@@ -12,7 +12,7 @@ function setup(label) {
   }
 
   const component = shallow(
-    <Label label={label} actions={actions} />
+    <Label label={label} {...actions} />
   )
 
   return {
