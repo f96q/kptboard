@@ -4,11 +4,11 @@ import type { Action } from '../types'
 import type { Labels, Label, LabelsState } from '../types/labels'
 
 function findLabelPosition(labels, id) {
-  for (let typ of ['keep', 'problem', 'try']) {
-    for (let i = 0;  i < labels[typ].length; i++) {
-      const label = labels[typ][i]
+  for (let kind of ['keep', 'problem', 'try']) {
+    for (let i = 0;  i < labels[kind].length; i++) {
+      const label = labels[kind][i]
       if (label.id == id) {
-        return { typ: typ, index: i }
+        return { kind: kind, index: i }
       }
     }
   }
@@ -28,7 +28,7 @@ const initialState: LabelsState = {
     clientY: 0,
     label: {
       id: null,
-      typ: null,
+      kind: null,
       description: ''
     }
   }
@@ -47,7 +47,7 @@ const labels = (state: LabelsState = initialState, action: Action): LabelsState 
         clientY: action.clientY,
         label: {
           id: null,
-          typ: action.typ,
+          kind: action.kind,
           description: ''
         }
       }
@@ -57,14 +57,14 @@ const labels = (state: LabelsState = initialState, action: Action): LabelsState 
     case 'OPEN_EDIT_LABEL_MODAL': {
       const position = findLabelPosition(state.labels, action.id)
       if (position == null) return state
-      const label = state.labels[position.typ][position.index]
+      const label = state.labels[position.kind][position.index]
       const labelModal = {
         isOpen: true,
         clientX: action.clientX,
         clientY: action.clientY,
         label: {
           id: label.id,
-          typ: label.typ,
+          kind: label.kind,
           description: label.description
         }
       }
@@ -83,7 +83,7 @@ const labels = (state: LabelsState = initialState, action: Action): LabelsState 
 
     case 'CREATE_LABEL': {
       let labels = { ...state.labels }
-      labels[action.label.typ] = [action.label, ...state.labels[action.label.typ]]
+      labels[action.label.kind] = [action.label, ...state.labels[action.label.kind]]
       return { ...state, labels: labels }
     }
 
@@ -91,7 +91,7 @@ const labels = (state: LabelsState = initialState, action: Action): LabelsState 
       let labels = { ...state.labels }
       const position = findLabelPosition(labels, action.id)
       if (position == null) return state
-      labels[position.typ][position.index].description = action.label.description
+      labels[position.kind][position.index].description = action.label.description
       return { ...state, labels: labels }
     }
 
@@ -99,7 +99,7 @@ const labels = (state: LabelsState = initialState, action: Action): LabelsState 
       let labels = { ...state.labels }
       const position = findLabelPosition(labels, action.id)
       if (position == null) return state
-      labels[position.typ].splice(position.index, 1)
+      labels[position.kind].splice(position.index, 1)
       return { ...state, labels: labels }
     }
 
@@ -113,12 +113,12 @@ const labels = (state: LabelsState = initialState, action: Action): LabelsState 
       let labels = { ...state.labels }
       const from = findLabelPosition(labels, action.id)
       if (from == null) return state
-      const label = { ...labels[from.typ][from.index] }
-      labels[from.typ].splice(from.index, 1)
-      if (label.typ != action.typ) {
-        label.typ = action.typ
+      const label = { ...labels[from.kind][from.index] }
+      labels[from.kind].splice(from.index, 1)
+      if (label.kind != action.kind) {
+        label.kind = action.kind
       }
-      labels[action.typ].splice(action.index, 0, label)
+      labels[action.kind].splice(action.index, 0, label)
       return { ...state, labels: labels }
     }
 

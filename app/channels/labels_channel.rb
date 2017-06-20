@@ -28,13 +28,13 @@ class LabelsChannel < ApplicationChannel
     return unless authenticate_retrospective?
     set_label(data)
     Label.transaction do
-      if @label.typ != data['typ']
+      if @label.kind != data['kind']
         @label.remove_from_list
-        @label.update!(typ: data['typ'])
+        @label.update!(kind: data['kind'])
       end
       @label.insert_at(data['position'].to_i)
     end
-    broadcast_to(type: 'DROP_LABEL', id: @label.id, typ: @label.typ, index: @label.position - 1)
+    broadcast_to(type: 'DROP_LABEL', id: @label.id, kind: @label.kind, index: @label.position - 1)
   end
 
   private

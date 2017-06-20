@@ -49,41 +49,41 @@ export default class Retrospective extends Component {
   props: Props
 
   openLabelForm(e: MouseEvent) {
-    const typ = this.closestType(e.target)
-    if (typ == null) return
-    this.props.openNewLabelModal(typ, e.clientX, e.clientY)
+    const kind = this.closestKind(e.target)
+    if (kind == null) return
+    this.props.openNewLabelModal(kind, e.clientX, e.clientY)
   }
 
-  closestType(target: EventTarget) {
-    for (let typ of ['keep', 'problem', 'try']) {
-      if (this.refs[typ].contains(target)) {
-        return typ
+  closestKind(target: EventTarget) {
+    for (let kind of ['keep', 'problem', 'try']) {
+      if (this.refs[kind].contains(target)) {
+        return kind
       }
     }
     return null
   }
 
-  closestLabelIndex(typ: string, target: EventTarget) {
-    for (let i in this.props.labels[typ]) {
-      const label = this.props.labels[typ][i]
+  closestLabelIndex(kind: string, target: EventTarget) {
+    for (let i in this.props.labels[kind]) {
+      const label = this.props.labels[kind][i]
       const node = findDOMNode(this.refs[`label_${label.id}`])
       if (node == null) continue
       if (target instanceof Node && node.contains(target)) {
         return parseInt(i)
       }
     }
-    return this.props.labels[typ].length
+    return this.props.labels[kind].length
   }
 
   onDrop(e: Event) {
     e.preventDefault()
 
-    const typ = this.closestType(e.target)
-    if (typ == null) return
-    const index = this.closestLabelIndex(typ, e.target)
+    const kind = this.closestKind(e.target)
+    if (kind == null) return
+    const index = this.closestLabelIndex(kind, e.target)
     if (index == null) return
     if (this.props.dragStartId) {
-      this.props.dropLabel(this.props.dragStartId, typ, index)
+      this.props.dropLabel(this.props.dragStartId, kind, index)
     }
   }
 

@@ -11,9 +11,9 @@ export type destroyLabel =  (id: number) => void
 
 export type dragStartLabel = (id: number) => void
 export type dragEndLabel = () => void
-export type dropLabel = (id: number, typ: string, index: number) => void
+export type dropLabel = (id: number, kind: string, index: number) => void
 
-export type openNewLabelModal = (typ: string, clientX: number, clientY: number) => void
+export type openNewLabelModal = (kind: string, clientX: number, clientY: number) => void
 export type openEditLabelModal = (id: number, clientX: number, clientX: number) => void
 export type updateLabelModal = (description: string) => void
 export type closeLabelModal = () => void

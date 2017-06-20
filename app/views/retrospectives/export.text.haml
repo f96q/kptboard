@@ -1,7 +1,7 @@
 = "# #{@retrospective.title}"
 \
-- Label.typs.keys.each do |typ|
-  = "* #{typ}"
-  - @retrospective.labels.where(typ: typ).each do |label|
+- Label.kinds.keys.each do |kind|
+  = "* #{kind}"
+  - @retrospective.labels.where(kind: kind).each do |label|
     = "#{label.created_at.strftime('%m-%d')} #{label.user.name} #{label.description}"
   \

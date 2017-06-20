@@ -1,9 +1,9 @@
 class Label < ActiveRecord::Base
-  enum typ: { keep: 'keep', problem: 'problem', try: 'try' }
+  enum kind: { keep: 'keep', problem: 'problem', try: 'try' }
 
-  validates :typ, inclusion: { in: typs.values }
+  validates :kind, inclusion: { in: kinds.values }
   belongs_to :retrospective
   belongs_to :user, optional: true
 
-  acts_as_list scope: [:retrospective_id, :typ]
+  acts_as_list scope: [:retrospective_id, :kind]
 end

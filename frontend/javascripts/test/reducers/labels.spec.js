@@ -15,7 +15,7 @@ describe('labels', () => {
       clientY: 0,
       label: {
         id: null,
-        typ: null,
+        kind: null,
         description: ''
       }
     }
@@ -29,7 +29,7 @@ describe('labels', () => {
           keep: [
             {
               id: 1,
-              typ: 'keep',
+              kind: 'keep',
               createdAt: '08-01',
               userName: 'name',
               description: 'description'
@@ -51,7 +51,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -69,7 +69,7 @@ describe('labels', () => {
       type: 'OPEN_NEW_LABEL_MODAL',
       clientX: 1,
       clientY: 1,
-      typ: 'keep'
+      kind: 'keep'
     }
     const afterState = { ...initialState,
       labelModal: {
@@ -78,7 +78,7 @@ describe('labels', () => {
         clientY: 1,
         label: {
           id: null,
-          typ: 'keep',
+          kind: 'keep',
           description: ''
         }
       }
@@ -98,7 +98,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -113,7 +113,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -128,7 +128,7 @@ describe('labels', () => {
         clientY: 1,
         label: {
           id: 1,
-          typ: 'keep',
+          kind: 'keep',
           description: 'description'
         }
       }
@@ -147,7 +147,7 @@ describe('labels', () => {
         clientY: 0,
         label: {
           id: null,
-          typ: null,
+          kind: null,
           description: 'update description'
         }
       }
@@ -167,7 +167,7 @@ describe('labels', () => {
         clientY: 0,
         label: {
           id: null,
-          typ: null,
+          kind: null,
           description: 'update description'
         }
       }
@@ -180,7 +180,7 @@ describe('labels', () => {
       type: 'CREATE_LABEL',
       label: {
         id: 1,
-        typ: 'keep',
+        kind: 'keep',
         createdAt: '08-01',
         userName: 'name',
         description: 'description'
@@ -191,7 +191,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -217,7 +217,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -232,7 +232,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'update description'
@@ -255,7 +255,7 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -289,7 +289,7 @@ describe('labels', () => {
     const action = {
       type: 'DROP_LABEL',
       id: 1,
-      typ: 'keep',
+      kind: 'keep',
       index: 2
     }
     const beforeState = { ...initialState,
@@ -297,14 +297,14 @@ describe('labels', () => {
         keep: [
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
           },
           {
             id: 2,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-02',
             userName: 'name',
             description: 'description'
@@ -319,14 +319,14 @@ describe('labels', () => {
         keep: [
           {
             id: 2,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-02',
             userName: 'name',
             description: 'description'
           },
           {
             id: 1,
-            typ: 'keep',
+            kind: 'keep',
             createdAt: '08-01',
             userName: 'name',
             description: 'description'
@@ -344,7 +344,7 @@ describe('labels', () => {
       const action = {
         type: 'DROP_LABEL',
         id: 1,
-        typ: 'problem',
+        kind: 'problem',
         index: 2
       }
       const beforeState = { ...initialState,
@@ -352,7 +352,7 @@ describe('labels', () => {
           keep: [
             {
               id: 1,
-              typ: 'keep',
+              kind: 'keep',
               createdAt: '08-01',
               userName: 'name',
               description: 'description'
@@ -361,7 +361,7 @@ describe('labels', () => {
           problem: [
             {
               id: 2,
-              typ: 'problem',
+              kind: 'problem',
               createdAt: '08-02',
               userName: 'name',
               description: 'description'
@@ -376,14 +376,14 @@ describe('labels', () => {
           problem: [
             {
               id: 2,
-              typ: 'problem',
+              kind: 'problem',
               createdAt: '08-02',
               userName: 'name',
               description: 'description'
             },
             {
               id: 1,
-              typ: 'problem',
+              kind: 'problem',
               createdAt: '08-01',
               userName: 'name',
               description: 'description'
