@@ -36,7 +36,7 @@ export default class Label extends Component {
 
   render() {
     return (
-      <div className={`Label is-${this.props.label.typ}`} onClick={this.edit.bind(this)} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
+      <div className={`Label is-${this.props.label.kind}`} onClick={this.edit.bind(this)} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
         <div className="Label-content">
           <div className="Label-header">
             <i className="Label-remove fa fa-remove" onClick={this.destroy.bind(this)}></i>

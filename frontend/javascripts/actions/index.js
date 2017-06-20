@@ -4,12 +4,12 @@ import type { Labels, Label, CreateLabel, UpdateLabel } from '../types/labels'
 import type { Users } from '../types/users'
 import type { Action } from '../types/'
 
-export const openNewLabelModal = (typ: string, clientX: number, clientY: number): Action => {
+export const openNewLabelModal = (kind: string, clientX: number, clientY: number): Action => {
   return {
     type: 'OPEN_NEW_LABEL_MODAL',
     clientX: clientX,
     clientY: clientY,
-    typ: typ
+    kind: kind
   }
 }
 
@@ -61,8 +61,8 @@ export const destroyLabel = (id: number): Action => {
   return { type: 'ACTION_CABLE_DESTROY_LABEL', id: id }
 }
 
-export const dropLabel = (id: number, typ: string, index: number): Action => {
-  return { type: 'ACTION_CABLE_DROP_LABEL', id: id, typ: typ, index: index }
+export const dropLabel = (id: number, kind: string, index: number): Action => {
+  return { type: 'ACTION_CABLE_DROP_LABEL', id: id, kind: kind, index: index }
 }
 
 export const addUser = (email: string): Action => {

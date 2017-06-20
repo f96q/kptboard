@@ -39,13 +39,13 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
     closeLabelModal()
   }
 
-  if (labelModal.label.typ == null) return null
+  if (labelModal.label.kind == null) return null
 
   return (
     <Modal className="LabelModal label-modal modal-dialog" isOpen={labelModal.isOpen} style={style} contentLabel="Modal">
       <div className="modal-content">
-        <div className={`modal-header LabelModal-header is-${labelModal.label.typ}`}>
-          <h4 className="LabelModal-title modal-title">{labelModal.label.typ}</h4>
+        <div className={`modal-header LabelModal-header is-${labelModal.label.kind}`}>
+          <h4 className="LabelModal-title modal-title">{labelModal.label.kind}</h4>
         </div>
         <div className="modal-body">
           <textarea

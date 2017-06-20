@@ -30,7 +30,7 @@ const actionCable = store => next => action => {
     break
 
     case 'ACTION_CABLE_DROP_LABEL':
-      labelsChannel.perform('position', { id: action.id, typ: action.typ, position: action.index + 1 })
+      labelsChannel.perform('position', { id: action.id, kind: action.kind, position: action.index + 1 })
     break
 
     case 'ACTION_CABLE_ADD_USER':

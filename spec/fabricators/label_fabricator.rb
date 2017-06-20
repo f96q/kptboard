@@ -1,4 +1,4 @@
 Fabricator(:label) do
-  typ 'keep'
+  kind 'keep'
   description 'description'
 end

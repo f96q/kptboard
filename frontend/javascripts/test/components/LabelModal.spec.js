@@ -29,7 +29,7 @@ describe('LabelModal component', () => {
     isOpen: true,
     clientX: 0,
     clientY: 0,
-    label: { id: 1, typ: 'keep', description: 'description' }
+    label: { id: 1, kind: 'keep', description: 'description' }
   }
 
   it('should display', () => {
@@ -61,7 +61,7 @@ describe('LabelModal component', () => {
       isOpen: true,
       clientX: 0,
       clientY: 0,
-      label: { id: null, typ: 'keep', description: 'description' }
+      label: { id: null, kind: 'keep', description: 'description' }
     }
     const { save, actions } = setup(labelModal)
     save.simulate('click')

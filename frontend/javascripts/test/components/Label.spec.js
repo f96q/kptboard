@@ -28,7 +28,7 @@ function setup(label) {
 describe('Label component', () => {
   const label = {
     id: 1,
-    typ: 'keep',
+    kind: 'keep',
     createdAt: '08-01',
     userName: 'name',
     description: 'description'
