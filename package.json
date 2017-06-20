@@ -26,7 +26,6 @@
     "babel-preset-stage-0": "^6.24.1",
     "humps": "^1.1.0",
     "jest": "^20.0.0",
-    "prop-types": "^15.5.10",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-modal": "^1.4.0",
