@@ -1,5 +1,5 @@
 Fabricator(:user) do
-  name 'test'
-  email { sequence(:email) {|i| "user#{i}@example.com"} }
+  name { Faker::Pokemon.unique.name }
+  email { Faker::Internet.unique.safe_email }
   password 'password'
 end
