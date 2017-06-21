@@ -57,6 +57,7 @@ gem 'devise-i18n'
 gem 'acts_as_list'
 gem 'rails-i18n'
 gem 'dotenv-rails'
+gem 'faker'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
