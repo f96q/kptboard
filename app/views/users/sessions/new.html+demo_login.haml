@@ -1,0 +1,17 @@
+- content_for :active, 'sign_in'
+
+.page-header
+  %h2= t('devise.sessions.new.sign_in')
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= User.human_attribute_name(:name)
+      %th= User.human_attribute_name(:email)
+      %th
+  %tbody
+    - User.all.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= button_to t('devise.sessions.new.sign_in'), review_user_path(user), class: 'btn btn-primary', method: :get

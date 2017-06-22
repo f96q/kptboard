@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     end
   end
 
+  if ENV['DEMO_LOGIN'] == 'true'
+    resources :review_users, only: [:show]
+  end
+
   root 'retrospectives#index'
 end
