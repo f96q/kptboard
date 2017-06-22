@@ -6,5 +6,9 @@ Rails.application.routes.draw do
     end
   end
 
+  if ENV['HEROKU_APP_NAME'].present?
+    resources :review_users, only: [:show]
+  end
+
   root 'retrospectives#index'
 end
