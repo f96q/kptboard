@@ -7,7 +7,6 @@ namespace :review_apps do
       User
     ].each do |model|
       model.delete_all
-      ActiveRecord::Base.connection.execute("ALTER TABLE #{model.table_name} AUTO_INCREMENT = 1;")
     end
     users = [].tap { |user|  10.times { user << Fabricate(:user) } }
     3.times do
