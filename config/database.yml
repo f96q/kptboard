@@ -46,8 +46,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: kptboard_production
-  username: kptboard
-  password: <%= ENV['KPTBOARD_DATABASE_PASSWORD'] %>
