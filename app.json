@@ -1,0 +1,39 @@
+{
+  "name": "kptboard",
+  "scripts": {
+    "postdeploy": "rake review_apps:bootstrap"
+  },
+  "env": {
+    "ACTION_CABLE_ALLOWED_REQUEST_ORIGINS": {
+      "required": true
+    },
+    "DEVISE_SECRET_KEY": {
+      "generator": "secret"
+    },
+    "HOST": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+    "SMTP_URL": {
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
