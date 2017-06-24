@@ -1,7 +1,7 @@
 {
   "name": "kptboard",
   "scripts": {
-    "postdeploy": "rake review_apps:bootstrap"
+    "postdeploy": "rake db:setup"
   },
   "env": {
     "ACTION_CABLE_ALLOWED_REQUEST_ORIGINS": {
