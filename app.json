@@ -10,14 +10,8 @@
     "DEVISE_SECRET_KEY": {
       "generator": "secret"
     },
-    "HOST": {
-      "required": true
-    },
     "SECRET_KEY_BASE": {
       "generator": "secret"
-    },
-    "SMTP_URL": {
-      "required": true
     },
     "HEROKU_APP_NAME": {
       "required": true
