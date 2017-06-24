@@ -1,0 +1,28 @@
+{
+  "name": "kptboard",
+    "scripts": {
+    "postdeploy": "rake db:migrate review_apps:seed"
+  },
+  "env": {
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "DEMO_LOGIN" : "true"
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
