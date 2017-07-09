@@ -18,5 +18,5 @@
 
 .byebug_history
 
-/app/assets/javascripts/application.js
+/app/assets/javascripts/bundle.js
 .env

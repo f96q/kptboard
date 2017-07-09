@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   entry: './frontend/javascripts/application.js',
   output: {
-    filename: 'application.js',
+    filename: 'bundle.js',
     path: path.resolve('./app/assets/javascripts')
   },
   module: {
