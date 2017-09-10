@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "[![Build Status](https://travis-ci.org/f96q/kptboard.svg?branch=master)](https://travis-ci.org/f96q/kptboard) [![Code Climate](https://codeclimate.com/github/f96q/kptboard/badges/gpa.svg)](https://codeclimate.com/github/f96q/kptboard)",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config frontend/config/webpack.config.js",
+    "build": "webpack --config frontend/config/webpack.config.js",
     "watch": "webpack --watch --config frontend/config/webpack.config.js",
     "test": "mocha --recursive --compilers js:babel-core/register frontend/javascripts/test",
     "heroku-postbuild": "yarn run build"
