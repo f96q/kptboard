@@ -20,3 +20,5 @@
 
 /app/assets/javascripts/bundle.js
 .env
+.env.app
+.env.db

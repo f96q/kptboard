@@ -33,6 +33,8 @@ GEM
       activemodel (= 5.1.1)
       activesupport (= 5.1.1)
       arel (~> 8.0)
+    activerecord-nulldb-adapter (0.3.7)
+      activerecord (>= 2.0.0)
     activesupport (5.1.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -237,6 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-nulldb-adapter
   acts_as_list
   autoprefixer-rails
   bootstrap (= 4.0.0.alpha3)
@@ -269,8 +272,5 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 
-RUBY VERSION
-   ruby 2.3.1p112
-
 BUNDLED WITH
-   1.14.6
+   1.15.4

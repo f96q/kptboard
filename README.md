@@ -21,3 +21,11 @@ bundle exec foreman start -f Procfile.development
 bundle exec rake spec
 yarn run test
 ```
+
+## Docker
+
+```
+cp .env.db.example
+cp .env.app.example
+docker-compose up
+```
