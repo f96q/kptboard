@@ -1,0 +1,15 @@
+.bundle
+
+log
+tmp
+
+node_modules
+yarn-error.log
+
+.byebug_history
+
+app/assets/javascripts/bundle.js
+.env
+.env.app
+.env.db
+.git
