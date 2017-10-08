@@ -21,4 +21,4 @@ RUN yarn run build
 RUN bundle exec rake assets:precompile
 RUN rm /app/config/database.yml
 
-CMD bundle exec puma -C config/puma.rb
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
