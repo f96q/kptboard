@@ -15,10 +15,9 @@ ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
 RUN bundle install --without development test
 ADD . /app
-RUN cp /app/config/database.yml.nulldb /app/config/database.yml
 RUN yarn install
 RUN yarn run build
-RUN bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile DATABASE_URL=nulldb
 RUN rm /app/config/database.yml
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
