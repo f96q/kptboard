@@ -1,4 +1,4 @@
-class Retrospective < ActiveRecord::Base
+class Retrospective < ApplicationRecord
   validates :title, presence: true, uniqueness: true
   has_many :labels, ->{ order(position: :asc) }, dependent: :destroy
   has_many :retrospectives_users, dependent: :destroy
