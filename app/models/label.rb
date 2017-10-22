@@ -1,4 +1,4 @@
-class Label < ActiveRecord::Base
+class Label < ApplicationRecord
   enum kind: { keep: 'keep', problem: 'problem', try: 'try' }
 
   validates :kind, inclusion: { in: kinds.values }
