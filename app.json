@@ -10,7 +10,15 @@
     "HEROKU_APP_NAME": {
       "required": true
     },
-    "DEMO_LOGIN" : "true"
+    "DEMO_LOGIN" : {
+      "value":  "true",
+    },
+    "NODE_ENV" : {
+      "value": "production",
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "value": "false"
+    }
   },
   "formation": {
   },
