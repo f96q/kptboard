@@ -17,7 +17,7 @@ RUN bundle install --without development test
 ADD . /app
 RUN yarn install
 RUN yarn run build
-RUN bundle exec rake assets:precompile DATABASE_URL=nulldb SECRET_KEY_BASE=secret_key_base
+RUN bundle exec rake assets:precompile DATABASE_URL=nulldb://localhost SECRET_KEY_BASE=secret_key_base
 RUN rm /app/config/database.yml
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
