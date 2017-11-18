@@ -20,5 +20,6 @@ RUN yarn run build
 RUN bundle exec rake assets:precompile DATABASE_URL=nulldb://localhost SECRET_KEY_BASE=secret_key_base
 RUN rm /app/config/database.yml
 
+EXPOSE 3000
 ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
