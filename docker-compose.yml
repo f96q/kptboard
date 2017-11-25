@@ -8,5 +8,5 @@ services:
     depends_on:
       - db
   db:
-    image: mysql
+    image: dnhsoft/mysql-utf8
     env_file: .env.db

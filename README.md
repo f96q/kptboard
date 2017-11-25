@@ -28,4 +28,5 @@ yarn run test
 cp .env.db.example
 cp .env.app.example
 docker-compose up
+docker-compose run app rake db:migrate
 ```
