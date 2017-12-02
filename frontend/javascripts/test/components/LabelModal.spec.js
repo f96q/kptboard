@@ -1,6 +1,7 @@
 import React from 'react'
 import expect from 'expect'
 import { shallow } from 'enzyme'
+import { sel } from '../utils'
 import LabelModal from '../../components/LabelModal'
 
 function setup(labelModal) {
@@ -16,10 +17,10 @@ function setup(labelModal) {
 
   return {
     component: component,
-    title: component.find('.LabelModal-title'),
-    textarea: component.find('.LabelModal-textarea'),
-    close: component.find('.LabelModal-close'),
-    save: component.find('.LabelModal-save'),
+    title: component.find(sel('title')),
+    textarea: component.find(sel('textarea')),
+    close: component.find(sel('close')),
+    save: component.find(sel('save')),
     actions: actions
   }
 }

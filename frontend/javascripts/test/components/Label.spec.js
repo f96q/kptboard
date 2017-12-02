@@ -1,6 +1,7 @@
 import React from 'react'
 import expect from 'expect'
 import { shallow } from 'enzyme'
+import { sel } from '../utils'
 import Label from '../../components/Label'
 
 function setup(label) {
@@ -17,10 +18,10 @@ function setup(label) {
 
   return {
     component: component,
-    createdAt: component.find('.Label-createdAt'),
-    userName: component.find('.Label-userName'),
-    description: component.find('.Label-description'),
-    remove: component.find('.Label-remove'),
+    createdAt: component.find(sel('created-at')),
+    userName: component.find(sel('user-name')),
+    description: component.find(sel('description')),
+    remove: component.find(sel('remove')),
     actions: actions
   }
 }

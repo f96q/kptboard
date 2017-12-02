@@ -45,11 +45,12 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
     <Modal className="LabelModal label-modal modal-dialog" isOpen={labelModal.isOpen} style={style} contentLabel="Modal">
       <div className="modal-content">
         <div className={`modal-header LabelModal-header is-${labelModal.label.kind}`}>
-          <h4 className="LabelModal-title modal-title">{labelModal.label.kind}</h4>
+          <h4 className="LabelModal-title modal-title" data-test="title">{labelModal.label.kind}</h4>
         </div>
         <div className="modal-body">
           <textarea
             className="LabelModal-textarea form-control"
+            data-test="textarea"
             rows="10"
             onChange={(event: SyntheticInputEvent) => updateLabelModal(event.target.value)}
             onKeyDown={(event: Event) => { if (event.keyCode == 13) save() } }
@@ -57,8 +58,8 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
           ></textarea>
         </div>
         <div className="modal-footer">
-          <button type="button" className="LabelModal-close btn btn-secondary" onClick={() => closeLabelModal()}>Close</button>
-          <button type="button" className="LabelModal-save btn btn-primary" onClick={() => save()}>Save</button>
+          <button type="button" className="LabelModal-close btn btn-secondary" data-test="close" onClick={() => closeLabelModal()}>Close</button>
+          <button type="button" className="LabelModal-save btn btn-primary" data-test="save" onClick={() => save()}>Save</button>
         </div>
       </div>
     </Modal>

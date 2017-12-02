@@ -1,6 +1,7 @@
 import React from 'react'
 import expect from 'expect'
 import { shallow } from 'enzyme'
+import { sel } from '../utils'
 import UserList from '../../components/UserList'
 import UserItem from '../../components/UserItem'
 
@@ -18,8 +19,8 @@ function setup(users, email) {
   return {
     component: component,
     userItem: component.find(UserItem),
-    emailForm: component.find('.UserList-emailForm'),
-    emailFormButton: component.find('.UserList-emailFormButton'),
+    emailForm: component.find(sel('email-form')),
+    emailFormButton: component.find(sel('email-form-button')),
     actions: actions
   }
 }

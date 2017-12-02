@@ -1,6 +1,7 @@
 import React from 'react'
 import expect from 'expect'
 import { shallow } from 'enzyme'
+import { sel } from '../utils'
 import Retrospective from '../../components/Retrospective'
 import UserList from '../../components/UserList'
 import Label from '../../components/Label'
@@ -23,8 +24,8 @@ function setup(dragStartId, labels, users, email) {
     component: component,
     label: component.find(Label),
     userList: component.find(UserList),
-    board: component.find('.Retrospective-board'),
-    boardLabels: component.find('.Retrospective-boardLabels'),
+    board: component.find(sel('board')),
+    boardLabels: component.find(sel('board-labels')),
     actions: actions
   }
 }

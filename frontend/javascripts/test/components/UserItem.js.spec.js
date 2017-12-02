@@ -2,6 +2,7 @@ import React from 'react'
 import expect from 'expect'
 import sinon from 'sinon'
 import { shallow } from 'enzyme'
+import { sel } from '../utils'
 import UserItem from '../../components/UserItem'
 
 function setup(user, isDestroy = false) {
@@ -15,8 +16,8 @@ function setup(user, isDestroy = false) {
 
   return {
     component: component,
-    name: component.find('.UserItem-name'),
-    remove: component.find('.UserItem-remove'),
+    name: component.find(sel('name')),
+    remove: component.find(sel('remove')),
     actions: actions
   }
 }
