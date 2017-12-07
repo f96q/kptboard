@@ -12,8 +12,8 @@ RUN apk add --update --no-cache $RUNTIME_PACKAGES && \
 
 WORKDIR /app
 
-ADD Gemfile /app/Gemfile
-ADD Gemfile.lock /app/Gemfile.lock
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 
 RUN apk add --update --virtual build-dependencies --no-cache $DEV_PACKAGES && \
     gem install bundler --no-document && \
@@ -21,13 +21,13 @@ RUN apk add --update --virtual build-dependencies --no-cache $DEV_PACKAGES && \
     bundle install --without development test heroku && \
     apk del build-dependencies
 
-ADD package.json /app/package.json
-ADD yarn.lock /app/yarn.lock
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
 
 RUN yarn install --network-concurrency 1 && \
     yarn cache clean
 
-ADD . /app
+COPY . /app
 
 RUN yarn run build && \
     bundle exec rake assets:precompile DATABASE_URL=nulldb://localhost SECRET_KEY_BASE=secret_key_base && \
