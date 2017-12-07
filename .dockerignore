@@ -9,6 +9,7 @@ yarn-error.log
 .byebug_history
 
 app/assets/javascripts/bundle.js
+config/database.yml
 .env
 .env.app
 .env.db

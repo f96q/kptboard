@@ -30,8 +30,7 @@ RUN yarn install --network-concurrency 1 && \
 COPY . /app
 
 RUN yarn run build && \
-    bundle exec rake assets:precompile DATABASE_URL=nulldb://localhost SECRET_KEY_BASE=secret_key_base && \
-    rm /app/config/database.yml
+    bundle exec rake assets:precompile DATABASE_URL=nulldb://localhost SECRET_KEY_BASE=secret_key_base
 
 EXPOSE 3000
 ENTRYPOINT ["./docker-entrypoint.sh"]
