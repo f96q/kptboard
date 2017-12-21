@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import Modal from 'react-modal'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -14,6 +15,8 @@ const store = createStore(
   reducer,
   applyMiddleware(actionCable)
 )
+
+Modal.setAppElement(retrospective)
 
 store.dispatch({ type: 'ACTION_CABLE_CREATE', retrospectiveId: retrospectiveId })
 

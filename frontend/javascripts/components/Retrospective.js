@@ -45,9 +45,7 @@ type Props = {
   setInvitationEmail: setInvitationEmail
 }
 
-export default class Retrospective extends Component {
-  props: Props
-
+export default class Retrospective extends Component<Props> {
   openLabelForm(e: MouseEvent) {
     const kind = this.closestKind(e.target)
     if (kind == null) return

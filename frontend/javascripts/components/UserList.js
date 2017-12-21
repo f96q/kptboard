@@ -24,7 +24,7 @@ const UserList = ({ users, email, addUser, removeUser, setInvitationEmail }: Pro
         data-test="email-form"
         type="email"
         placeholder="email"
-        onChange={(event: SyntheticInputEvent) => setInvitationEmail(event.target.value)}
+        onChange={(event: SyntheticInputEvent<*>) => setInvitationEmail(event.target.value)}
       >
       </input>
       <button

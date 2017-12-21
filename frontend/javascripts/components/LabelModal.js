@@ -52,7 +52,7 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
             className="LabelModal-textarea form-control"
             data-test="textarea"
             rows="10"
-            onChange={(event: SyntheticInputEvent) => updateLabelModal(event.target.value)}
+            onChange={(event: SyntheticInputEvent<*>) => updateLabelModal(event.target.value)}
             onKeyDown={(event: Event) => { if (event.keyCode == 13) save() } }
             value={labelModal.label.description}
           ></textarea>

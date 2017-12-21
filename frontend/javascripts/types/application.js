@@ -10,4 +10,5 @@ export type ApplicationState = {
 }
 
 export type ApplicationAction =
-  { type: 'CLEAR_ALERT' }
+  | { type: 'CLEAR_ALERT' }
+  | { type: 'SET_ALERT', alert: Alert }

@@ -13,9 +13,7 @@ type Props = {
   dragEndLabel: dragEndLabel
 }
 
-export default class Label extends Component {
-  props: Props
-
+export default class Label extends Component<Props> {
   destroy(e: Event) {
     this.props.destroyLabel(this.props.label.id)
     e.stopPropagation()
