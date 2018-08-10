@@ -28,6 +28,7 @@ class RetrospectivesController < ApplicationController
 
   def destroy
     @retrospective.destroy
+    redirect_to retrospectives_path
   end
 
   def show
