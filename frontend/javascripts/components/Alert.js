@@ -1,16 +1,7 @@
-// @flow
-
 import React, { Component } from 'react'
 import { lifecycle } from 'recompose'
-import type { Alert as AlertType } from '../types/application'
-import type { clearAlert } from '../types/actions'
 
-type Props = {
-  alert: AlertType,
-  clearAlert: clearAlert
-}
-
-const Alert = ({ alert, clearAlert }: Props) => {
+const Alert = ({ alert, clearAlert }) => {
   if (alert.messages.length == 0) {
     return null
   }

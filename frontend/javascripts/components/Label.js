@@ -1,49 +1,40 @@
-// @flow
+import React from 'react'
+import { withHandlers } from 'recompose'
 
-import React, { Component } from 'react'
-
-import type { Label as LabelType } from '../types/labels'
-import type { destroyLabel, openEditLabelModal, dragStartLabel, dragEndLabel } from '../types/actions'
-
-type Props = {
-  label: LabelType,
-  destroyLabel: destroyLabel,
-  openEditLabelModal: openEditLabelModal,
-  dragStartLabel: dragStartLabel,
-  dragEndLabel: dragEndLabel
+const edit = ({ label, openEditLabelModal }) => event => {
+  openEditLabelModal(label.id, event.clientX, event.clientY)
+  event.stopPropagation()
 }
 
-export default class Label extends Component<Props> {
-  destroy(e: Event) {
-    this.props.destroyLabel(this.props.label.id)
-    e.stopPropagation()
-  }
+const destroy = ({ label, destroyLabel }) => event => {
+  destroyLabel(label.id)
+  event.stopPropagation()
+}
 
-  edit(e: MouseEvent) {
-    this.props.openEditLabelModal(this.props.label.id, e.clientX, e.clientY)
-    e.stopPropagation()
-  }
+const onDragStart = ({ label, dragStartLabel}) => event => {
+  dragStartLabel(label.id)
+}
 
-  onDragStart() {
-    this.props.dragStartLabel(this.props.label.id)
-  }
+const onDragEnd = ({ dragEndLabel }) => event => {
+  dragEndLabel()
+}
 
-  onDragEnd() {
-    this.props.dragEndLabel()
-  }
-
-  render() {
-    return (
-      <div className={`Label is-${this.props.label.kind}`} onClick={this.edit.bind(this)} draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
-        <div className="Label-content">
-          <div className="Label-header">
-            <i className="Label-remove fa fa-remove" data-test="remove" onClick={this.destroy.bind(this)}></i>
-            <div className="Label-createdAt" data-test="created-at">{this.props.label.createdAt}</div>
-            <div className="Label-userName" data-test="user-name">{this.props.label.userName}</div>
-          </div>
-          <div className="Label-description" data-test="description">{this.props.label.description}</div>
+const Label = ({ label, edit, destroy, onDragStart, onDragEnd }) => (
+  <div className={`Label is-${label.kind}`} onClick={edit} draggable="true" onDragStart={onDragStart} onDragEnd={onDragEnd}>
+      <div className="Label-content">
+        <div className="Label-header">
+          <i className="Label-remove fa fa-remove" data-test="remove" onClick={destroy}></i>
+          <div className="Label-createdAt" data-test="created-at">{label.createdAt}</div>
+          <div className="Label-userName" data-test="user-name">{label.userName}</div>
         </div>
+        <div className="Label-description" data-test="description">{label.description}</div>
       </div>
-    )
-  }
-}
+  </div>
+)
+
+export default withHandlers({
+  edit: edit,
+  destroy: destroy,
+  onDragStart: onDragStart,
+  onDragEnd: onDragEnd
+})(Label)
