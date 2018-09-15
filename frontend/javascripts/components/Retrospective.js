@@ -1,51 +1,10 @@
-// @flow
-
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
 import Label from './Label'
 import UserList from './UserList'
 
-import type { Labels } from '../types/labels'
-import type { Users } from '../types/users'
-import type {
-  clearAlert,
-  createLabel,
-  updateLabel,
-  destroyLabel,
-  dragStartLabel,
-  dragEndLabel,
-  dropLabel,
-  openNewLabelModal,
-  openEditLabelModal,
-  updateLabelModal,
-  closeLabelModal,
-  addUser,
-  removeUser,
-  setInvitationEmail,
-} from '../types/actions'
-
-type Props = {
-  dragStartId: ?number,
-  labels: {
-    keep: Labels,
-    problem: Labels,
-    try: Labels
-  },
-  users: Users,
-  email: string,
-  destroyLabel: destroyLabel,
-  dragStartLabel: dragStartLabel,
-  dragEndLabel: dragEndLabel,
-  dropLabel: dropLabel,
-  openNewLabelModal: openNewLabelModal,
-  openEditLabelModal: openEditLabelModal,
-  addUser: addUser,
-  removeUser: removeUser,
-  setInvitationEmail: setInvitationEmail
-}
-
-export default class Retrospective extends Component<Props> {
+export default class Retrospective extends Component {
   openLabelForm(e: MouseEvent) {
     const kind = this.closestKind(e.target)
     if (kind == null) return

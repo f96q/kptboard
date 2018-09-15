@@ -14,7 +14,7 @@ function setup(users, email) {
 
   const component = shallow(
     <UserList users={users} email={email} {...actions} />
-  )
+  ).first().shallow()
 
   return {
     component: component,

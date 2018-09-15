@@ -1,48 +1,42 @@
-// @flow
-
 import React from 'react'
-
+import { withHandlers } from 'recompose'
 import UserItem from './UserItem'
 
-import type { Users } from '../types/users'
-import type { addUser, removeUser, setInvitationEmail } from '../types/actions'
-
-type Props = {
-  users: Users,
-  email: string,
-  addUser: addUser,
-  removeUser: removeUser,
-  setInvitationEmail: setInvitationEmail
+const onChangeEmail = ({ setInvitationEmail }) => event => {
+  setInvitationEmail(event.target.value)
 }
 
-const UserList = ({ users, email, addUser, removeUser, setInvitationEmail }: Props) => {
-  const isDestroy = users.length > 1
-  return (
-    <div className="UserList">
+const onClickAddUser = ({ email, addUser }) => event => {
+  if (email) addUser(email)
+}
+
+const UserList = ({ users, removeUser, onChangeEmail, onClickAddUser }) => (
+  <div className="UserList">
       <input
         className="UserList-emailForm"
         data-test="email-form"
         type="email"
         placeholder="email"
-        onChange={(event: SyntheticInputEvent<*>) => setInvitationEmail(event.target.value)}
-      >
-      </input>
-      <button
-        className="UserList-emailFormButton fa fa-user-plus"
-        data-test="email-form-button"
-        type="button"
-        onClick={() => {
-          if (email) addUser(email)
-        }}
-      >
-      </button>
-      <div className="UserList-items">
-        {users.map(user => (
-          <UserItem key={user.id} user={user} isDestroy={isDestroy} removeUser={removeUser} />
-        ))}
-      </div>
+        onChange={onChangeEmail}
+    >
+    </input>
+    <button
+      className="UserList-emailFormButton fa fa-user-plus"
+      data-test="email-form-button"
+      type="button"
+      onClick={onClickAddUser}
+    >
+    </button>
+    <div className="UserList-items">
+      {users.map(user => (
+        <UserItem key={user.id} user={user} isDestroy={users.length > 1} removeUser={removeUser} />
+      ))}
     </div>
-  )
-}
+  </div>
+)
 
-export default UserList
+export default withHandlers({
+  onChangeEmail: onChangeEmail,
+  onClickAddUser: onClickAddUser
+})(UserList)
+

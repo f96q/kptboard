@@ -14,7 +14,7 @@ function setup(label) {
 
   const component = shallow(
     <Label label={label} {...actions} />
-  )
+  ).first().shallow()
 
   return {
     component: component,
