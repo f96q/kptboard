@@ -1,20 +1,7 @@
-// @flow
-
 import React from 'react'
 import Modal from 'react-modal'
 
-import type { Label, LabelModal as LabelModalType } from '../types/labels'
-import type { createLabel, updateLabel, updateLabelModal, closeLabelModal } from '../types/actions'
-
-type Props = {
-  labelModal: LabelModalType,
-  createLabel: createLabel,
-  updateLabel: updateLabel,
-  updateLabelModal: updateLabelModal,
-  closeLabelModal: closeLabelModal
-}
-
-const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, closeLabelModal }: Props) => {
+const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, closeLabelModal }) => {
   const style = {
     overlay: {
       top: labelModal.clientY,
@@ -52,8 +39,8 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
             className="LabelModal-textarea form-control"
             data-test="textarea"
             rows="10"
-            onChange={(event: SyntheticInputEvent<*>) => updateLabelModal(event.target.value)}
-            onKeyDown={(event: Event) => { if (event.keyCode == 13) save() } }
+            onChange={event => updateLabelModal(event.target.value)}
+            onKeyDown={event => { if (event.keyCode == 13) save() } }
             value={labelModal.label.description}
           ></textarea>
         </div>
