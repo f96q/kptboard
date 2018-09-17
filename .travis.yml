@@ -22,5 +22,4 @@ before_script:
 
 script:
   - 'RAILS_ENV=test bundle exec rake db:drop db:create db:migrate spec'
-  - 'yarn run flow'
   - 'yarn run test'
