@@ -6,6 +6,7 @@
     "build": "webpack --config frontend/config/webpack.config.js",
     "watch": "webpack --watch --config frontend/config/webpack.config.js",
     "test": "mocha --recursive --compilers js:babel-core/register frontend/javascripts/test",
+    "storybook": "start-storybook -p 9001 -c frontend/.storybook",
     "heroku-postbuild": "yarn run build"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "rocha": "^2.5.0"
   },
   "devDependencies": {
+    "@storybook/react": "^3.4.10",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-react-remove-properties": "^0.2.5",
