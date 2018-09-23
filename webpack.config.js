@@ -2,19 +2,21 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  entry: './frontend/javascripts/application.js',
+  entry: path.resolve('app/javascript/packs/application.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve('./app/assets/javascripts')
+    path: path.resolve('app/assets/javascripts')
+  },
+  resolve: {
+    extensions: ['.jsx', '.js']
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [{
-          loader: 'babel-loader',
-          options: { presets: ['es2015', 'es2016', 'es2017', 'react'] }
+          loader: 'babel-loader'
         }]
       }
     ]
