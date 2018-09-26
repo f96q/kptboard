@@ -1,7 +1,16 @@
 import React from 'react'
 import Modal from 'react-modal'
+import styled from 'styled-components'
 
-const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, closeLabelModal }) => {
+const LabelModal = (props) => {
+  const {
+    labelModal,
+    createLabel,
+    updateLabel,
+    updateLabelModal,
+    closeLabelModal
+  } = props
+
   const style = {
     overlay: {
       top: labelModal.clientY,

@@ -1,40 +1,79 @@
 import React from 'react'
-import { withHandlers } from 'recompose'
+import styled from 'styled-components'
 
-const edit = ({ label, openEditLabelModal }) => event => {
-  openEditLabelModal(label.id, event.clientX, event.clientY)
-  event.stopPropagation()
+export default props => {
+  const {
+    label,
+    openEditLabelModal,
+    destroyLabel,
+    dragStartLabel,
+    dragEndLabel
+  } = props
+  return (
+    <Container
+      onClick={event => {
+        openEditLabelModal(label.id, event.clientX, event.clientY)
+        event.stopPropagation()
+      }}
+      draggable="true"
+      onDragStart={event => dragStartLabel(label.id)}
+      onDragEnd={event => dragEndLabel()}>
+      <Content>
+        <Header>
+          <Remove
+            className="fa fa-remove"
+            data-test="remove"
+            onClick={event => dragStartLabel(label.id)}></Remove>
+          <CreatedAt data-test="created-at">{label.createdAt}</CreatedAt>
+          <UserName data-test="user-name">{label.userName}</UserName>
+        </Header>
+        <Description data-test="description">{label.description}</Description>
+     </Content>
+    </Container>
+  )
 }
 
-const destroy = ({ label, destroyLabel }) => event => {
-  destroyLabel(label.id)
-  event.stopPropagation()
-}
+const Container = styled.div`
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 10px 6px -6px black;
+  height: 150px;
+  width: 150px;
+  background: linear-gradient(to bottom, #fefeb6 0%, #d6d37c 100%);
+`
 
-const onDragStart = ({ label, dragStartLabel}) => event => {
-  dragStartLabel(label.id)
-}
+const Content = styled.div`
+  margin: 8px;
+`
 
-const onDragEnd = ({ dragEndLabel }) => event => {
-  dragEndLabel()
-}
+const Header = styled.div`
+  color: $color-gray;
+  display: flex;
+  font-size: .6rem;
+  font-weight: bold;
+`
 
-const Label = ({ label, edit, destroy, onDragStart, onDragEnd }) => (
-  <div className={`Label is-${label.kind}`} onClick={edit} draggable="true" onDragStart={onDragStart} onDragEnd={onDragEnd}>
-      <div className="Label-content">
-        <div className="Label-header">
-          <i className="Label-remove fa fa-remove" data-test="remove" onClick={destroy}></i>
-          <div className="Label-createdAt" data-test="created-at">{label.createdAt}</div>
-          <div className="Label-userName" data-test="user-name">{label.userName}</div>
-        </div>
-        <div className="Label-description" data-test="description">{label.description}</div>
-      </div>
-  </div>
-)
+const Remove = styled.i`
+  font-size: 1rem;
+`
 
-export default withHandlers({
-  edit: edit,
-  destroy: destroy,
-  onDragStart: onDragStart,
-  onDragEnd: onDragEnd
-})(Label)
+const CreatedAt = styled.div`
+  margin-left: 5px;
+  margin-top: 2px;
+`
+
+const UserName = styled.div`
+  margin-left: 5px;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70px;
+`
+
+const Description = styled.div`
+  font-size: .8rem;
+  font-weight: bold;
+  height: 110px;
+  overflow: hidden;
+`
