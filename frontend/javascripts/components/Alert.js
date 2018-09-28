@@ -1,16 +1,26 @@
-// @flow
-
-import React, { Component } from 'react'
+import React from 'react'
 import { lifecycle } from 'recompose'
-import type { Alert as AlertType } from '../types/application'
-import type { clearAlert } from '../types/actions'
+import { connector } from '../actionCreators'
 
-type Props = {
-  alert: AlertType,
-  clearAlert: clearAlert
-}
-
-const Alert = ({ alert, clearAlert }: Props) => {
+export const Alert = connector(
+  state => ({
+    alert: state.application.alert
+  }),
+  actions => ({
+    clearAlert: actions.clearAlert
+  }),
+  lifecycle({
+    componentDidUpdate() {
+      if (this.props.alert.messages.length == 0) {
+        return
+      }
+      setTimeout(() => {
+        this.props.clearAlert()
+      }, 5000)
+    }
+  })
+)(function AlertImpl(props) {
+  const { alert, clearAlert } = props
   if (alert.messages.length == 0) {
     return null
   }
@@ -25,16 +35,6 @@ const Alert = ({ alert, clearAlert }: Props) => {
       <div className="Alert-messages">{messages}</div>
     </div>
   )
-}
+})
 
-export default lifecycle({
-  componentDidUpdate() {
-    if (this.props.alert.messages.length == 0) {
-      return
-    }
-    setTimeout(() => {
-      this.props.clearAlert()
-    }, 5000)
-  }
-})(Alert)
 

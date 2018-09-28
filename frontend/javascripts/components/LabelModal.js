@@ -1,20 +1,25 @@
-// @flow
-
 import React from 'react'
 import Modal from 'react-modal'
+import { connector } from '../actionCreators'
 
-import type { Label, LabelModal as LabelModalType } from '../types/labels'
-import type { createLabel, updateLabel, updateLabelModal, closeLabelModal } from '../types/actions'
-
-type Props = {
-  labelModal: LabelModalType,
-  createLabel: createLabel,
-  updateLabel: updateLabel,
-  updateLabelModal: updateLabelModal,
-  closeLabelModal: closeLabelModal
-}
-
-const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, closeLabelModal }: Props) => {
+export const LabelModal = connector(
+  state => ({
+    labelModal: state.labels.labelModal
+  }),
+  actions => ({
+    createLabel: actions.createLabel,
+    updateLabel: actions.updateLabel,
+    updateLabelModal: actions.updateLabelModal,
+    closeLabelModal: actions.closeLabelModal
+  })
+)(function LabelModalImpl(props) {
+  const {
+    labelModal,
+    createLabel,
+    updateLabel,
+    updateLabelModal,
+    closeLabelModal
+  } = props
   const style = {
     overlay: {
       top: labelModal.clientY,
@@ -26,7 +31,6 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
       marginLeft: 0
     }
   }
-
   const save = () => {
     if (labelModal.label.description == '') {
       return
@@ -38,9 +42,7 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
     }
     closeLabelModal()
   }
-
   if (labelModal.label.kind == null) return null
-
   return (
     <Modal className="LabelModal label-modal modal-dialog" isOpen={labelModal.isOpen} style={style} contentLabel="Modal">
       <div className="modal-content">
@@ -52,8 +54,8 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
             className="LabelModal-textarea form-control"
             data-test="textarea"
             rows="10"
-            onChange={(event: SyntheticInputEvent<*>) => updateLabelModal(event.target.value)}
-            onKeyDown={(event: Event) => { if (event.keyCode == 13) save() } }
+            onChange={event => updateLabelModal(event.target.value)}
+            onKeyDown={event => { if (event.keyCode == 13) save() }}
             value={labelModal.label.description}
           ></textarea>
         </div>
@@ -64,6 +66,5 @@ const LabelModal = ({ labelModal, createLabel, updateLabel, updateLabelModal, cl
       </div>
     </Modal>
   )
-}
+})
 
-export default LabelModal

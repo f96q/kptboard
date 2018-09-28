@@ -1,22 +1,21 @@
-// @flow
-
 import React from 'react'
+import { UserItem } from './UserItem'
+import { connector } from '../actionCreators'
 
-import UserItem from './UserItem'
-
-import type { Users } from '../types/users'
-import type { addUser, removeUser, setInvitationEmail } from '../types/actions'
-
-type Props = {
-  users: Users,
-  email: string,
-  addUser: addUser,
-  removeUser: removeUser,
-  setInvitationEmail: setInvitationEmail
-}
-
-const UserList = ({ users, email, addUser, removeUser, setInvitationEmail }: Props) => {
-  const isDestroy = users.length > 1
+export const UserList = connector(
+  state => ({
+    email: state.users.email
+  }),
+  actions => ({
+    addUser: actions.addUser,
+    setInvitationEmail: actions.setInvitationEmail
+  })
+)(function UserListImpl(props) {
+  const {
+    email,
+    addUser,
+    setInvitationEmail
+  } = props
   return (
     <div className="UserList">
       <input
@@ -24,7 +23,7 @@ const UserList = ({ users, email, addUser, removeUser, setInvitationEmail }: Pro
         data-test="email-form"
         type="email"
         placeholder="email"
-        onChange={(event: SyntheticInputEvent<*>) => setInvitationEmail(event.target.value)}
+        onChange={event => setInvitationEmail(event.target.value)}
       >
       </input>
       <button
@@ -36,13 +35,33 @@ const UserList = ({ users, email, addUser, removeUser, setInvitationEmail }: Pro
         }}
       >
       </button>
-      <div className="UserList-items">
-        {users.map(user => (
-          <UserItem key={user.id} user={user} isDestroy={isDestroy} removeUser={removeUser} />
-        ))}
-      </div>
+      <UserListItems />
     </div>
   )
-}
+})
 
-export default UserList
+const UserListItems = connector(
+  state => ({
+    users: state.users.users
+  }),
+  actions => ({
+    removeUser: actions.removeUser
+  })
+)(function UserListItemsImpl(props) {
+  const {
+    users,
+    removeUser
+  } = props
+  return (
+    <div className="UserList-items">
+      {users.map(user => (
+        <UserItem
+          key={user.id}
+          user={user}
+          isDestroy={users.length > 1}
+          removeUser={removeUser}
+         />
+      ))}
+    </div>
+  )
+})

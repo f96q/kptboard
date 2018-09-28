@@ -1,58 +1,17 @@
-// @flow
-
-import React, { Component } from 'react'
+import React from 'react'
 import { findDOMNode } from 'react-dom'
+import { connector } from '../actionCreators'
+import { Label } from './Label'
+import { UserList } from './UserList'
 
-import Label from './Label'
-import UserList from './UserList'
-
-import type { Labels } from '../types/labels'
-import type { Users } from '../types/users'
-import type {
-  clearAlert,
-  createLabel,
-  updateLabel,
-  destroyLabel,
-  dragStartLabel,
-  dragEndLabel,
-  dropLabel,
-  openNewLabelModal,
-  openEditLabelModal,
-  updateLabelModal,
-  closeLabelModal,
-  addUser,
-  removeUser,
-  setInvitationEmail,
-} from '../types/actions'
-
-type Props = {
-  dragStartId: ?number,
-  labels: {
-    keep: Labels,
-    problem: Labels,
-    try: Labels
-  },
-  users: Users,
-  email: string,
-  destroyLabel: destroyLabel,
-  dragStartLabel: dragStartLabel,
-  dragEndLabel: dragEndLabel,
-  dropLabel: dropLabel,
-  openNewLabelModal: openNewLabelModal,
-  openEditLabelModal: openEditLabelModal,
-  addUser: addUser,
-  removeUser: removeUser,
-  setInvitationEmail: setInvitationEmail
-}
-
-export default class Retrospective extends Component<Props> {
-  openLabelForm(e: MouseEvent) {
+class RetrospectiveImpl extends React.Component {
+  openLabelForm(e) {
     const kind = this.closestKind(e.target)
     if (kind == null) return
     this.props.openNewLabelModal(kind, e.clientX, e.clientY)
   }
 
-  closestKind(target: EventTarget) {
+  closestKind(target) {
     for (let kind of ['keep', 'problem', 'try']) {
       if (this.refs[kind].contains(target)) {
         return kind
@@ -61,7 +20,7 @@ export default class Retrospective extends Component<Props> {
     return null
   }
 
-  closestLabelIndex(kind: string, target: EventTarget) {
+  closestLabelIndex(kind, target) {
     for (let i in this.props.labels[kind]) {
       const label = this.props.labels[kind][i]
       const node = findDOMNode(this.refs[`label_${label.id}`])
@@ -90,23 +49,28 @@ export default class Retrospective extends Component<Props> {
   }
 
   render() {
-    const props = this.props
+    const {
+      labels,
+      destroyLabel,
+      openEditLabelModal,
+      dragStartLabel,
+      dragEndLabel
+    } = this.props
     const label = (label) => {
       return (
-        <Label
-          key={label.id}
+        <Label key={label.id}
           label={label}
           ref={`label_${label.id}`}
-          destroyLabel={props.destroyLabel}
-          openEditLabelModal={props.openEditLabelModal}
-          dragStartLabel={props.dragStartLabel}
-          dragEndLabel={props.dragEndLabel}
-      />)
+          destroyLabel={destroyLabel}
+          openEditLabelModal={openEditLabelModal}
+          dragStartLabel={dragStartLabel}
+          dragEndLabel={dragEndLabel}
+        />
+      )
     }
-    const keepLabels = this.props.labels.keep.map(label)
-    const problemLabels = this.props.labels.problem.map(label)
-    const tryLabels = this.props.labels.try.map(label)
-
+    const keepLabels = labels.keep.map(label)
+    const problemLabels = labels.problem.map(label)
+    const tryLabels = labels.try.map(label)
     return (
       <div className="Retrospective">
         <div className="Retrospective-content">
@@ -129,15 +93,28 @@ export default class Retrospective extends Component<Props> {
             </div>
           </div>
 
-          <UserList
-            users={this.props.users}
-            email={this.props.email}
-            addUser={this.props.addUser}
-            removeUser={this.props.removeUser}
-            setInvitationEmail={this.props.setInvitationEmail}
-          />
+          <UserList />
         </div>
       </div>
     )
   }
 }
+
+export const Retrospective = connector(
+  state => ({
+    labels: state.labels.labels,
+    dragStartId: state.labels.dragStartId
+  }),
+  actions => ({
+    destroyLabel: actions.destroyLabel,
+    openNewLabelModal: actions.openNewLabelModal,
+    openEditLabelModal: actions.openEditLabelModal,
+    dragStartLabel: actions.dragStartLabel,
+    dragEndLabel: actions.dragEndLabel,
+    dropLabel: actions.dropLabel,
+    destroyLabel: actions.destroyLabel,
+    openEditLabelModal: actions.openEditLabelModal,
+    dragStartLabel: actions.dragStartLabel,
+    dragEndLabel: actions.dragEndLabel
+  }),
+)(RetrospectiveImpl)

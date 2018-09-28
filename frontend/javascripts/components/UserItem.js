@@ -1,17 +1,11 @@
-// @flow
-
 import React from 'react'
 
-import type { User } from '../types/users'
-import type { removeUser } from '../types/actions'
-
-type Props = {
-  user: User,
-  removeUser: removeUser,
-  isDestroy: boolean
-}
-
-const UserItem = ({ user, removeUser, isDestroy }: Props) => {
+export function UserItem(props) {
+  const {
+    user,
+    isDestroy,
+    removeUser
+  } = props
   const removeButton = () => {
     return (
       <i
@@ -22,7 +16,8 @@ const UserItem = ({ user, removeUser, isDestroy }: Props) => {
             removeUser(user.id)
           }
         }}
-      />)
+      />
+    )
   }
   return (
     <div className="UserItem">
@@ -33,5 +28,3 @@ const UserItem = ({ user, removeUser, isDestroy }: Props) => {
     </div>
   )
 }
-
-export default UserItem
