@@ -1,7 +1,20 @@
 import expect from 'expect'
-import labels from '../../reducers/labels'
+import { setRetrospective } from '../../actionCreators/globalActions'
+import {
+  reducer,
+  openNewLabelModal,
+  openEditLabelModal,
+  updateLabelModal,
+  closeLabelModal,
+  createLabel,
+  updateLabel,
+  destroyLabel,
+  dragStartLabel,
+  dragEndLabel,
+  dropLabel
+} from '../../reducers/label'
 
-describe('labels', () => {
+describe('label reducer', () => {
   const initialState = {
     dragStartId: null,
     labels: {
@@ -21,31 +34,29 @@ describe('labels', () => {
     }
   }
 
-  it('should handle SET_RETROSPECTIVE action', () => {
-    const action = {
-      type: 'SET_RETROSPECTIVE',
-      retrospective: {
-        labels: {
-          keep: [
-            {
-              id: 1,
-              kind: 'keep',
-              createdAt: '08-01',
-              userName: 'name',
-              description: 'description'
-            }
-          ],
-          problem: [],
-          try: []
-        },
-        users: [
+  it('should handle setRetrospective action', () => {
+    const retrospective = {
+      labels: {
+        keep: [
           {
             id: 1,
-            name: 'name'
+            kind: 'keep',
+            createdAt: '08-01',
+            userName: 'name',
+            description: 'description'
           }
-        ]
-      }
+        ],
+        problem: [],
+        try: []
+      },
+      users: [
+        {
+           id: 1,
+           name: 'name'
+         }
+      ]
     }
+    const action = setRetrospective({ retrospective: retrospective })
     const afterState = { ...initialState,
       labels: {
         keep: [
@@ -61,16 +72,10 @@ describe('labels', () => {
         try: []
       }
     }
-    expect(labels(initialState, action)).toEqual(afterState)
+    expect(reducer(initialState, action)).toEqual(afterState)
   })
 
-  it('should handle OPEN_NEW_LABEL_MODAL action', () => {
-    const action = {
-      type: 'OPEN_NEW_LABEL_MODAL',
-      clientX: 1,
-      clientY: 1,
-      kind: 'keep'
-    }
+  it('should handle openNewLabelModal action', () => {
     const afterState = { ...initialState,
       labelModal: {
         isOpen: true,
@@ -83,16 +88,12 @@ describe('labels', () => {
         }
       }
     }
-    expect(labels(initialState, action)).toEqual(afterState)
+    const action = openNewLabelModal({ kind: 'keep', clientX: 1, clientY: 1 })
+    expect(reducer(initialState, action)).toEqual(afterState)
   })
 
-  it('should handle OPEN_EDIT_LABEL_MODAL action', () => {
-    const action = {
-      type: 'OPEN_EDIT_LABEL_MODAL',
-      clientX: 1,
-      clientY: 1,
-      id: 1
-    }
+  it('should handle openEditLabelModal action', () => {
+    const action = openEditLabelModal({ id: 1, clientX: 1, clientY: 1 })
     const beforeState = { ...initialState,
       labels: {
         keep: [
@@ -133,13 +134,11 @@ describe('labels', () => {
         }
       }
     }
-    expect(labels(beforeState, action)).toEqual(afterState)
+    expect(reducer(beforeState, action)).toEqual(afterState)
   })
 
-  it('should handle CLOSE_LABEL_MODAL action', () => {
-    const action = {
-      type: 'CLOSE_LABEL_MODAL'
-    }
+  it('should handle closeLabelModal action', () => {
+    const action = closeLabelModal()
     const beforeState = { ...initialState,
       labelModal: {
         isOpen: true,
@@ -152,14 +151,11 @@ describe('labels', () => {
         }
       }
     }
-    expect(labels(beforeState, action)).toEqual(initialState)
+    expect(reducer(beforeState, action)).toEqual(initialState)
   })
 
-  it('should handle UPDATE_LABEL_MODAL action', () => {
-    const action = {
-      type: 'UPDATE_LABEL_MODAL',
-      description: 'update description'
-    }
+  it('should handle updateLabelModal action', () => {
+    const action = updateLabelModal({ description: 'update description' })
     const afterState = { ...initialState,
       labelModal: {
         isOpen: false,
@@ -172,20 +168,18 @@ describe('labels', () => {
         }
       }
     }
-    expect(labels(initialState, action)).toEqual(afterState)
+    expect(reducer(initialState, action)).toEqual(afterState)
   })
 
-  it('should handle CREATE_LABEL action', () => {
-    const action = {
-      type: 'CREATE_LABEL',
-      label: {
-        id: 1,
-        kind: 'keep',
-        createdAt: '08-01',
-        userName: 'name',
-        description: 'description'
-      }
+  it('should handle createLabel action', () => {
+    const label = {
+      id: 1,
+      kind: 'keep',
+      createdAt: '08-01',
+      userName: 'name',
+      description: 'description'
     }
+    const action = createLabel({ label: label })
     const afterState = { ...initialState,
       labels: {
         keep: [
@@ -201,17 +195,11 @@ describe('labels', () => {
         try: []
       }
     }
-    expect(labels(initialState, action)).toEqual(afterState)
+    expect(reducer(initialState, action)).toEqual(afterState)
   })
 
-  it('should handle UPDATE_LABEL action', () => {
-    const action = {
-      type: 'UPDATE_LABEL',
-      id: 1,
-      label: {
-        description: 'update description'
-      }
-    }
+  it('should handle updateLabel action', () => {
+    const action = updateLabel({ id: 1, label: { description: 'update description' } })
     const beforeState = { ...initialState,
       labels: {
         keep: [
@@ -242,14 +230,11 @@ describe('labels', () => {
         try: []
       }
     }
-    expect(labels(beforeState, action)).toEqual(afterState)
+    expect(reducer(beforeState, action)).toEqual(afterState)
   })
 
-  it('should handle DESTROY_LABEL action', () => {
-    const action = {
-      type: 'DESTROY_LABEL',
-      id: 1
-    }
+  it('should handle destroyLabel action', () => {
+    const action = destroyLabel({ id: 1 })
     const beforeState = { ...initialState,
       labels: {
         keep: [
@@ -265,33 +250,23 @@ describe('labels', () => {
         try: []
       }
     }
-    expect(labels(beforeState, action)).toEqual(initialState)
+    expect(reducer(beforeState, action)).toEqual(initialState)
   })
 
-  it('should handle DRAG_START_LABEL action', () => {
-    const action = {
-      type: 'DRAG_START_LABEL',
-      id: 1
-    }
+  it('should handle dragStartLabel action', () => {
+    const action = dragStartLabel({ id: 1 })
     const afterState = { ...initialState, dragStartId: 1 }
-    expect(labels(initialState, action)).toEqual(afterState)
+    expect(reducer(initialState, action)).toEqual(afterState)
   })
 
-  it('should handle DRAG_END_LABEL action', () => {
-    const action = {
-      type: 'DRAG_END_LABEL'
-    }
+  it('should handle dragEndLabel action', () => {
+    const action = dragEndLabel()
     const beforeState = { ...initialState, dragStartId: 1 }
-    expect(labels(beforeState, action)).toEqual(initialState)
+    expect(reducer(beforeState, action)).toEqual(initialState)
   })
 
-  it('should handle DROP_LABEL action', () => {
-    const action = {
-      type: 'DROP_LABEL',
-      id: 1,
-      kind: 'keep',
-      index: 2
-    }
+  it('should handle dropLabel action', () => {
+    const action = dropLabel({ id: 1, kind: 'keep', index: 2 })
     const beforeState = { ...initialState,
       labels: {
         keep: [
@@ -336,17 +311,12 @@ describe('labels', () => {
         try: []
       }
     }
-    expect(labels(beforeState, action)).toEqual(afterState)
+    expect(reducer(beforeState, action)).toEqual(afterState)
   })
 
-  describe('when other type drop', () => {
-    it('should handle DROP_LABEL action', () => {
-      const action = {
-        type: 'DROP_LABEL',
-        id: 1,
-        kind: 'problem',
-        index: 2
-      }
+  describe('when other kind drop', () => {
+    it('should handle dropLabel action', () => {
+      const action = dropLabel({ id: 1, kind: 'problem', index: 2 })
       const beforeState = { ...initialState,
         labels: {
           keep: [
@@ -392,7 +362,8 @@ describe('labels', () => {
           try: []
         }
       }
-      expect(labels(beforeState, action)).toEqual(afterState)
+      expect(reducer(beforeState, action)).toEqual(afterState)
     })
   })
 })
+

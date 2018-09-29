@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from 'react-modal'
 import { render } from 'react-dom'
-import { App } from './components/App'
+import App from './components/App'
 
 const retrospective = document.getElementsByClassName('js-retrospective')[0]
 const retrospectiveId = retrospective.getAttribute('data-id')

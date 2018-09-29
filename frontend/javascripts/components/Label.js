@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class Label extends React.Component {
+export default class Label extends React.Component {
   render() {
     const {
       destroyLabel,
@@ -12,11 +12,11 @@ export class Label extends React.Component {
     return (
       <div className={`Label is-${this.props.label.kind}`}
         onClick={event => {
-          openEditLabelModal(label.id, event.clientX, event.clientY)
+          openEditLabelModal({ id: label.id, clientX: event.clientX, clientY: event.clientY })
           event.stopPropagation()
         }}
         draggable="true"
-        onDragStart={() => dragStartLabel(label.id)}
+        onDragStart={() => dragStartLabel({ id: label.id })}
         onDragEnd={() => dragEndLabel()}
       >
         <div className="Label-content">
@@ -24,7 +24,7 @@ export class Label extends React.Component {
             <i className="Label-remove fa fa-remove"
               data-test="remove"
               onClick={event => {
-                destroyLabel(label.id)
+                destroyLabel({ id: label.id })
                 event.stopPropagation()
               }}></i>
             <div className="Label-createdAt" data-test="created-at">{label.createdAt}</div>
