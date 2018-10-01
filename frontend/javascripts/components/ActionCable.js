@@ -4,6 +4,10 @@ import humps from 'humps'
 import { lifecycle } from 'recompose'
 import { connector } from '../actionCreators'
 
+export default function ActionCableImpl() {
+  return null
+}
+
 export const ActionCable = connector(
   state => ({}),
   actions => ({
@@ -74,6 +78,4 @@ export const ActionCable = connector(
       })
     }
   })
-)(function ActionCableImpl() {
-  return null
-})
+)(ActionCableImpl)
