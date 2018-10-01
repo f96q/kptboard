@@ -32,7 +32,7 @@ export default class RetrospectiveImpl extends React.Component {
     return this.props.labels[kind].length
   }
 
-  onDrop(e: Event) {
+  onDrop(e) {
     e.preventDefault()
 
     const kind = this.closestKind(e.target)
@@ -44,7 +44,7 @@ export default class RetrospectiveImpl extends React.Component {
     }
   }
 
-  onDragOver(e: Event) {
+  onDragOver(e) {
     e.preventDefault()
   }
 

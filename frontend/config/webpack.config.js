@@ -7,15 +7,17 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve('./app/assets/javascripts')
   },
+  resolve: {
+    extensions: ['.js']
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader',
-          options: { presets: ['es2015', 'es2016', 'es2017', 'react'] }
-        }]
+        use: {
+          loader: 'babel-loader'
+        }
       }
     ]
   },
