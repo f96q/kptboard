@@ -2,24 +2,7 @@ import React from 'react'
 import { lifecycle } from 'recompose'
 import { connector } from '../actionCreators'
 
-export const Alert = connector(
-  state => ({
-    alert: state.application.alert
-  }),
-  actions => ({
-    clearAlert: actions.clearAlert
-  }),
-  lifecycle({
-    componentDidUpdate() {
-      if (this.props.alert.messages.length == 0) {
-        return
-      }
-      setTimeout(() => {
-        this.props.clearAlert()
-      }, 5000)
-    }
-  })
-)(function AlertImpl(props) {
+export default function AlertImpl(props) {
   const { alert, clearAlert } = props
   if (alert.messages.length == 0) {
     return null
@@ -35,6 +18,23 @@ export const Alert = connector(
       <div className="Alert-messages">{messages}</div>
     </div>
   )
-})
+}
 
-
+export const Alert = connector(
+  state => ({
+    alert: state.app.alert
+  }),
+  actions => ({
+    clearAlert: actions.app.clearAlert
+  }),
+  lifecycle({
+    componentDidUpdate() {
+      if (this.props.alert.messages.length == 0) {
+        return
+      }
+      setTimeout(() => {
+        this.props.clearAlert()
+      }, 5000)
+    }
+  })
+)(AlertImpl)

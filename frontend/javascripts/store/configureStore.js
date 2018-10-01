@@ -1,10 +1,6 @@
-import { createStore, applyMiddleware } from 'redux'
-import reducer from '../reducers'
-import actionCable from '../middlewares/actionCable'
+import { createStore } from 'redux'
+import { rootReducer } from '../reducers'
 
 export function configureStore() {
-  return createStore(
-    reducer,
-    applyMiddleware(actionCable)
-  )
+  return createStore(rootReducer)
 }

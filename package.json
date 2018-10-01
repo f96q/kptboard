@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "actioncable": "^5.0.0",
+    "hard-reducer": "^2.3.0",
     "humps": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

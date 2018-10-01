@@ -3,14 +3,15 @@ import { Provider } from 'react-redux'
 import { Retrospective } from '../components/Retrospective'
 import { LabelModal } from '../components/LabelModal'
 import { Alert } from '../components/Alert'
+import { ActionCable } from '../components/ActionCable'
 import { configureStore } from '../store/configureStore'
 
-export function App(props) {
+export default function App(props) {
   const store = configureStore()
-  store.dispatch({ type: 'ACTION_CABLE_CREATE', retrospectiveId: props.retrospectiveId })
   return (
     <Provider store={store}>
       <div>
+        <ActionCable retrospectiveId={props.retrospectiveId} />
         <Alert />
         <Retrospective />
         <LabelModal />

@@ -1,19 +1,13 @@
 import React from 'react'
-import { UserItem } from './UserItem'
+import UserItem from './UserItem'
 import { connector } from '../actionCreators'
 
-export const UserList = connector(
-  state => ({
-    email: state.users.email
-  }),
-  actions => ({
-    addUser: actions.addUser,
-    setInvitationEmail: actions.setInvitationEmail
-  })
-)(function UserListImpl(props) {
+export default function UserListImpl(props) {
   const {
+    users,
     email,
     addUser,
+    removeUser,
     setInvitationEmail
   } = props
   return (
@@ -23,7 +17,7 @@ export const UserList = connector(
         data-test="email-form"
         type="email"
         placeholder="email"
-        onChange={event => setInvitationEmail(event.target.value)}
+        onChange={event => setInvitationEmail({ email: event.target.value })}
       >
       </input>
       <button
@@ -31,37 +25,32 @@ export const UserList = connector(
         data-test="email-form-button"
         type="button"
         onClick={() => {
-          if (email) addUser(email)
+          if (email) addUser({ email: email })
         }}
       >
       </button>
-      <UserListItems />
+      <div className="UserList-items">
+        {users.map(user => (
+          <UserItem
+            key={user.id}
+            user={user}
+            isDestroy={users.length > 1}
+            removeUser={removeUser}
+             />
+        ))}
+      </div>
     </div>
   )
-})
+}
 
-const UserListItems = connector(
+export const UserList = connector(
   state => ({
-    users: state.users.users
+    users: state.user.users,
+    email: state.user.email
   }),
   actions => ({
-    removeUser: actions.removeUser
+    addUser: actions.channel.addUser,
+    removeUser: actions.channel.removeUser,
+    setInvitationEmail: actions.user.setInvitationEmail
   })
-)(function UserListItemsImpl(props) {
-  const {
-    users,
-    removeUser
-  } = props
-  return (
-    <div className="UserList-items">
-      {users.map(user => (
-        <UserItem
-          key={user.id}
-          user={user}
-          isDestroy={users.length > 1}
-          removeUser={removeUser}
-         />
-      ))}
-    </div>
-  )
-})
+)(UserListImpl)

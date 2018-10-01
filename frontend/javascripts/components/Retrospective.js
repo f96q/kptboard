@@ -1,14 +1,14 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { connector } from '../actionCreators'
-import { Label } from './Label'
+import Label from './Label'
 import { UserList } from './UserList'
 
-class RetrospectiveImpl extends React.Component {
+export default class RetrospectiveImpl extends React.Component {
   openLabelForm(e) {
     const kind = this.closestKind(e.target)
     if (kind == null) return
-    this.props.openNewLabelModal(kind, e.clientX, e.clientY)
+    this.props.openNewLabelModal({ kind: kind, clientX: e.clientX, clientY: e.clientY })
   }
 
   closestKind(target) {
@@ -40,7 +40,7 @@ class RetrospectiveImpl extends React.Component {
     const index = this.closestLabelIndex(kind, e.target)
     if (index == null) return
     if (this.props.dragStartId) {
-      this.props.dropLabel(this.props.dragStartId, kind, index)
+      this.props.dropLabel({ dragStartId: this.props.dragStartId, kind: kind, index: index })
     }
   }
 
@@ -102,19 +102,16 @@ class RetrospectiveImpl extends React.Component {
 
 export const Retrospective = connector(
   state => ({
-    labels: state.labels.labels,
-    dragStartId: state.labels.dragStartId
+    labels: state.label.labels,
+    dragStartId: state.label.dragStartId
   }),
   actions => ({
-    destroyLabel: actions.destroyLabel,
-    openNewLabelModal: actions.openNewLabelModal,
-    openEditLabelModal: actions.openEditLabelModal,
-    dragStartLabel: actions.dragStartLabel,
-    dragEndLabel: actions.dragEndLabel,
-    dropLabel: actions.dropLabel,
-    destroyLabel: actions.destroyLabel,
-    openEditLabelModal: actions.openEditLabelModal,
-    dragStartLabel: actions.dragStartLabel,
-    dragEndLabel: actions.dragEndLabel
+    openNewLabelModal: actions.label.openNewLabelModal,
+    openEditLabelModal: actions.label.openEditLabelModal,
+    dragStartLabel: actions.label.dragStartLabel,
+    dragEndLabel: actions.label.dragEndLabel,
+    dropLabel: actions.channel.dropLabel,
+    destroyLabel: actions.channel.destroyLabel,
+    openEditLabelModal: actions.label.openEditLabelModal,
   }),
 )(RetrospectiveImpl)

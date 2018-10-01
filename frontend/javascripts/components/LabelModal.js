@@ -2,17 +2,7 @@ import React from 'react'
 import Modal from 'react-modal'
 import { connector } from '../actionCreators'
 
-export const LabelModal = connector(
-  state => ({
-    labelModal: state.labels.labelModal
-  }),
-  actions => ({
-    createLabel: actions.createLabel,
-    updateLabel: actions.updateLabel,
-    updateLabelModal: actions.updateLabelModal,
-    closeLabelModal: actions.closeLabelModal
-  })
-)(function LabelModalImpl(props) {
+export default function LabelModalImpl(props) {
   const {
     labelModal,
     createLabel,
@@ -36,9 +26,9 @@ export const LabelModal = connector(
       return
     }
     if (labelModal.label.id) {
-      updateLabel(labelModal.label.id, { description: labelModal.label.description })
+      updateLabel({ id: labelModal.label.id, label: { description: labelModal.label.description } })
     } else {
-      createLabel(labelModal.label)
+      createLabel({ label: labelModal.label })
     }
     closeLabelModal()
   }
@@ -54,7 +44,7 @@ export const LabelModal = connector(
             className="LabelModal-textarea form-control"
             data-test="textarea"
             rows="10"
-            onChange={event => updateLabelModal(event.target.value)}
+            onChange={event => updateLabelModal({ description: event.target.value })}
             onKeyDown={event => { if (event.keyCode == 13) save() }}
             value={labelModal.label.description}
           ></textarea>
@@ -66,5 +56,16 @@ export const LabelModal = connector(
       </div>
     </Modal>
   )
-})
+}
 
+export const LabelModal = connector(
+  state => ({
+    labelModal: state.label.labelModal
+  }),
+  actions => ({
+    createLabel: actions.channel.createLabel,
+    updateLabel: actions.channel.updateLabel,
+    updateLabelModal: actions.label.updateLabelModal,
+    closeLabelModal: actions.label.closeLabelModal
+  })
+)(LabelModalImpl)

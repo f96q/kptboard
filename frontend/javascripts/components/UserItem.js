@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function UserItem(props) {
+export default function UserItem(props) {
   const {
     user,
     isDestroy,
@@ -13,7 +13,7 @@ export function UserItem(props) {
         data-test="remove"
         onClick={() => {
           if (window.confirm(`remove user ${user.name}`)) {
-            removeUser(user.id)
+            removeUser({ id: user.id })
           }
         }}
       />
