@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "[![Build Status](https://travis-ci.org/f96q/kptboard.svg?branch=master)](https://travis-ci.org/f96q/kptboard) [![Code Climate](https://codeclimate.com/github/f96q/kptboard/badges/gpa.svg)](https://codeclimate.com/github/f96q/kptboard)",
   "scripts": {
-    "build": "webpack --config frontend/config/webpack.config.js",
-    "watch": "webpack --watch --config frontend/config/webpack.config.js",
-    "test": "mocha --recursive --compilers js:babel-core/register frontend/javascripts/test",
+    "build": "webpack --mode production --config frontend/config/webpack.config.js",
+    "watch": "webpack --mode development --watch --config frontend/config/webpack.config.js",
+    "test": "mocha --recursive --require @babel/register frontend/javascripts/test",
     "heroku-postbuild": "yarn run build"
   },
   "repository": {
@@ -30,14 +30,13 @@
     "rocha": "^2.5.0"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "babel-plugin-react-remove-properties": "^0.2.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-es2016": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "expect": "^1.20.2",
@@ -46,6 +45,7 @@
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.6.2",
     "sinon": "^4.1.3",
-    "webpack": "^3.5.6"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }
