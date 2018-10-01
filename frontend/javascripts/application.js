@@ -1,5 +1,3 @@
-// @flow
-
 window.onload = () => {
   const dropdown = document.getElementsByClassName('dropdown')[0]
   dropdown.addEventListener('click', () => {
