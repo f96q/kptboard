@@ -10,8 +10,7 @@
 
 ```
 bundle install --without=heroku
-bin/rails db:create db:migrate
-yarn install
+bin/setup
 bundle exec foreman start -f Procfile.development
 ```
 
