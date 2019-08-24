@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   end
 
   root 'retrospectives#index'
+
+  get 'health_check', to: 'health_check#health_check'
 end
