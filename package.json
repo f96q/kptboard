@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "description": "[![Build Status](https://travis-ci.org/f96q/kptboard.svg?branch=master)](https://travis-ci.org/f96q/kptboard) [![Code Climate](https://codeclimate.com/github/f96q/kptboard/badges/gpa.svg)](https://codeclimate.com/github/f96q/kptboard)",
   "scripts": {
-    "build": "webpack --mode production --config frontend/config/webpack.config.js",
-    "watch": "webpack --mode development --watch --config frontend/config/webpack.config.js",
-    "test": "mocha --recursive --require @babel/register frontend/javascripts/test",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch",
+    "test": "mocha --recursive --require @babel/register app/javascripts/test",
     "heroku-postbuild": "yarn run build"
   },
   "repository": {
