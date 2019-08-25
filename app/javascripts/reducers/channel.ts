@@ -1,7 +1,11 @@
 import {
+  ActionCreator,
   buildActionCreator,
-  createReducer
+  createReducer,
+  Reducer
 } from 'hard-reducer'
+
+import { DeepReadonly } from 'utility-types'
 
 const {
   createAction
@@ -9,20 +13,44 @@ const {
   prefix: 'channels/'
 })
 
-const initialState = {
+type ChannelState = {
+
+}
+
+const initialState: ChannelState = {
   retrospectivesUsers: null,
   labels: null
 }
 
-export const setChannel = createAction('set-channel')
-export const createLabel = createAction('create-label')
-export const updateLabel = createAction('update-label')
-export const destroyLabel = createAction('destroy-label')
-export const dropLabel = createAction('drop-label')
-export const addUser = createAction('add-user')
-export const removeUser = createAction('remove-user')
+export const setChannel: ActionCreator<{
 
-export const reducer = createReducer(initialState)
+}> = createAction('set-channel')
+
+export const createLabel: ActionCreator<{
+
+}> = createAction('create-label')
+
+export const updateLabel: ActionCreator<{
+
+}> = createAction('update-label')
+
+export const destroyLabel: ActionCreator<{
+
+}> = createAction('destroy-label')
+
+export const dropLabel: ActionCreator<{
+
+}> = createAction('drop-label')
+
+export const addUser: ActionCreator<{
+
+}> = createAction('add-user')
+
+export const removeUser: ActionCreator<{
+
+}> = createAction('remove-user')
+
+export const reducer: Reducer<DeepReadonly<ChannelState>> = createReducer(initialState)
   .case(setChannel, (state, payload) => {
     return {
       ...state,

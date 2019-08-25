@@ -1,7 +1,11 @@
 import {
+  ActionCreator,
   buildActionCreator,
-  createReducer
+  createReducer,
+  Reducer
 } from 'hard-reducer'
+
+import { DeepReadonly } from 'utility-types'
 
 import { setRetrospective } from '../actionCreators/globalActions'
 
@@ -11,16 +15,34 @@ const {
   prefix: 'users/'
 })
 
-const initialState = {
+type User = {
+  id: string
+  name: string
+}
+
+type UserState = {
+  users: User[]
+  email: string
+}
+
+const initialState: DeepReadonly<UserState> = {
   users: [],
   email: ''
 }
 
-export const addUser = createAction('add-user')
-export const removeUser = createAction('remove-user')
-export const setInvitationEmail = createAction('set-invitation-email')
+export const addUser: ActionCreator<{
+  user: User
+}> = createAction('add-user')
 
-export const reducer = createReducer(initialState)
+export const removeUser: ActionCreator<{
+  id: string
+}> = createAction('remove-user')
+
+export const setInvitationEmail: ActionCreator<{
+  email: string
+}> = createAction('set-invitation-email')
+
+export const reducer: Reducer<DeepReadonly<UserState>> = createReducer(initialState)
   .case(setRetrospective, (state, payload) => {
     return {
       ...state,

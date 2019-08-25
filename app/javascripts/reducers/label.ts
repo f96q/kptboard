@@ -1,7 +1,11 @@
 import {
+  ActionCreator,
   buildActionCreator,
-  createReducer
+  createReducer,
+  Reducer
 } from 'hard-reducer'
+
+import { DeepReadonly } from 'utility-types'
 
 import { setRetrospective } from '../actionCreators/globalActions'
 
@@ -23,8 +27,28 @@ function findLabelPosition(labels, id) {
   return null
 }
 
+type Label = {
+  id: string
+  kind: 'keep' | 'problem' | 'try'
+  description: string
+}
 
-const initialState = {
+type LabelState = {
+  dragStartId: null | string
+  labels: {
+    keep: Label[]
+    problem: Label[]
+    try: Label[]
+  }
+  labelModal: {
+    isOpen: boolean
+    clientX: number
+    clientY: number
+    label: Label
+  }
+}
+
+const initialState: LabelState = {
   dragStartId: null,
   labels: {
     keep: [],
@@ -36,28 +60,56 @@ const initialState = {
     clientX: 0,
     clientY: 0,
     label: {
-      id: null,
-      kind: null,
+      id: '',
+      kind: '',
       description: ''
     }
   }
 }
 
 // LabelModal
-export const openNewLabelModal = createAction('open-new-label-modal')
-export const openEditLabelModal = createAction('open-edit-label-modal')
-export const updateLabelModal = createAction('update-label-modal')
-export const closeLabelModal = createAction('close-label-modal')
+export const openNewLabelModal: ActionCreator<{
+
+}> = createAction('open-new-label-modal')
+
+export const openEditLabelModal: ActionCreator<{
+
+}> = createAction('open-edit-label-modal')
+
+export const updateLabelModal: ActionCreator<{
+
+}> = createAction('update-label-modal')
+
+export const closeLabelModal: ActionCreator<{
+
+}> = createAction('close-label-modal')
 
 // Label
-export const createLabel = createAction('create-label')
-export const updateLabel = createAction('update-label')
-export const destroyLabel = createAction('destroy-label')
-export const dragStartLabel = createAction('drag-start-label')
-export const dragEndLabel = createAction('drag-end-lab')
-export const dropLabel = createAction('drop-label')
+export const createLabel: ActionCreator<{
 
-export const reducer = createReducer(initialState)
+}> = createAction('create-label')
+
+export const updateLabel: ActionCreator<{
+
+}> = createAction('update-label')
+
+export const destroyLabel: ActionCreator<{
+
+}> = createAction('destroy-label')
+
+export const dragStartLabel: ActionCreator<{
+
+}> = createAction('drag-start-label')
+
+export const dragEndLabel: ActionCreator<{
+
+}> = createAction('drag-end-lab')
+
+export const dropLabel: ActionCreator<{
+
+}> = createAction('drop-label')
+
+export const reducer: Reducer<DeepReadonly<LabelState>> = createReducer(initialState)
   .case(setRetrospective, (state, payload) => {
     return {
       ...state,
