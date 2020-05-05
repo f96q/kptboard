@@ -1,10 +1,10 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
 import { connector } from '../actionCreators'
-import Label from './Label'
+import { Label } from './Label'
 import { UserList } from './UserList'
 
-export default class RetrospectiveImpl extends React.Component {
+class RetrospectiveImpl extends React.Component {
   openLabelForm(e) {
     const kind = this.closestKind(e.target)
     if (kind == null) return
