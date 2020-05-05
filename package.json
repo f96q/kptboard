@@ -5,7 +5,6 @@
   "scripts": {
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch",
-    "test": "jest",
     "heroku-postbuild": "yarn run build"
   },
   "repository": {
