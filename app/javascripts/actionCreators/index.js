@@ -7,7 +7,7 @@ import * as label from '../reducers/label'
 import * as user from '../reducers/user'
 import * as channel from '../reducers/channel'
 
-const actions = {
+export const actions = {
   global,
   app,
   label,

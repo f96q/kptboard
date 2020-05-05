@@ -1,15 +1,16 @@
 import React from 'react'
-import UserItem from './UserItem'
-import { connector } from '../actionCreators'
+import { useDispatch, useSelector } from 'react-redux'
+import { actions } from '../actionCreators'
+import { UserItem } from './UserItem'
 
-export default function UserListImpl(props) {
-  const {
-    users,
-    email,
-    addUser,
-    removeUser,
-    setInvitationEmail
-  } = props
+export const UserList = (props) => {
+  const { users, email } = useSelector(state => ({
+    users: state.user.users,
+    email: state.user.email
+  }))
+
+  const dispatch = useDispatch()
+
   return (
     <div className="UserList">
       <input
@@ -17,7 +18,7 @@ export default function UserListImpl(props) {
         data-test="email-form"
         type="email"
         placeholder="email"
-        onChange={event => setInvitationEmail({ email: event.target.value })}
+        onChange={event => dispatch(actions.user.setInvitationEmail({ email: event.target.value }))}
       >
       </input>
       <button
@@ -25,7 +26,7 @@ export default function UserListImpl(props) {
         data-test="email-form-button"
         type="button"
         onClick={() => {
-          if (email) addUser({ email: email })
+          if (email) dispatch(actions.channel.addUser({ email: email }))
         }}
       >
       </button>
@@ -35,22 +36,9 @@ export default function UserListImpl(props) {
             key={user.id}
             user={user}
             isDestroy={users.length > 1}
-            removeUser={removeUser}
-             />
+          />
         ))}
       </div>
     </div>
   )
 }
-
-export const UserList = connector(
-  state => ({
-    users: state.user.users,
-    email: state.user.email
-  }),
-  actions => ({
-    addUser: actions.channel.addUser,
-    removeUser: actions.channel.removeUser,
-    setInvitationEmail: actions.user.setInvitationEmail
-  })
-)(UserListImpl)

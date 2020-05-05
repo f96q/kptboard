@@ -1,15 +1,15 @@
 import React from 'react'
 import Modal from 'react-modal'
-import { connector } from '../actionCreators'
+import { useDispatch, useSelector } from 'react-redux'
+import { actions } from '../actionCreators'
 
-export default function LabelModalImpl(props) {
-  const {
-    labelModal,
-    createLabel,
-    updateLabel,
-    updateLabelModal,
-    closeLabelModal
-  } = props
+export const LabelModal = (props) => {
+  const { labelModal } = useSelector(state => ({
+    labelModal: state.label.labelModal
+  }))
+
+  const dispatch = useDispatch()
+
   const style = {
     overlay: {
       top: labelModal.clientY,
@@ -21,18 +21,23 @@ export default function LabelModalImpl(props) {
       marginLeft: 0
     }
   }
+
   const save = () => {
     if (labelModal.label.description == '') {
       return
     }
     if (labelModal.label.id) {
-      updateLabel({ id: labelModal.label.id, label: { description: labelModal.label.description } })
+      dispatch(actions.channel.updateLabel({ id: labelModal.label.id, label: { description: labelModal.label.description } }))
     } else {
-      createLabel({ label: labelModal.label })
+      dispatch(actions.channel.createLabel({ label: labelModal.label }))
     }
-    closeLabelModal()
+    dispatch(actions.label.closeLabelModal())
   }
-  if (labelModal.label.kind == null) return null
+
+  if (labelModal.label.kind == null) {
+    return null
+  }
+
   return (
     <Modal className="LabelModal label-modal modal-dialog" isOpen={labelModal.isOpen} style={style} contentLabel="Modal">
       <div className="modal-content">
@@ -44,28 +49,16 @@ export default function LabelModalImpl(props) {
             className="LabelModal-textarea form-control"
             data-test="textarea"
             rows="10"
-            onChange={event => updateLabelModal({ description: event.target.value })}
+            onChange={event => dispatch(actions.label.updateLabelModal({ description: event.target.value }))}
             onKeyDown={event => { if (event.keyCode == 13) save() }}
             value={labelModal.label.description}
           ></textarea>
         </div>
         <div className="modal-footer">
-          <button type="button" className="LabelModal-close btn btn-secondary" data-test="close" onClick={() => closeLabelModal()}>Close</button>
+          <button type="button" className="LabelModal-close btn btn-secondary" data-test="close" onClick={() => dispatch(actions.label.closeLabelModal({}))}>Close</button>
           <button type="button" className="LabelModal-save btn btn-primary" data-test="save" onClick={() => save()}>Save</button>
         </div>
       </div>
     </Modal>
   )
 }
-
-export const LabelModal = connector(
-  state => ({
-    labelModal: state.label.labelModal
-  }),
-  actions => ({
-    createLabel: actions.channel.createLabel,
-    updateLabel: actions.channel.updateLabel,
-    updateLabelModal: actions.label.updateLabelModal,
-    closeLabelModal: actions.label.closeLabelModal
-  })
-)(LabelModalImpl)
