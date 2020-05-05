@@ -1,40 +1,27 @@
-import React from 'react'
-import { lifecycle } from 'recompose'
-import { connector } from '../actionCreators'
+import React, { useEffect }  from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { actions } from '../actionCreators'
 
-export default function AlertImpl(props) {
-  const { alert, clearAlert } = props
-  if (alert.messages.length == 0) {
-    return null
-  }
-  const messages = alert.messages.map((message, i) => {
-    return (<div key={`message-${i + 1}`} className="Alert-message">{message}</div>)
-  })
-  if (alert.type == null) {
+export const Alert = (props) => {
+  const { alert } = useSelector(state => ({
+    alert: state.app.alert
+  }))
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (alert.messages.length == 0) {
+      return
+    }
+    setTimeout(() => dispatch(actions.app.clearAlert({})), 5000)
+  }, [])
+
+  if (alert.messages.length == 0 || alert.type == null) {
     return null
   }
   return (
     <div className={`Alert is-${alert.type}`}>
-      <div className="Alert-messages">{messages}</div>
+      <div className="Alert-messages">{alert.messages.map((message, i) => (<div key={`message-${i + 1}`} className="Alert-message">{message}</div>))}</div>
     </div>
   )
 }
-
-export const Alert = connector(
-  state => ({
-    alert: state.app.alert
-  }),
-  actions => ({
-    clearAlert: actions.app.clearAlert
-  }),
-  lifecycle({
-    componentDidUpdate() {
-      if (this.props.alert.messages.length == 0) {
-        return
-      }
-      setTimeout(() => {
-        this.props.clearAlert()
-      }, 5000)
-    }
-  })
-)(AlertImpl)
