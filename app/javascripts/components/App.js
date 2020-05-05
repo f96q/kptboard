@@ -6,8 +6,9 @@ import { Alert } from '../components/Alert'
 import { ActionCable } from '../components/ActionCable'
 import { configureStore } from '../store/configureStore'
 
-export default function App(props) {
+export const App = (props) => {
   const store = configureStore()
+
   return (
     <Provider store={store}>
       <div>
