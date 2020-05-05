@@ -24,7 +24,6 @@
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
-    "recompose": "^0.30.0",
     "redux": "^4.0.5",
     "rocha": "^2.5.0"
   },
