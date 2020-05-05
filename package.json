@@ -18,7 +18,7 @@
     "url": "https://github.com/f96q/kptboard/issues"
   },
   "dependencies": {
-    "actioncable": "^5.0.0",
+    "actioncable": "^5.2.4-2",
     "hard-reducer": "^2.3.0",
     "humps": "^1.1.0",
     "react": "^16.2.0",
@@ -50,6 +50,6 @@
     "typescript": "^3.5.3",
     "utility-types": "^3.7.0",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.3.11"
   }
 }
