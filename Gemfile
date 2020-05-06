@@ -25,7 +25,7 @@ gem 'haml-rails'
 gem 'font-awesome-rails'
 gem 'normalize-rails'
 gem 'autoprefixer-rails'
-gem 'bootstrap', '4.0.0.alpha3'
+gem 'bootstrap', '4.3.1'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
