@@ -40,7 +40,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "expect": "^26.0.0",
     "jest": "^26.0.0",
-    "jsdom": "^16.2.2",
+    "jsdom": "^16.5.0",
     "mocha": "^7.1.2",
     "react-addons-test-utils": "^15.6.2",
     "sinon": "^9.0.2",
